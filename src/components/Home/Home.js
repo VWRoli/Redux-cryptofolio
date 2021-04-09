@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 //Components
-import HomeList from './HomeList';
+//import HomeList from './HomeList';
 
 const Home = () => {
   return (
@@ -16,9 +16,7 @@ const Home = () => {
             <Link to='/portfolio'>Create your Portfolio</Link>
           </button>
         </div>
-        <div className='home-right'>
-          <HomeList />
-        </div>
+        <div className='home-right'>{/*  <HomeList /> */}</div>
       </div>
     </section>
   );
