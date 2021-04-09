@@ -1,0 +1,39 @@
+.list-item {
+  @include list-item();
+  transition: all 0.25s;
+
+  .add-btn {
+    background: $green-gradient;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    color: #eee;
+    justify-self: end;
+    align-self: flex-end;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      background: $green-inverse-gradient;
+    }
+  }
+  &:hover {
+    background: darken(#eee, 5%);
+    box-shadow: none;
+  }
+}
+.owned-coin {
+  cursor: not-allowed;
+  background-color: #ddd;
+  h2 {
+    grid-column: span 5;
+    span {
+      color: $error-color;
+      font-weight: 400;
+      font-size: 0.65rem;
+    }
+  }
+}

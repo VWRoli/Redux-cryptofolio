@@ -1,0 +1,275 @@
+#portfolio {
+  @include main-page-setup();
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  h2 {
+    padding: 1rem 0;
+  }
+  h3 {
+    padding: 1rem 0;
+  }
+  .header {
+    @include header-flex();
+    .primary-btn {
+      a {
+        display: flex;
+        align-items: center;
+        svg {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 2rem 0 0;
+  }
+}
+#stats {
+  grid-column: span 4;
+  margin-right: 0.5rem;
+  .chart-btn-container {
+    display: flex;
+    .chart-btn {
+      flex: 1;
+      margin: 5px;
+      padding: 0.5rem;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid #eee;
+      border-bottom: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $blue-color;
+      outline: none;
+      background: linear-gradient(to bottom, #eee, #fff);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .stat-btn-icon {
+        margin-right: 5px;
+      }
+      &:hover {
+        background: linear-gradient(to bottom, #ddd, #fff);
+        color: $hover;
+      }
+    }
+  }
+
+  .main-asset-value {
+    font-size: 2rem;
+    font-weight: 400;
+    @include top-bottom-border();
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    span {
+      font-weight: 400;
+    }
+  }
+  .graph-btn-container {
+    display: flex;
+    justify-content: space-around;
+
+    .chart-btn {
+      @include primary-btn($gray-gradient, $green-inverse-gradient);
+      color: #222;
+      margin: 0;
+      padding: 1rem;
+      &:hover {
+        color: #eee;
+      }
+    }
+    .active {
+      background: $green-gradient;
+      color: #eee;
+      &:hover {
+        background: $green-inverse-gradient;
+      }
+    }
+  }
+}
+#assets {
+  grid-column: span 8;
+  margin-left: 0.5rem;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+
+  .assets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    form {
+      color: #222;
+      label {
+        margin-right: 5px;
+      }
+    }
+
+    .refresh-btn {
+      font-size: 1.25rem;
+      color: $blue-color;
+      cursor: pointer;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+        animation: push-down 0.5s ease-in-out;
+      }
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    th {
+      font-weight: 400;
+      padding: 1rem 0;
+      @include top-bottom-border();
+    }
+    tbody {
+      .table-name {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 30px;
+          justify-self: end;
+          margin-right: 1.5rem;
+        }
+        p {
+          text-align: left;
+          width: fit-content;
+          font-weight: 400;
+        }
+      }
+      tr {
+        text-align: center;
+        td {
+          font-weight: 400;
+          padding: 0.25rem;
+        }
+      }
+      tr:nth-child(even) {
+        background-color: #eee;
+      }
+      .holdings {
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: #999;
+      }
+    }
+  }
+  .symbol {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: lighten(#000000, 50%);
+  }
+
+  .empty-table {
+    padding: 1rem;
+    color: $blue-color;
+  }
+}
+.edit-btn {
+  @include reset-btn();
+}
+.remove-btn {
+  @include reset-btn();
+}
+.clear-btn {
+  @include primary-btn($gray-gradient, $gray-inverse-gradient);
+  padding: 1rem;
+  width: fit-content;
+  margin: auto;
+  color: #222;
+}
+
+@keyframes push-down {
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #portfolio {
+    #stats {
+      grid-column: span 12;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #portfolio {
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  .percentage-change-row {
+    display: none;
+  }
+}
+@media screen and (max-width: 750px) {
+  #portfolio {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  .profit-row {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #portfolio {
+    .portfolio-header {
+      flex-direction: column;
+      text-align: center;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  #stats {
+    .graph-btn-container {
+      button {
+        padding: 0.75rem;
+      }
+    }
+  }
+  .actions-row {
+    display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  #stats {
+    .main-asset-value {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  #assets {
+    .assets-header {
+      form {
+        display: none;
+      }
+    }
+  }
+}

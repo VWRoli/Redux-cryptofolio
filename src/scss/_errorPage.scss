@@ -1,0 +1,16 @@
+#error-page {
+  @include main-page-setup();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    padding: 1rem 0;
+  }
+  .error-icon {
+    font-size: 3rem;
+  }
+  .btn {
+    @include primary-btn($green-gradient, $green-inverse-gradient);
+    width: fit-content;
+  }
+}

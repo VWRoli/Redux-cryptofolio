@@ -1,0 +1,21 @@
+.success-message {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  .success-icon {
+    font-size: 3rem;
+    margin: 2rem auto;
+    color: $success-color;
+    animation: bounce 1s ease-in infinite;
+  }
+  .back-to-addassets {
+    color: $blue-color;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+@keyframes bounce {
+  50% {
+    transform: translateY(-10px);
+  }
+}

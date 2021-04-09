@@ -1,0 +1,66 @@
+#add-new-asset {
+  header {
+    @include list-item();
+    h2 {
+      grid-column: span 3;
+    }
+    margin: 1rem 0;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    p {
+      font-weight: 400;
+      grid-column: span 2;
+      span {
+        font-weight: 400;
+      }
+    }
+  }
+  h3 {
+    text-align: center;
+    font-weight: 400;
+    margin: 2rem 0;
+    span {
+      color: $blue-color;
+      font-weight: 400;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      text-align: center;
+    }
+
+    input {
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 20px;
+      border: 1px solid #222;
+      font-size: 1.25rem;
+      outline: none;
+    }
+    //Do not show spin buttons
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .primary-btn {
+      padding: 1rem;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  #add-new-asset {
+    form {
+      input {
+        font-size: 1rem;
+      }
+      .primary-btn {
+        margin: 0;
+      }
+    }
+  }
+}
