@@ -1,36 +1,36 @@
-import { useGlobalContext } from '../../context';
 import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
-import Loading from '../Loading';
-import Error from '../Error';
-import Chart from './Chart';
 import { useState } from 'react';
-import PieChart from './PieChart';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
+import { BUTTONS } from '../../constants/constant';
+//Components
 import ChartButtons from './ChartButtons';
-import { BUTTONS } from '../../constant';
+import Error from '../Error';
+import Loading from '../Loading';
+import Chart from './Chart';
+import PieChart from './PieChart';
 
 const Stats = () => {
   const [isLineChart, setIsLineChart] = useState(true);
 
-  const {
+  /* const {
     totalValue,
     isLoading,
     isError,
     totalValueChange,
     assets,
     priceFormatter,
-  } = useGlobalContext();
+  } = useGlobalContext(); */
 
   if (isError) return <Error />;
 
   return (
-    <section id="stats">
+    <section id='stats'>
       <h2>Overview</h2>
 
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="main-asset-value">
+        <div className='main-asset-value'>
           {priceFormatter(totalValue)}
           {assets.length === 0 ? (
             <span>0%</span>
@@ -44,12 +44,12 @@ const Stats = () => {
           )}
         </div>
       )}
-      <div className="chart-btn-container">
-        <button className="chart-btn" onClick={() => setIsLineChart(true)}>
-          <FaChartLine className="stat-btn-icon" /> Line Chart
+      <div className='chart-btn-container'>
+        <button className='chart-btn' onClick={() => setIsLineChart(true)}>
+          <FaChartLine className='stat-btn-icon' /> Line Chart
         </button>
-        <button className="chart-btn" onClick={() => setIsLineChart(false)}>
-          <FaChartPie className="stat-btn-icon" /> Pie Chart
+        <button className='chart-btn' onClick={() => setIsLineChart(false)}>
+          <FaChartPie className='stat-btn-icon' /> Pie Chart
         </button>
       </div>
 

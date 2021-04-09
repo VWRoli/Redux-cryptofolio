@@ -1,17 +1,17 @@
-import AssetsHeader from './AssetsHeader';
-import { useGlobalContext } from '../../context';
-import AssetsTable from './AssetsTable';
-import { FaSyncAlt } from 'react-icons/fa';
 import { useFetch } from '../../useFetch';
+import { FaSyncAlt } from 'react-icons/fa';
+//Components
+import AssetsHeader from './AssetsHeader';
+import AssetsTable from './AssetsTable';
 
 const Assets = () => {
-  const {
+  /*   const {
     assets,
     clearAssets,
     fetchCoinInfo,
     setCurrency,
     defaultCurrency,
-  } = useGlobalContext();
+  } = useGlobalContext(); */
 
   const { data: currencies } = useFetch(
     `https://api.coingecko.com/api/v3/simple/supported_vs_currencies`
@@ -22,14 +22,14 @@ const Assets = () => {
   };
 
   return (
-    <section id="assets">
-      <header className="assets-header">
-        <h2 className="assets-title">Your Assets </h2>
-        <form action="/">
-          <label htmlFor="currency">Default Currency:</label>
+    <section id='assets'>
+      <header className='assets-header'>
+        <h2 className='assets-title'>Your Assets </h2>
+        <form action='/'>
+          <label htmlFor='currency'>Default Currency:</label>
           <select
-            name="currency"
-            id="currency"
+            name='currency'
+            id='currency'
             value={defaultCurrency}
             onChange={handleChange}
           >
@@ -42,7 +42,7 @@ const Assets = () => {
             })}
           </select>
         </form>
-        <FaSyncAlt className="refresh-btn" onClick={fetchCoinInfo} />
+        <FaSyncAlt className='refresh-btn' onClick={fetchCoinInfo} />
       </header>
       <table>
         <thead>
@@ -51,7 +51,7 @@ const Assets = () => {
         {assets.length === 0 ? (
           <tbody>
             <tr>
-              <td className="empty-table" colSpan="6">
+              <td className='empty-table' colSpan='6'>
                 You don't have any assets in your portfolio.
               </td>
             </tr>
@@ -63,7 +63,7 @@ const Assets = () => {
       {assets.length === 0 ? (
         ''
       ) : (
-        <button type="button" className="clear-btn" onClick={clearAssets}>
+        <button type='button' className='clear-btn' onClick={clearAssets}>
           Clear Assets
         </button>
       )}

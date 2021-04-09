@@ -1,11 +1,11 @@
 import { useFetch } from '../../useFetch';
+//Components
 import Error from '../Error';
 import Loading from '../Loading';
 import ListItem from '../ListItem';
-import { useGlobalContext } from '../../context';
 
 const AssetsList = () => {
-  const { assets, searchQuery } = useGlobalContext();
+  //const { assets, searchQuery } = useGlobalContext();
 
   let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
 
@@ -31,9 +31,9 @@ const AssetsList = () => {
     return <Loading />;
   }
   return (
-    <section id="asset-list">
+    <section id='asset-list'>
       {noResults ? (
-        <h3 className="no-results">
+        <h3 className='no-results'>
           We couldn't find your coin, please try again.
         </h3>
       ) : (

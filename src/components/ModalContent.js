@@ -1,10 +1,10 @@
-import { useGlobalContext } from '../context';
+//Components
 import AddNewAsset from './AddAsset/AddNewAsset';
 import EditAsset from './Portfolio/EditAsset';
 import AddSuccess from './AddAsset/AddSuccess';
 
 const ModalContent = () => {
-  const { activeCoin, displaySuccess, isEditAsset } = useGlobalContext();
+  //const { activeCoin, displaySuccess, isEditAsset } = useGlobalContext();
 
   if (displaySuccess) return <AddSuccess />;
 

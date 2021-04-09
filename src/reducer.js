@@ -17,7 +17,7 @@ import {
   OPEN_EDIT_ASSET,
   EDIT_ASSET,
   SET_CURRENCY,
-} from './constant';
+} from './constants/constant';
 
 const reducer = (state, action) => {
   if (action.type === CLEAR_ASSETS) {

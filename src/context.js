@@ -21,7 +21,7 @@ import {
   OPEN_EDIT_ASSET,
   EDIT_ASSET,
   SET_CURRENCY,
-} from './constant';
+} from './constants/constant';
 
 import { urlFormatter, chartDataFormatter } from './helpers';
 

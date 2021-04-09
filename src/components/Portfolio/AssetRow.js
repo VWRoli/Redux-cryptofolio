@@ -1,16 +1,15 @@
 import { priceChangeFormatter } from '../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
-import { useGlobalContext } from '../../context';
 
 const AssetRow = ({ asset }) => {
-  const {
+  /*   const {
     removeAsset,
     coinInfo,
     openModal,
     openEditAsset,
     setActiveCoin,
     priceFormatter,
-  } = useGlobalContext();
+  } = useGlobalContext(); */
 
   const [correctCoin] = coinInfo.filter((coin) => coin.id === asset.id);
 
@@ -28,10 +27,10 @@ const AssetRow = ({ asset }) => {
 
   return (
     <tr>
-      <td className="table-name">
+      <td className='table-name'>
         <img src={image} alt={name} />
         <p>
-          {name} <br /> <span className="symbol">{symbol}</span>
+          {name} <br /> <span className='symbol'>{symbol}</span>
         </p>
       </td>
       {/**PRICE */}
@@ -47,11 +46,11 @@ const AssetRow = ({ asset }) => {
         {priceChangeFormatter(changePercentage)}
       </td>
       {/**HOLDINGS */}
-      <td className="holdings-row">
+      <td className='holdings-row'>
         {priceFormatter(price * asset.holdings)} <br />
-        <span className="holdings">
+        <span className='holdings'>
           {asset.holdings.toFixed(4)}
-          <span className="symbol">&nbsp;{symbol}</span>
+          <span className='symbol'>&nbsp;{symbol}</span>
         </span>
       </td>
       {/**PROFIT/LOSS */}
@@ -63,24 +62,24 @@ const AssetRow = ({ asset }) => {
         {priceFormatter(changeValue * asset.holdings)}
       </td>
       {/**ACTIONS */}
-      <td className="actions-row">
+      <td className='actions-row'>
         <button
-          type="button"
-          className="edit-btn"
+          type='button'
+          className='edit-btn'
           onClick={() => {
             setActiveCoin(id);
             openModal();
             openEditAsset();
           }}
         >
-          <FaEdit className="icons" title="Edit transaction" />
+          <FaEdit className='icons' title='Edit transaction' />
         </button>
         <button
-          type="button"
-          className="remove-btn"
+          type='button'
+          className='remove-btn'
           onClick={() => removeAsset(asset.id)}
         >
-          <FaRegMinusSquare className="icons" title="Remove transaction" />
+          <FaRegMinusSquare className='icons' title='Remove transaction' />
         </button>
       </td>
     </tr>

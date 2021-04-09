@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { useGlobalContext } from '../../context';
 import { priceChangeFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
+//Components
 import Error from '../Error';
 import Loading from '../Loading';
 
 const AddNewAsset = ({ id }) => {
-  const {
+  /*  const {
     addAsset,
     openSuccess,
     defaultCurrency,
     priceFormatter,
-  } = useGlobalContext();
+  } = useGlobalContext(); */
 
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
@@ -47,7 +47,7 @@ const AddNewAsset = ({ id }) => {
 
   if (isError) {
     return (
-      <div id="add-new-asset">
+      <div id='add-new-asset'>
         <h1>Add New Asset</h1>
         <Error />
       </div>
@@ -55,7 +55,7 @@ const AddNewAsset = ({ id }) => {
   }
 
   return (
-    <div id="add-new-asset">
+    <div id='add-new-asset'>
       <h1>Add New Asset</h1>
       {isLoading ? (
         <Loading />
@@ -82,17 +82,17 @@ const AddNewAsset = ({ id }) => {
           <h3>
             Current Price: <span>{priceFormatter(current_price)}</span>
           </h3>
-          <form action="/" onSubmit={onSubmit}>
-            <label htmlFor="holdings">Quantity: </label>
+          <form action='/' onSubmit={onSubmit}>
+            <label htmlFor='holdings'>Quantity: </label>
             <input
-              type="number"
-              name="holdings"
-              id="holdings"
+              type='number'
+              name='holdings'
+              id='holdings'
               value={holdings}
               onChange={(e) => setHoldings(e.target.value)}
             />
 
-            <button type="submit" className="primary-btn">
+            <button type='submit' className='primary-btn'>
               Add Asset
             </button>
           </form>

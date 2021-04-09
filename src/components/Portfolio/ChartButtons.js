@@ -1,17 +1,16 @@
-import { useGlobalContext } from '../../context';
 import { useState } from 'react';
 
 const ChartButtons = ({ buttons }) => {
   const [active, setActive] = useState(1);
 
-  const { setChartDays } = useGlobalContext();
+  //const { setChartDays } = useGlobalContext();
   return (
-    <div className="graph-btn-container">
+    <div className='graph-btn-container'>
       {buttons.map((btn, i) => {
         return (
           <button
             key={i}
-            type="button"
+            type='button'
             className={i === active ? 'chart-btn active' : 'chart-btn'}
             onClick={() => {
               setActive(i);

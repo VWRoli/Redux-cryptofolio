@@ -1,9 +1,8 @@
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
-import { useGlobalContext } from '../../context';
 
 const SearchBar = () => {
-  const { setSearchQuery } = useGlobalContext();
+  //const { setSearchQuery } = useGlobalContext();
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -14,13 +13,13 @@ const SearchBar = () => {
   };
 
   return (
-    <section id="search-section">
-      <form action="/" method="get" onSubmit={handleSubmit}>
-        <label htmlFor="search">Search your Coin: </label>
+    <section id='search-section'>
+      <form action='/' method='get' onSubmit={handleSubmit}>
+        <label htmlFor='search'>Search your Coin: </label>
         <input
-          type="text"
-          name="search"
-          id="search"
+          type='text'
+          name='search'
+          id='search'
           value={searchTerm}
           onChange={(e) => {
             if (e.target.value === '') setSearchQuery(e.target.value);
@@ -28,7 +27,7 @@ const SearchBar = () => {
             setSearchTerm(e.target.value);
           }}
         />
-        <button type="submit" className="search-btn">
+        <button type='submit' className='search-btn'>
           <FaSearch />
         </button>
       </form>

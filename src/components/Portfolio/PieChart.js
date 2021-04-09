@@ -4,13 +4,13 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts';
+
 import { useEffect, useState } from 'react';
 import { calcPieChartData } from '../../helpers';
-import { useGlobalContext } from '../../context';
-import { COLORS, RADIAN } from '../../constant';
+import { COLORS, RADIAN } from '../../constants/constant';
 
 const PieChart = ({ clicked }) => {
-  const { assets, coinInfo } = useGlobalContext();
+  //const { assets, coinInfo } = useGlobalContext();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -34,9 +34,9 @@ const PieChart = ({ clicked }) => {
       <text
         x={x}
         y={y}
-        fill="#222"
+        fill='#222'
         textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
+        dominantBaseline='central'
       >
         {data[index].id}
         <br /> {`${(percent * 100).toFixed(0)}%`}
@@ -45,14 +45,14 @@ const PieChart = ({ clicked }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width='100%' height={300}>
       <RePieChart>
         <Pie
           data={data}
           innerRadius={60}
           outerRadius={100}
           paddingAngle={5}
-          dataKey="value"
+          dataKey='value'
           labelLine={false}
           label={renderCustomizedLabel}
         >
