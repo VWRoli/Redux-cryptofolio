@@ -1,10 +1,15 @@
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
-import { useGlobalContext } from '../../context';
+import { connect } from 'react-redux';
+import { SET_QUERY } from '../../constants/actionTypes';
 
-const SearchBar = () => {
-  const { setSearchQuery } = useGlobalContext();
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSearchQuery: (query) => dispatch({ type: SET_QUERY, payload: query }),
+  };
+};
 
+const SearchBar = ({ setSearchQuery }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {
@@ -14,13 +19,13 @@ const SearchBar = () => {
   };
 
   return (
-    <section id="search-section">
-      <form action="/" method="get" onSubmit={handleSubmit}>
-        <label htmlFor="search">Search your Coin: </label>
+    <section id='search-section'>
+      <form action='/' method='get' onSubmit={handleSubmit}>
+        <label htmlFor='search'>Search your Coin: </label>
         <input
-          type="text"
-          name="search"
-          id="search"
+          type='text'
+          name='search'
+          id='search'
           value={searchTerm}
           onChange={(e) => {
             if (e.target.value === '') setSearchQuery(e.target.value);
@@ -28,7 +33,7 @@ const SearchBar = () => {
             setSearchTerm(e.target.value);
           }}
         />
-        <button type="submit" className="search-btn">
+        <button type='submit' className='search-btn'>
           <FaSearch />
         </button>
       </form>
@@ -36,4 +41,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default connect(null, mapDispatchToProps)(SearchBar);

@@ -1,12 +1,16 @@
 import { useFetch } from '../../useFetch';
+import { connect } from 'react-redux';
+//Components
 import Error from '../Error';
 import Loading from '../Loading';
 import ListItem from '../ListItem';
-import { useGlobalContext } from '../../context';
 
-const AssetsList = () => {
-  const { assets, searchQuery } = useGlobalContext();
+const mapStateToProps = (state) => ({
+  assets: state.asset.assets,
+  searchQuery: state.asset.searchQuery,
+});
 
+const AssetsList = ({ assets, searchQuery }) => {
   let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
 
   const { data: coins, isError, isLoading } = useFetch(url);
@@ -31,9 +35,9 @@ const AssetsList = () => {
     return <Loading />;
   }
   return (
-    <section id="asset-list">
+    <section id='asset-list'>
       {noResults ? (
-        <h3 className="no-results">
+        <h3 className='no-results'>
           We couldn't find your coin, please try again.
         </h3>
       ) : (
@@ -46,4 +50,4 @@ const AssetsList = () => {
   );
 };
 
-export default AssetsList;
+export default connect(mapStateToProps)(AssetsList);

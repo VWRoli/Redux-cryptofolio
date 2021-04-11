@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     openSuccess: () => dispatch({ type: OPEN_SUCCESS }),
     editAsset: () => dispatch({ type: EDIT_ASSET }),
-    openSuccess: () => dispatch({ type: OPEN_SUCCESS }),
   };
 };
 

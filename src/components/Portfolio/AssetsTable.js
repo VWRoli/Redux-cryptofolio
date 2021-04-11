@@ -6,11 +6,11 @@ import AssetRow from './AssetRow';
 
 const mapStateToProps = (state) => ({
   assets: state.asset.assets,
+  isError: state.asset.isError,
+  isLoading: state.asset.isLoading,
 });
 
-const AssetsTable = () => {
-  //const { isLoading, isError, assets } = useGlobalContext();
-
+const AssetsTable = ({ isLoading, isError, assets }) => {
   if (isError) {
     return (
       <tbody>

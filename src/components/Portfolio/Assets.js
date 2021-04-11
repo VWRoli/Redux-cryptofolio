@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { CLEAR_ASSETS, SET_CURRENCY } from '../../constants/actionTypes';
 //Components
 import AssetsHeader from './AssetsHeader';
-//import AssetsTable from './AssetsTable';
+import AssetsTable from './AssetsTable';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -62,18 +62,17 @@ const Assets = ({
         <thead>
           <AssetsHeader />
         </thead>
-        {
-          assets.length === 0 ? (
-            <tbody>
-              <tr>
-                <td className='empty-table' colSpan='6'>
-                  You don't have any assets in your portfolio.
-                </td>
-              </tr>
-            </tbody>
-          ) : null
-          /*   <AssetsTable /> */
-        }
+        {assets.length === 0 ? (
+          <tbody>
+            <tr>
+              <td className='empty-table' colSpan='6'>
+                You don't have any assets in your portfolio.
+              </td>
+            </tr>
+          </tbody>
+        ) : (
+          <AssetsTable />
+        )}
       </table>
       {assets.length === 0 ? (
         ''

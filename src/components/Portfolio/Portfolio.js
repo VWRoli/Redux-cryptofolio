@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { SET_QUERY } from '../../constants/actionTypes';
 //Components
 import Assets from './Assets';
-//import Stats from './Stats';
+import Stats from './Stats';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -31,7 +31,7 @@ const Portfolio = ({ setSearchQuery }) => {
         </button>
       </header>
       <div className='container'>
-        {/*  <Stats />*/}
+        <Stats />
         <Assets />
       </div>
     </section>

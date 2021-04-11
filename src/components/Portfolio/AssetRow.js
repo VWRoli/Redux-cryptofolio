@@ -1,6 +1,12 @@
 import { priceChangeFormatter } from '../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { connect } from 'react-redux';
+import {
+  OPEN_EDIT_ASSET,
+  OPEN_MODAL,
+  REMOVE_ASSET,
+  SET_ACTIVE_COIN,
+} from '../../constants/actionTypes';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -13,12 +19,31 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => ({
   coinInfo: state.asset.coinInfo,
+  defaultCurrency: state.asset.defaultCurrency,
 });
 
-const AssetRow = ({ asset }) => {
-  /*   const {
-    priceFormatter,
-  } = useGlobalContext(); */
+const AssetRow = ({
+  asset,
+  setActiveCoin,
+  openModal,
+  openEditAsset,
+  removeAsset,
+  coinInfo,
+  defaultCurrency,
+}) => {
+  //todo
+  //Price formatter
+  const priceFormatter = (price) => {
+    //Locale
+    const locale = navigator.language;
+    const formattedPrice = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: `${defaultCurrency}`,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(price);
+    return formattedPrice;
+  };
 
   const [correctCoin] = coinInfo.filter((coin) => coin.id === asset.id);
 
@@ -30,7 +55,7 @@ const AssetRow = ({ asset }) => {
     price_change_percentage_24h: changePercentage,
     price_change_24h: changeValue,
     id,
-  } = correctCoin;
+  } = correctCoin || {};
 
   if (!asset) return null;
 
@@ -58,7 +83,7 @@ const AssetRow = ({ asset }) => {
       <td className='holdings-row'>
         {priceFormatter(price * asset.holdings)} <br />
         <span className='holdings'>
-          {asset.holdings.toFixed(4)}
+          {asset.holdings?.toFixed(4)}
           <span className='symbol'>&nbsp;{symbol}</span>
         </span>
       </td>

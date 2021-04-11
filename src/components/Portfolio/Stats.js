@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { BUTTONS } from '../../constant';
+import { BUTTONS } from '../../helpers';
 import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
 //Components
 import Loading from '../Loading';
@@ -12,20 +12,36 @@ import ChartButtons from './ChartButtons';
 
 const mapStateToProps = (state) => ({
   assets: state.asset.assets,
-  coinInfo: state.asset.coinInfo,
   isLoading: state.asset.isLoading,
   isError: state.asset.isError,
   totalValue: state.chart.totalValue,
   totalValueChange: state.chart.totalValueChange,
+  defaultCurrency: state.asset.defaultCurrency,
 });
 
-const Stats = ({ assets, coinInfo, totalValue, totalValueChange }) => {
+const Stats = ({
+  assets,
+  isError,
+  isLoading,
+  totalValue,
+  totalValueChange,
+  defaultCurrency,
+}) => {
   const [isLineChart, setIsLineChart] = useState(true);
 
-  /*  const {
-   
-    priceFormatter,
-  } = useGlobalContext(); */
+  //todo
+  //Price formatter
+  const priceFormatter = (price) => {
+    //Locale
+    const locale = navigator.language;
+    const formattedPrice = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: `${defaultCurrency}`,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(price);
+    return formattedPrice;
+  };
 
   if (isError) return <Error />;
 

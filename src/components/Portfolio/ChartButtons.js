@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
+import { SET_DAYS } from '../../constants/actionTypes';
 
 const mapDispatchToProps = (dispatch) => {
   return {

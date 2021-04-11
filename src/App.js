@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //Components
-//import AddAsset from './components/AddAsset/AddAsset';
+import AddAsset from './components/AddAsset/AddAsset';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home/Home';
 import Modal from './components/Modal';
@@ -19,7 +19,10 @@ function App({ assets }) {
           <Route exact path='/'>
             {assets.length === 0 ? <Home /> : <Portfolio />}
           </Route>
-          <Route path='/addasset'>{/*   <AddAsset /> */}</Route>
+          <Route path='/addasset'>
+            {' '}
+            <AddAsset />
+          </Route>
           <Route path='/portfolio'>
             <Portfolio />
           </Route>
