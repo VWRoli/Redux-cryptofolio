@@ -6,5 +6,5 @@ import modalReducer from './modalReducer';
 export default combineReducers({
   asset: assetReducer,
   //chart: chartReducer,
-  //modal: modalReducer,
+  modal: modalReducer,
 });

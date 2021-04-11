@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home/Home';
 //import Modal from './components/Modal';
-//import Portfolio from './components/Portfolio/Portfolio';
+import Portfolio from './components/Portfolio/Portfolio';
 
 function App({ assets }) {
   return (
@@ -18,7 +18,9 @@ function App({ assets }) {
             {assets.length === 0 ? <Home /> : null /*  <Portfolio /> */}
           </Route>
           <Route path='/addasset'>{/*   <AddAsset /> */}</Route>
-          <Route path='/portfolio'>{/*   <Portfolio /> */}</Route>
+          <Route path='/portfolio'>
+            <Portfolio />
+          </Route>
           <Route path='*'>
             <ErrorPage />
           </Route>
@@ -28,10 +30,6 @@ function App({ assets }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    assets: state.asset.assets,
-  };
-};
+const mapStateToProps = (state) => ({ assets: state.asset.assets });
 
 export default connect(mapStateToProps)(App);

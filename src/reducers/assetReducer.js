@@ -4,13 +4,20 @@ import {
   EDIT_ASSET,
   SET_CURRENCY,
   ADD_ASSET,
+  LOADING,
+  DISPLAY_INFO,
+  SET_ERROR,
 } from '../constants/actionTypes';
 
 const defaultState = {
+  isLoading: false,
+  isError: false,
   assets: [],
+  coinInfo: [],
+  defaultCurrency: 'usd',
 };
 
-export default (state = defaultState, action) => {
+const assetReducer = (state = defaultState, action) => {
   switch (action.type) {
     case CLEAR_ASSETS:
       return { ...state, assets: [] };
@@ -22,8 +29,18 @@ export default (state = defaultState, action) => {
       };
     case ADD_ASSET:
       return { ...state, assets: [...state.assets, action.payload] };
-
+    case LOADING:
+      return { ...state, isLoading: true };
+    case DISPLAY_INFO:
+      return { ...state, coinInfo: action.payload };
+    case SET_ERROR:
+      return { ...state, isError: true };
+    case EDIT_ASSET:
+      return { ...state, assets: [...state.assets] };
+    case SET_CURRENCY:
+      return { ...state, defaultCurrency: action.payload };
     default:
       return state;
   }
 };
+export default assetReducer;
