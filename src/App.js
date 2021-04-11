@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 //import AddAsset from './components/AddAsset/AddAsset';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home/Home';
-//import Modal from './components/Modal';
+import Modal from './components/Modal';
 import Portfolio from './components/Portfolio/Portfolio';
+
+const mapStateToProps = (state) => ({ assets: state.asset.assets });
 
 function App({ assets }) {
   return (
     <Router>
       <div className='App'>
-        {/*  <Modal /> */}
+        <Modal />
         <Switch>
           <Route exact path='/'>
-            {assets.length === 0 ? <Home /> : null /*  <Portfolio /> */}
+            {assets.length === 0 ? <Home /> : <Portfolio />}
           </Route>
           <Route path='/addasset'>{/*   <AddAsset /> */}</Route>
           <Route path='/portfolio'>
@@ -29,7 +31,5 @@ function App({ assets }) {
     </Router>
   );
 }
-
-const mapStateToProps = (state) => ({ assets: state.asset.assets });
 
 export default connect(mapStateToProps)(App);

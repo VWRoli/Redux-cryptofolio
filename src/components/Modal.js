@@ -1,12 +1,19 @@
 import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { connect } from 'react-redux';
+import { CLOSE_MODAL } from '../constants/actionTypes';
 //Components
 import ModalContent from './ModalContent';
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    closeModal: () => dispatch({ type: CLOSE_MODAL }),
+  };
+};
+
+const mapStateToProps = (state) => ({ isModalOpen: state.modal.isModalOpen });
+
 const Modal = ({ isModalOpen, closeModal }) => {
-  //const { isModalOpen, closeModal } = useGlobalContext();
-  console.log(isModalOpen);
   //Close Modal with clicking on overlay
   const handleClick = (e) => {
     if (e.target.classList.contains('modal-overlay')) {
@@ -41,12 +48,5 @@ const Modal = ({ isModalOpen, closeModal }) => {
     </div>
   );
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    closeModal: () => dispatch({ type: CLOSE_MODAL }),
-  };
-};
-const mapStateToProps = () => ({ isModalOpen: state.modal.isModalOpen });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

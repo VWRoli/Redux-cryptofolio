@@ -7,13 +7,15 @@ import {
   LOADING,
   DISPLAY_INFO,
   SET_ERROR,
+  SET_QUERY,
 } from '../constants/actionTypes';
 
 const defaultState = {
   isLoading: false,
   isError: false,
-  assets: [],
+  assets: [{ id: 'bitcoin', amount: 1 }],
   coinInfo: [],
+  searchQuery: '',
   defaultCurrency: 'usd',
 };
 
@@ -39,6 +41,8 @@ const assetReducer = (state = defaultState, action) => {
       return { ...state, assets: [...state.assets] };
     case SET_CURRENCY:
       return { ...state, defaultCurrency: action.payload };
+    case SET_QUERY:
+      return { ...state, searchQuery: action.payload };
     default:
       return state;
   }

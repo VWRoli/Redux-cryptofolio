@@ -2,6 +2,13 @@ import { FaPlus } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { OPEN_MODAL, SET_ACTIVE_COIN } from '../constants/actionTypes';
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setActiveCoin: (id) => dispatch({ type: SET_ACTIVE_COIN, payload: id }),
+    openModal: () => dispatch({ type: OPEN_MODAL }),
+  };
+};
+
 const ListItem = ({ coin, owned, openModal, setActiveCoin }) => {
   const { name, symbol, image, id } = coin;
   return (
@@ -34,12 +41,4 @@ const ListItem = ({ coin, owned, openModal, setActiveCoin }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setActiveCoin: (id) => dispatch({ type: SET_ACTIVE_COIN, payload: id }),
-    openModal: () => dispatch({ type: OPEN_MODAL }),
-  };
-};
-
-//const mapStateToProps = () => ({ setActiveCoin: state.modal.setActiveCoin });
 export default connect(null, mapDispatchToProps)(ListItem);
