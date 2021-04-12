@@ -10,6 +10,8 @@ import {
   SET_QUERY,
   GET_TOTAL_CHANGE,
   GET_TOTALS,
+  SET_CHART_DATA,
+  SET_DAYS,
 } from '../constants/actionTypes';
 
 const defaultState = {
@@ -19,6 +21,10 @@ const defaultState = {
   coinInfo: [],
   searchQuery: '',
   defaultCurrency: 'usd',
+  totalValue: 0,
+  totalValueChange: 0,
+  chartData: [],
+  chartDays: '7',
 };
 
 const assetReducer = (state = defaultState, action) => {
@@ -71,6 +77,12 @@ const assetReducer = (state = defaultState, action) => {
         .reduce((acc, cur) => acc + cur, 0);
 
       return { ...state, totalValueChange: assetValueChange, isLoading: false };
+
+    case SET_CHART_DATA:
+      return { ...state, chartData: action.payload, isLoading: false };
+
+    case SET_DAYS:
+      return { ...state, chartDays: action.payload };
     default:
       return state;
   }

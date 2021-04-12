@@ -12,7 +12,7 @@ import Loading from '../Loading';
 const mapStateToProps = (state) => ({
   isLoading: state.asset.isLoading,
   defaultCurrency: state.asset.defaultCurrency,
-  chartData: state.chart.chartData,
+  chartData: state.asset.chartData,
 });
 
 const Chart = ({ chartData, isLoading, defaultCurrency }) => {

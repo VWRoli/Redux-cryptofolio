@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
   assets: state.asset.assets,
   totalValue: state.asset.totalValue,
   totalValueChange: state.asset.totalValueChange,
-  chartDays: state.chart.chartDays,
+  chartDays: state.asset.chartDays,
 });
 
 const mapDispatchToProps = (dispatch) => {

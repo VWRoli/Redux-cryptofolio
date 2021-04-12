@@ -24,7 +24,7 @@ const mapStateToProps = (state) => ({
   totalValue: state.asset.totalValue,
   totalValueChange: state.asset.totalValueChange,
   defaultCurrency: state.asset.defaultCurrency,
-  chartDays: state.chart.chartDays,
+  chartDays: state.asset.chartDays,
 });
 
 const mapDispatchToProps = (dispatch) => {
