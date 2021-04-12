@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     closeModal: () => dispatch({ type: CLOSE_MODAL }),
-    addAsset: () => dispatch({ type: ADD_ASSET }),
+    addAsset: (asset) => dispatch({ type: ADD_ASSET, payload: asset }),
     openSuccess: () => dispatch({ type: OPEN_SUCCESS }),
   };
 };

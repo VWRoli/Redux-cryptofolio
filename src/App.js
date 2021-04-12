@@ -20,7 +20,6 @@ function App({ assets }) {
             {assets.length === 0 ? <Home /> : <Portfolio />}
           </Route>
           <Route path='/addasset'>
-            {' '}
             <AddAsset />
           </Route>
           <Route path='/portfolio'>

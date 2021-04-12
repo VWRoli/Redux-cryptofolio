@@ -17,7 +17,6 @@ const Home = () => {
           </button>
         </div>
         <div className='home-right'>
-          {' '}
           <HomeList />
         </div>
       </div>

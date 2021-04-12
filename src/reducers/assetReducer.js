@@ -8,12 +8,14 @@ import {
   DISPLAY_INFO,
   SET_ERROR,
   SET_QUERY,
+  GET_TOTAL_CHANGE,
+  GET_TOTALS,
 } from '../constants/actionTypes';
 
 const defaultState = {
   isLoading: false,
   isError: false,
-  assets: [{ id: 'bitcoin', amount: 1 }],
+  assets: [],
   coinInfo: [],
   searchQuery: '',
   defaultCurrency: 'usd',
@@ -36,13 +38,39 @@ const assetReducer = (state = defaultState, action) => {
     case DISPLAY_INFO:
       return { ...state, coinInfo: action.payload };
     case SET_ERROR:
-      return { ...state, isError: true };
+      return { ...state, isError: true, isLoading: false };
     case EDIT_ASSET:
       return { ...state, assets: [...state.assets] };
     case SET_CURRENCY:
       return { ...state, defaultCurrency: action.payload };
     case SET_QUERY:
       return { ...state, searchQuery: action.payload };
+    case GET_TOTALS:
+      //Get the current value for the whole portfolio
+      const currentAssetValue = state.assets
+        .map((asset) => {
+          const [correctCoin] = state.coinInfo.filter(
+            (coin) => coin.id === asset.id
+          );
+          return asset.holdings * correctCoin.current_price;
+        })
+        .reduce((acc, cur) => acc + cur, 0);
+
+      return { ...state, totalValue: currentAssetValue };
+
+    case GET_TOTAL_CHANGE:
+      //Get the 24h price change for the whole portfolio
+      const assetValueChange = state.assets
+        .map((asset, i) => {
+          const [correctCoin] = state.coinInfo.filter(
+            (coin) => coin.id === asset.id
+          );
+
+          return asset.holdings * correctCoin.price_change_24h;
+        })
+        .reduce((acc, cur) => acc + cur, 0);
+
+      return { ...state, totalValueChange: assetValueChange, isLoading: false };
     default:
       return state;
   }
