@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { BUTTONS, chartDataFormatter } from '../../helpers';
+import { BUTTONS } from '../../helpers';
 import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
 //Components
 import Loading from '../Loading';
@@ -24,7 +24,6 @@ const mapStateToProps = (state) => ({
   totalValue: state.asset.totalValue,
   totalValueChange: state.asset.totalValueChange,
   defaultCurrency: state.asset.defaultCurrency,
-  chartDays: state.asset.chartDays,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,58 +44,8 @@ const Stats = ({
   totalValue,
   totalValueChange,
   defaultCurrency,
-  chartDays,
-  setIsError,
-  setLoading,
-  setChartData,
-  getTotal,
-  getTotalChange,
 }) => {
   const [isLineChart, setIsLineChart] = useState(true);
-
-  // const fetchChartData = useCallback(async () => {
-  //   try {
-  //     //setLoading();
-  //     //Get API urls for chart
-  //     const chartUrls = assets.map(
-  //       (item) =>
-  //         `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`
-  //     );
-  //     //Fetch chart data
-  //     const chartRes = await Promise.all(
-  //       chartUrls.map((url) => fetch(url).catch((error) => error))
-  //     );
-  //     const chartData = await Promise.all(
-  //       chartRes.map((response) =>
-  //         response.json ? response.json().catch((error) => error) : response
-  //       )
-  //     );
-
-  //     // Set chart data
-  //     setChartData(chartDataFormatter(chartData, assets));
-
-  //     //Get total asset values
-  //     getTotal();
-
-  //     //Get total value change
-  //     getTotalChange();
-  //   } catch (error) {
-  //     setIsError();
-  //   }
-  // }, [
-  //   defaultCurrency,
-  //   assets,
-  //   chartDays,
-  //   setChartData,
-  //   setIsError,
-  //   setLoading,
-  //   getTotal,
-  //   getTotalChange,
-  // ]);
-
-  // useEffect(() => {
-  //   fetchChartData();
-  // }, [fetchChartData]);
 
   //todo
   //Price formatter
