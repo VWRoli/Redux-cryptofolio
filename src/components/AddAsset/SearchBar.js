@@ -1,18 +1,12 @@
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { SET_QUERY } from '../../constants/actionTypes';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setSearchQuery: (query) => dispatch({ type: SET_QUERY, payload: query }),
-  };
-};
+import { setSearchQuery } from '../../actions/assetActions';
 
 const SearchBar = ({ setSearchQuery }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const formatSearchTerm = searchTerm.toLowerCase().trim().replace(' ', '-');
     setSearchQuery(formatSearchTerm);
@@ -20,7 +14,7 @@ const SearchBar = ({ setSearchQuery }) => {
 
   return (
     <section id='search-section'>
-      <form action='/' method='get' onSubmit={handleSubmit}>
+      <form action='/' method='get' onSubmit={onSubmit}>
         <label htmlFor='search'>Search your Coin: </label>
         <input
           type='text'
@@ -41,4 +35,4 @@ const SearchBar = ({ setSearchQuery }) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(null, { setSearchQuery })(SearchBar);

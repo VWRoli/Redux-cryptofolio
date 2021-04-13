@@ -1,12 +1,6 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { SET_DAYS } from '../../constants/actionTypes';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setChartDays: (day) => dispatch({ type: SET_DAYS, payload: day }),
-  };
-};
+import { setChartDays } from '../../actions/assetActions';
 
 const ChartButtons = ({ buttons, setChartDays }) => {
   const [active, setActive] = useState(1);
@@ -32,4 +26,4 @@ const ChartButtons = ({ buttons, setChartDays }) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(ChartButtons);
+export default connect(null, { setChartDays })(ChartButtons);

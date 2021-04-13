@@ -1,4 +1,5 @@
-export const BASE_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=xlm&order=market_cap_desc&per_page=9&page=1&sparkline=false`;
+export const BASE_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=9&page=1`;
+export const CURRENCY_URL = `https://api.coingecko.com/api/v3/simple/supported_vs_currencies`;
 
 export const RADIAN = Math.PI / 180;
 export const COLORS = [

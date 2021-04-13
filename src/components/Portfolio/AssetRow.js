@@ -1,21 +1,8 @@
-import { priceChangeFormatter } from '../../helpers';
+import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import {
-  OPEN_EDIT_ASSET,
-  OPEN_MODAL,
-  REMOVE_ASSET,
-  SET_ACTIVE_COIN,
-} from '../../constants/actionTypes';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setActiveCoin: (id) => dispatch({ type: SET_ACTIVE_COIN, payload: id }),
-    openModal: () => dispatch({ type: OPEN_MODAL }),
-    openEditAsset: (id) => dispatch({ type: OPEN_EDIT_ASSET, payload: id }),
-    removeAsset: (id) => dispatch({ type: REMOVE_ASSET, payload: id }),
-  };
-};
+import { openModal, openEditAsset } from '../../actions/modalActions';
+import { removeAsset, setActiveCoin } from '../../actions/assetActions';
 
 const mapStateToProps = (state) => ({
   coinInfo: state.asset.coinInfo,
@@ -31,20 +18,6 @@ const AssetRow = ({
   coinInfo,
   defaultCurrency,
 }) => {
-  //todo
-  //Price formatter
-  const priceFormatter = (price) => {
-    //Locale
-    const locale = navigator.language;
-    const formattedPrice = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: `${defaultCurrency}`,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-    return formattedPrice;
-  };
-
   const [correctCoin] = coinInfo.filter((coin) => coin.id === asset.id);
 
   const {
@@ -68,7 +41,7 @@ const AssetRow = ({
         </p>
       </td>
       {/**PRICE */}
-      <td>{priceFormatter(price)}</td>
+      <td>{priceFormatter(price, defaultCurrency)}</td>
       {/**PRICE CHANGE % */}
       <td
         className={
@@ -81,7 +54,7 @@ const AssetRow = ({
       </td>
       {/**HOLDINGS */}
       <td className='holdings-row'>
-        {priceFormatter(price * asset.holdings)} <br />
+        {priceFormatter(price * asset.holdings, defaultCurrency)} <br />
         <span className='holdings'>
           {asset.holdings?.toFixed(4)}
           <span className='symbol'>&nbsp;{symbol}</span>
@@ -93,7 +66,7 @@ const AssetRow = ({
           changeValue > 0 ? 'profit-row positive' : 'profit-row negative'
         }
       >
-        {priceFormatter(changeValue * asset.holdings)}
+        {priceFormatter(changeValue * asset.holdings, defaultCurrency)}
       </td>
       {/**ACTIONS */}
       <td className='actions-row'>
@@ -120,4 +93,9 @@ const AssetRow = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AssetRow);
+export default connect(mapStateToProps, {
+  openEditAsset,
+  openModal,
+  removeAsset,
+  setActiveCoin,
+})(AssetRow);

@@ -15,7 +15,6 @@ const mapStateToProps = (state) => ({
 });
 
 const PieChart = ({ clicked, assets, coinInfo }) => {
-  //const { assets, coinInfo } = useGlobalContext();
   const [data, setData] = useState([]);
 
   useEffect(() => {

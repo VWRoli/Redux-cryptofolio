@@ -1,17 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import { CLOSE_MODAL } from '../../constants/actionTypes';
+import { closeModal } from '../../actions/modalActions';
 
 const mapStateToProps = (state) => ({
   isEditAsset: state.modal.isEditAsset,
 });
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    closeModal: () => dispatch({ type: CLOSE_MODAL }),
-  };
-};
 
 const AddSuccess = ({ closeModal, isEditAsset }) => {
   return (
@@ -41,4 +35,4 @@ const AddSuccess = ({ closeModal, isEditAsset }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSuccess);
+export default connect(mapStateToProps, { closeModal })(AddSuccess);

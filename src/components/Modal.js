@@ -1,15 +1,9 @@
 import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import { CLOSE_MODAL } from '../constants/actionTypes';
+import { closeModal } from '../actions/modalActions';
 //Components
 import ModalContent from './ModalContent';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    closeModal: () => dispatch({ type: CLOSE_MODAL }),
-  };
-};
 
 const mapStateToProps = (state) => ({ isModalOpen: state.modal.isModalOpen });
 
@@ -49,4 +43,4 @@ const Modal = ({ isModalOpen, closeModal }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, { closeModal })(Modal);

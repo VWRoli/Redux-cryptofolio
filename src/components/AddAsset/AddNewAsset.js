@@ -1,48 +1,23 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import {
-  ADD_ASSET,
-  CLOSE_MODAL,
-  OPEN_SUCCESS,
-} from '../../constants/actionTypes';
-import { priceChangeFormatter } from '../../helpers';
+import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
+import { addAsset } from '../../actions/assetActions';
+import { openSuccess } from '../../actions/modalActions';
 
 const mapStateToProps = (state) => ({
   defaultCurrency: state.asset.defaultCurrency,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    closeModal: () => dispatch({ type: CLOSE_MODAL }),
-    addAsset: (asset) => dispatch({ type: ADD_ASSET, payload: asset }),
-    openSuccess: () => dispatch({ type: OPEN_SUCCESS }),
-  };
-};
-
-const AddNewAsset = ({ id, addAsset, openSuccess, defaultCurrency }) => {
+const AddNewAsset = ({ id, defaultCurrency, openSuccess, addAsset }) => {
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
   );
 
   const [holdings, setHoldings] = useState('');
-
-  //todo
-  //Price formatter
-  const priceFormatter = (price) => {
-    //Locale
-    const locale = navigator.language;
-    const formattedPrice = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: `${defaultCurrency}`,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-    return formattedPrice;
-  };
 
   if (!data[0]) return null;
 
@@ -105,7 +80,8 @@ const AddNewAsset = ({ id, addAsset, openSuccess, defaultCurrency }) => {
             </p>
           </header>
           <h3>
-            Current Price: <span>{priceFormatter(current_price)}</span>
+            Current Price:{' '}
+            <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
           <form action='/' onSubmit={onSubmit}>
             <label htmlFor='holdings'>Quantity: </label>
@@ -127,4 +103,4 @@ const AddNewAsset = ({ id, addAsset, openSuccess, defaultCurrency }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewAsset);
+export default connect(mapStateToProps, { addAsset, openSuccess })(AddNewAsset);

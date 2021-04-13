@@ -1,19 +1,13 @@
 import { FaSyncAlt } from 'react-icons/fa';
 import { useFetch } from '../../useFetch';
 import { connect } from 'react-redux';
-import { CLEAR_ASSETS, SET_CURRENCY } from '../../constants/actionTypes';
+import { setCurrency, clearAssets } from '../../actions/assetActions';
+import { CURRENCY_URL } from '../../constants/constant';
 //Components
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrency: (currency) =>
-      dispatch({ type: SET_CURRENCY, payload: currency }),
-    clearAssets: () => dispatch({ type: CLEAR_ASSETS }),
-    //fetchCoinInfo
-  };
-};
+//todo fetchCoinInfo
 
 const mapStateToProps = (state) => ({
   assets: state.asset.assets,
@@ -27,9 +21,7 @@ const Assets = ({
   fetchCoinInfo,
   clearAssets,
 }) => {
-  const { data: currencies } = useFetch(
-    `https://api.coingecko.com/api/v3/simple/supported_vs_currencies`
-  );
+  const { data: currencies } = useFetch(CURRENCY_URL);
 
   const handleChange = (e) => {
     setCurrency(e.target.value);
@@ -85,4 +77,4 @@ const Assets = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Assets);
+export default connect(mapStateToProps, { setCurrency, clearAssets })(Assets);

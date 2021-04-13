@@ -6,7 +6,9 @@ import {
   Tooltip,
   Area,
 } from 'recharts';
+import { priceFormatter } from '../../helpers';
 import { connect } from 'react-redux';
+//Components
 import Loading from '../Loading';
 
 const mapStateToProps = (state) => ({
@@ -16,20 +18,6 @@ const mapStateToProps = (state) => ({
 });
 
 const Chart = ({ chartData, isLoading, defaultCurrency }) => {
-  //todo
-  //Price formatter
-  const priceFormatter = (price) => {
-    //Locale
-    const locale = navigator.language;
-    const formattedPrice = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: `${defaultCurrency}`,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-    return formattedPrice;
-  };
-
   //Loading screen
   if (isLoading) {
     return <Loading />;
@@ -52,7 +40,9 @@ const Chart = ({ chartData, isLoading, defaultCurrency }) => {
             unit={defaultCurrency.toUpperCase()}
           />
 
-          <Tooltip formatter={(value) => priceFormatter(value)} />
+          <Tooltip
+            formatter={(value) => priceFormatter(value, defaultCurrency)}
+          />
           <Area
             type='monotone'
             dataKey='price'

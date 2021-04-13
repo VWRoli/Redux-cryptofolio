@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { EDIT_ASSET, OPEN_SUCCESS } from '../../constants/actionTypes';
-import { priceChangeFormatter } from '../../helpers';
+import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
+import { editAsset } from '../../actions/assetActions';
+import { openSuccess } from '../../actions/modalActions';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
@@ -11,13 +12,6 @@ const mapStateToProps = (state) => ({
   defaultCurrency: state.asset.defaultCurrency,
   assets: state.asset.assets,
 });
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    openSuccess: () => dispatch({ type: OPEN_SUCCESS }),
-    editAsset: () => dispatch({ type: EDIT_ASSET }),
-  };
-};
 
 const AddNewAsset = ({
   id,
@@ -33,20 +27,6 @@ const AddNewAsset = ({
   const [correctCoin] = assets.filter((asset) => asset.id === id);
 
   const [holdings, setHoldings] = useState(correctCoin.holdings);
-
-  //todo
-  //Price formatter
-  const priceFormatter = (price) => {
-    //Locale
-    const locale = navigator.language;
-    const formattedPrice = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: `${defaultCurrency}`,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-    return formattedPrice;
-  };
 
   if (!data[0]) return null;
 
@@ -112,7 +92,8 @@ const AddNewAsset = ({
             </p>
           </header>
           <h3>
-            Current Price: <span>{priceFormatter(current_price)}</span>
+            Current Price:{' '}
+            <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
           <div className='your-data'>
             <h3>
@@ -124,7 +105,10 @@ const AddNewAsset = ({
             <h3>
               Your Asset Value:{' '}
               <span>
-                {priceFormatter(current_price * correctCoin.holdings)}
+                {priceFormatter(
+                  current_price * correctCoin.holdings,
+                  defaultCurrency
+                )}
               </span>
             </h3>
           </div>
@@ -149,4 +133,6 @@ const AddNewAsset = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewAsset);
+export default connect(mapStateToProps, { openSuccess, editAsset })(
+  AddNewAsset
+);

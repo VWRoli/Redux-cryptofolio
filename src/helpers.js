@@ -13,6 +13,19 @@ export const priceChangeFormatter = (priceChange) => {
   return formattedPriceChange;
 };
 
+//Price formatter
+export const priceFormatter = (price, currency) => {
+  //Locale
+  const locale = navigator.language;
+  const formattedPrice = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: `${currency}`,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price);
+  return formattedPrice;
+};
+
 //URL formatter
 export const urlFormatter = (url, array) => {
   const urlPart = array
