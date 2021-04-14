@@ -51,8 +51,8 @@ const AddNewAsset = ({
     openSuccess();
 
     //Edit holdings
-    correctCoin.holdings = +holdings;
-    editAsset();
+    //correctCoin.holdings = +holdings;
+    editAsset(correctCoin, holdings);
 
     setHoldings('');
   };

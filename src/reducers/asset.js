@@ -17,7 +17,7 @@ import {
 const defaultState = {
   isLoading: false,
   isError: false,
-  assets: [],
+  assets: JSON.parse(localStorage.getItem('coinAssets')) || [],
   coinInfo: [],
   searchQuery: '',
   defaultCurrency: 'usd',
@@ -35,7 +35,7 @@ const assetReducer = (state = defaultState, action) => {
     case REMOVE_ASSET:
       return {
         ...state,
-        assets: state.assets.filter((asset) => asset.id !== action.payload),
+        assets: action.payload,
       };
     case ADD_ASSET:
       return { ...state, assets: [...state.assets, action.payload] };
@@ -46,7 +46,7 @@ const assetReducer = (state = defaultState, action) => {
     case SET_ERROR:
       return { ...state, isError: true, isLoading: false };
     case EDIT_ASSET:
-      return { ...state, assets: [...state.assets] };
+      return { ...state, assets: action.payload };
     case SET_CURRENCY:
       return { ...state, defaultCurrency: action.payload };
     case SET_QUERY:

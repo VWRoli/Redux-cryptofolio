@@ -26,9 +26,11 @@ const AddSuccess = ({ closeModal, isEditAsset }) => {
       ) : (
         <p>
           Or add another{' '}
-          <span className='back-to-addassets' onClick={closeModal}>
-            Asset
-          </span>
+          <Link to='/addasset'>
+            <span className='back-to-addassets' onClick={closeModal}>
+              Asset
+            </span>
+          </Link>
         </p>
       )}
     </section>
