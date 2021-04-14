@@ -42,7 +42,7 @@ const assetReducer = (state = defaultState, action) => {
     case LOADING:
       return { ...state, isLoading: true };
     case DISPLAY_INFO:
-      return { ...state, coinInfo: action.payload };
+      return { ...state, coinInfo: action.payload, isLoading: false };
     case SET_ERROR:
       return { ...state, isError: true, isLoading: false };
     case EDIT_ASSET:

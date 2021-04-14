@@ -1,13 +1,20 @@
 import {
   ADD_ASSET,
   CLEAR_ASSETS,
+  DISPLAY_INFO,
   EDIT_ASSET,
+  GET_TOTALS,
+  GET_TOTAL_CHANGE,
+  LOADING,
   REMOVE_ASSET,
   SET_ACTIVE_COIN,
+  SET_CHART_DATA,
   SET_CURRENCY,
   SET_DAYS,
+  SET_ERROR,
   SET_QUERY,
 } from '../constants/actionTypes';
+import { chartDataFormatter, urlFormatter } from '../helpers';
 
 export const addAsset = (asset) => (dispatch, getState) => {
   const prevAssets = getState().asset.assets;
@@ -54,4 +61,54 @@ export const editAsset = (coin, holdings) => (dispatch, getState) => {
     'coinAssets',
     JSON.stringify([...strippedCoin, editedCoin])
   );
+};
+
+export const fetchCoinData = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LOADING });
+    const formattedUrl = urlFormatter(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${
+        getState().asset.defaultCurrency
+      }&ids=`,
+      getState().asset.assets
+    );
+
+    const response = await fetch(`${formattedUrl}`);
+    const coinInfo = await response.json();
+
+    dispatch({ type: DISPLAY_INFO, payload: coinInfo });
+
+    //Get API urls for chart
+    const chartUrls = getState().asset.assets.map(
+      (item) =>
+        `https://api.coingecko.com/api/v3/coins/${
+          item.id
+        }/market_chart?vs_currency=${getState().asset.defaultCurrency}&days=${
+          getState().asset.chartDays
+        }`
+    );
+    //Fetch chart data
+    const chartRes = await Promise.all(
+      chartUrls.map((url) => fetch(url).catch((error) => error))
+    );
+    const chartData = await Promise.all(
+      chartRes.map((response) =>
+        response.json ? response.json().catch((error) => error) : response
+      )
+    );
+
+    // Set chart data
+    dispatch({
+      type: SET_CHART_DATA,
+      payload: chartDataFormatter(chartData, getState().asset.assets),
+    });
+
+    //Get total asset values
+    dispatch({ type: GET_TOTALS });
+
+    //Get total value change
+    dispatch({ type: GET_TOTAL_CHANGE });
+  } catch (error) {
+    dispatch({ type: SET_ERROR });
+  }
 };

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
+import { addAsset } from '../../actions/assetActions';
+import { openSuccess } from '../../actions/modalActions';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
-import { addAsset } from '../../actions/assetActions';
-import { openSuccess } from '../../actions/modalActions';
 
 const mapStateToProps = (state) => ({
   defaultCurrency: state.asset.defaultCurrency,

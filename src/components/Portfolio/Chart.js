@@ -18,7 +18,6 @@ const mapStateToProps = (state) => ({
 });
 
 const Chart = ({ chartData, isLoading, defaultCurrency }) => {
-  //Loading screen
   if (isLoading) {
     return <Loading />;
   }

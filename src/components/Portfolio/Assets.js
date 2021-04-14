@@ -1,7 +1,11 @@
 import { FaSyncAlt } from 'react-icons/fa';
 import { useFetch } from '../../useFetch';
 import { connect } from 'react-redux';
-import { setCurrency, clearAssets } from '../../actions/assetActions';
+import {
+  setCurrency,
+  clearAssets,
+  fetchCoinData,
+} from '../../actions/assetActions';
 import { CURRENCY_URL } from '../../constants/constant';
 //Components
 import AssetsHeader from './AssetsHeader';
@@ -18,7 +22,7 @@ const Assets = ({
   assets,
   defaultCurrency,
   setCurrency,
-  fetchCoinInfo,
+  fetchCoinData,
   clearAssets,
 }) => {
   const { data: currencies } = useFetch(CURRENCY_URL);
@@ -48,7 +52,7 @@ const Assets = ({
             })}
           </select>
         </form>
-        <FaSyncAlt className='refresh-btn' onClick={fetchCoinInfo} />
+        <FaSyncAlt className='refresh-btn' onClick={fetchCoinData} />
       </header>
       <table>
         <thead>
@@ -77,4 +81,8 @@ const Assets = ({
   );
 };
 
-export default connect(mapStateToProps, { setCurrency, clearAssets })(Assets);
+export default connect(mapStateToProps, {
+  setCurrency,
+  clearAssets,
+  fetchCoinData,
+})(Assets);
