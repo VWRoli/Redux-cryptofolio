@@ -11,8 +11,6 @@ import { CURRENCY_URL } from '../../constants/constant';
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 
-//todo fetchCoinInfo
-
 const mapStateToProps = (state) => ({
   assets: state.asset.assets,
   defaultCurrency: state.asset.defaultCurrency,
