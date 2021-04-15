@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { BUTTONS } from '../../helpers';
+import { BUTTONS, priceFormatter } from '../../helpers';
 import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
 //Components
 import Loading from '../Loading';
@@ -9,13 +9,6 @@ import Error from '../Error';
 import Chart from './Chart';
 import PieChart from './PieChart';
 import ChartButtons from './ChartButtons';
-import {
-  GET_TOTALS,
-  GET_TOTAL_CHANGE,
-  LOADING,
-  SET_CHART_DATA,
-  SET_ERROR,
-} from '../../constants/actionTypes';
 
 const mapStateToProps = (state) => ({
   assets: state.asset.assets,
@@ -25,17 +18,6 @@ const mapStateToProps = (state) => ({
   totalValueChange: state.asset.totalValueChange,
   defaultCurrency: state.asset.defaultCurrency,
 });
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setLoading: () => dispatch({ type: LOADING }),
-    setIsError: () => dispatch({ type: SET_ERROR }),
-    getTotal: () => dispatch({ type: GET_TOTALS }),
-    getTotalChange: () => dispatch({ type: GET_TOTAL_CHANGE }),
-    setChartData: (chartData) =>
-      dispatch({ type: SET_CHART_DATA, payload: chartData }),
-  };
-};
 
 const Stats = ({
   assets,
@@ -47,20 +29,6 @@ const Stats = ({
 }) => {
   const [isLineChart, setIsLineChart] = useState(true);
 
-  //todo
-  //Price formatter
-  const priceFormatter = (price) => {
-    //Locale
-    const locale = navigator.language;
-    const formattedPrice = new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency: `${defaultCurrency}`,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
-    return formattedPrice;
-  };
-
   if (isError) return <Error />;
 
   return (
@@ -71,7 +39,7 @@ const Stats = ({
         <Loading />
       ) : (
         <div className='main-asset-value'>
-          {priceFormatter(totalValue)}
+          {priceFormatter(totalValue, defaultCurrency)}
           {assets.length === 0 ? (
             <span>0%</span>
           ) : (
@@ -99,4 +67,4 @@ const Stats = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Stats);
+export default connect(mapStateToProps)(Stats);
