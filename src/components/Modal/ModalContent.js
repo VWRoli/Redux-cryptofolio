@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 //Components
 import AddNewAsset from './AddNewAsset';
 import EditAsset from './EditAsset';
-import AddSuccess from './AddSuccess';
+import Success from './Success';
 
 const mapStateToProps = (state) => ({
   isEditAsset: state.modal.isEditAsset,
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const ModalContent = ({ activeCoin, displaySuccess, isEditAsset }) => {
-  if (displaySuccess) return <AddSuccess />;
+  if (displaySuccess) return <Success />;
 
   if (isEditAsset) return <EditAsset id={activeCoin} />;
 

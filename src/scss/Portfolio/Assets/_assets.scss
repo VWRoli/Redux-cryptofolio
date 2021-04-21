@@ -1,0 +1,87 @@
+#assets {
+  grid-column: span 8;
+  margin-left: 0.5rem;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+
+  .assets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    form {
+      color: #222;
+      label {
+        margin-right: 5px;
+      }
+    }
+
+    .refresh-btn {
+      font-size: 1.25rem;
+      color: $blue-color;
+      cursor: pointer;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+        animation: push-down 0.5s ease-in-out;
+      }
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    th {
+      font-weight: 400;
+      padding: 1rem 0;
+      @include top-bottom-border();
+    }
+    tbody {
+      .table-name {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 30px;
+          justify-self: end;
+          margin-right: 1.5rem;
+        }
+        p {
+          text-align: left;
+          width: fit-content;
+          font-weight: 400;
+        }
+      }
+      tr {
+        text-align: center;
+        td {
+          font-weight: 400;
+          padding: 0.25rem;
+        }
+      }
+      tr:nth-child(even) {
+        background-color: #eee;
+      }
+      .holdings {
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: #999;
+      }
+    }
+  }
+  .symbol {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: lighten(#000000, 50%);
+  }
+
+  .empty-table {
+    padding: 1rem;
+    color: $blue-color;
+  }
+}

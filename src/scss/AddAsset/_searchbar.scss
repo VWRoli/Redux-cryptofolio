@@ -1,0 +1,42 @@
+#search-section {
+  margin: 2rem 0;
+  form {
+    display: flex;
+    align-items: center;
+  }
+
+  #search {
+    border-radius: 15px;
+    border: 1px solid #222;
+    padding: 0.5rem;
+    outline: none;
+    margin: 0 0.5rem;
+  }
+  .search-btn {
+    background: $green-gradient;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    color: #eee;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      background: $green-inverse-gradient;
+    }
+  }
+}
+
+@media screen and(max-width: 500px) {
+  #search-section {
+    form {
+      flex-direction: column;
+      .search-btn {
+        margin: 0.5rem;
+      }
+    }
+  }
+}

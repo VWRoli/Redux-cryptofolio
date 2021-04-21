@@ -1,0 +1,124 @@
+#portfolio {
+  @include main-page-setup();
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  h2 {
+    padding: 1rem 0;
+  }
+  h3 {
+    padding: 1rem 0;
+  }
+  .header {
+    @include header-flex();
+    .primary-btn {
+      a {
+        display: flex;
+        align-items: center;
+        svg {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    padding: 0 2rem 0 0;
+  }
+}
+
+.edit-btn {
+  @include reset-btn();
+}
+.remove-btn {
+  @include reset-btn();
+}
+.clear-btn {
+  @include primary-btn($gray-gradient, $gray-inverse-gradient);
+  padding: 1rem;
+  width: fit-content;
+  margin: auto;
+  color: #222;
+}
+
+@keyframes push-down {
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #portfolio {
+    #stats {
+      grid-column: span 12;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #portfolio {
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  .percentage-change-row {
+    display: none;
+  }
+}
+@media screen and (max-width: 750px) {
+  #portfolio {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  .profit-row {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #portfolio {
+    .portfolio-header {
+      flex-direction: column;
+      text-align: center;
+    }
+    #assets {
+      grid-column: span 12;
+    }
+  }
+  #stats {
+    .graph-btn-container {
+      button {
+        padding: 0.75rem;
+      }
+    }
+  }
+  .actions-row {
+    display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  #stats {
+    .main-asset-value {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  #assets {
+    .assets-header {
+      form {
+        display: none;
+      }
+    }
+  }
+}
