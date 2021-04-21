@@ -6,10 +6,10 @@ import {
   Tooltip,
   Area,
 } from 'recharts';
-import { priceFormatter } from '../../helpers';
+import { priceFormatter } from '../../../helpers';
 import { connect } from 'react-redux';
 //Components
-import Loading from '../Loading';
+import Loading from '../../Loading';
 
 const mapStateToProps = (state) => ({
   isLoading: state.asset.isLoading,

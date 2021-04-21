@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 //Components
-import AddNewAsset from './AddAsset/AddNewAsset';
-import EditAsset from './Portfolio/EditAsset';
-import AddSuccess from './AddAsset/AddSuccess';
+import AddNewAsset from './AddNewAsset';
+import EditAsset from './EditAsset';
+import AddSuccess from './AddSuccess';
 
 const mapStateToProps = (state) => ({
   isEditAsset: state.modal.isEditAsset,

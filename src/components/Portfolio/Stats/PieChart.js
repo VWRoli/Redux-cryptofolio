@@ -5,8 +5,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
-import { calcPieChartData } from '../../helpers';
-import { COLORS, RADIAN } from '../../constants/constant';
+import { calcPieChartData } from '../../../helpers';
+import { COLORS, RADIAN } from '../../../constants/constant';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({

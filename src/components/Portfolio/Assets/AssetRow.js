@@ -1,8 +1,8 @@
-import { priceChangeFormatter, priceFormatter } from '../../helpers';
+import { priceChangeFormatter, priceFormatter } from '../../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import { openModal, openEditAsset } from '../../actions/modalActions';
-import { removeAsset, setActiveCoin } from '../../actions/assetActions';
+import { openModal, openEditAsset } from '../../../actions/modalActions';
+import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
 
 const mapStateToProps = (state) => ({
   coinInfo: state.asset.coinInfo,

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AddAsset from './components/AddAsset/AddAsset';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home/Home';
-import Modal from './components/Modal';
+import Modal from './components/Modal/Modal';
 import Portfolio from './components/Portfolio/Portfolio';
 
 const mapStateToProps = (state) => ({ assets: state.asset.assets });

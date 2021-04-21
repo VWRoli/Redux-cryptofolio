@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 //Components
-import Loading from '../Loading';
-import Error from '../Error';
+import Loading from '../../Loading';
+import Error from '../../Error';
 import AssetRow from './AssetRow';
 
 const mapStateToProps = (state) => ({

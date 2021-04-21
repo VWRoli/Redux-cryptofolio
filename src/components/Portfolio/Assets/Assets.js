@@ -1,12 +1,12 @@
 import { FaSyncAlt } from 'react-icons/fa';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../../useFetch';
 import { connect } from 'react-redux';
 import {
   setCurrency,
   clearAssets,
   fetchCoinData,
-} from '../../actions/assetActions';
-import { CURRENCY_URL } from '../../constants/constant';
+} from '../../../actions/assetActions';
+import { CURRENCY_URL } from '../../../constants/constant';
 //Components
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';

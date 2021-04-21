@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { BUTTONS, priceFormatter } from '../../helpers';
-import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
+import { BUTTONS, priceFormatter } from '../../../helpers';
+import { priceChangeFormatter, calcChangePercentage } from '../../../helpers';
 //Components
-import Loading from '../Loading';
-import Error from '../Error';
-import Chart from './Chart';
+import Loading from '../../Loading';
+import Error from '../../Error';
+import Chart from './LineChart';
 import PieChart from './PieChart';
 import ChartButtons from './ChartButtons';
 

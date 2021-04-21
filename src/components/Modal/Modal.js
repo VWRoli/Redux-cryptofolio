@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import { closeModal } from '../actions/modalActions';
+import { closeModal } from '../../actions/modalActions';
 //Components
 import ModalContent from './ModalContent';
 

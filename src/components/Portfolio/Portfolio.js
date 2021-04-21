@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCoinData, setSearchQuery } from '../../actions/assetActions';
 //Components
-import Assets from './Assets';
-import Stats from './Stats';
+import Assets from './Assets/Assets';
+import Stats from './Stats/Stats';
 
 const mapStateToProps = (state) => ({
   defaultCurrency: state.asset.defaultCurrency,

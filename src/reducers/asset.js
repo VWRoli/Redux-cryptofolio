@@ -67,7 +67,7 @@ const assetReducer = (state = defaultState, action) => {
     case GET_TOTAL_CHANGE:
       //Get the 24h price change for the whole portfolio
       const assetValueChange = state.assets
-        .map((asset, i) => {
+        .map((asset) => {
           const [correctCoin] = state.coinInfo.filter(
             (coin) => coin.id === asset.id
           );

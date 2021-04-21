@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { setChartDays } from '../../actions/assetActions';
+import { setChartDays } from '../../../actions/assetActions';
 
 const ChartButtons = ({ buttons, setChartDays }) => {
   const [active, setActive] = useState(1);
