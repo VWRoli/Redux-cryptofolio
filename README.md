@@ -1,15 +1,25 @@
 # Redux-cryptofolio
 
-Crypto portfolio tracker with redux
+<img src="public/crypto.png"/>
+
+
 
 [Live](https://cryptofolio-app.netlify.app/)
+
+## Description
 
 Crypto currency portfolio tracker application. Select or search the currencies you want to add to your portfolio.
 
 Track your assets value. Take a look at the price change chart. Change vs fiat currency based on your preferences.
 
-Build with React, state management with Redux.
+## Technologies & Tools
 
-For getting the currency information I worked with the [CoinGecko API](https://www.coingecko.com/en).
+### Front-end:
 
-For styling I used Sass.
+- React
+- Redux
+- React Router
+- Sass
+- [CoinGecko API](https://www.coingecko.com/en)
+
+
