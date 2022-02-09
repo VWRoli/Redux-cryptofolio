@@ -1,11 +1,12 @@
 import { BASE_URL } from '../../constants/constant';
 import { useFetch } from '../../useFetch';
 //Components
-import HomeListItem from '../ListItem';
+import ListItem from '../ListItem';
 import Loading from '../Loading';
 import Error from '../Error';
+import { AssetType } from '../../actions/assetActions';
 
-const HomeList = () => {
+const HomeList: React.FC = (): JSX.Element => {
   const { data: coins, isLoading, isError } = useFetch(BASE_URL);
 
   //Loading screen
@@ -19,8 +20,8 @@ const HomeList = () => {
   }
   return (
     <>
-      {coins.map((coin) => {
-        return <HomeListItem key={coin.id} coin={coin} />;
+      {coins.map((coin: AssetType) => {
+        return <ListItem key={coin.id} coin={coin} />;
       })}
     </>
   );

@@ -9,8 +9,9 @@ import Error from '../../Error';
 import Chart from './LineChart';
 import PieChart from './PieChart';
 import ChartButtons from './ChartButtons';
+import { AssetType } from '../../../actions/assetActions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   assets: state.asset.assets,
   isLoading: state.asset.isLoading,
   isError: state.asset.isError,
@@ -19,26 +20,35 @@ const mapStateToProps = (state) => ({
   defaultCurrency: state.asset.defaultCurrency,
 });
 
-const Stats = ({
+type Props = {
+  assets: AssetType[];
+  isError: boolean;
+  isLoading: boolean;
+  totalValue: number;
+  totalValueChange: number;
+  defaultCurrency: string;
+};
+
+const Stats: React.FC<Props> = ({
   assets,
   isError,
   isLoading,
   totalValue,
   totalValueChange,
   defaultCurrency,
-}) => {
+}): JSX.Element => {
   const [isLineChart, setIsLineChart] = useState(true);
 
   if (isError) return <Error />;
 
   return (
-    <section id='stats'>
+    <section id="stats">
       <h2>Overview</h2>
 
       {isLoading ? (
         <Loading />
       ) : (
-        <div className='main-asset-value'>
+        <div className="main-asset-value">
           {priceFormatter(totalValue, defaultCurrency)}
           {assets.length === 0 ? (
             <span>0%</span>
@@ -52,12 +62,12 @@ const Stats = ({
           )}
         </div>
       )}
-      <div className='chart-btn-container'>
-        <button className='chart-btn' onClick={() => setIsLineChart(true)}>
-          <FaChartLine className='stat-btn-icon' /> Line Chart
+      <div className="chart-btn-container">
+        <button className="chart-btn" onClick={() => setIsLineChart(true)}>
+          <FaChartLine className="stat-btn-icon" /> Line Chart
         </button>
-        <button className='chart-btn' onClick={() => setIsLineChart(false)}>
-          <FaChartPie className='stat-btn-icon' /> Pie Chart
+        <button className="chart-btn" onClick={() => setIsLineChart(false)}>
+          <FaChartPie className="stat-btn-icon" /> Pie Chart
         </button>
       </div>
 

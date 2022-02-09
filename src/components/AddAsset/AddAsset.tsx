@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-
+//Components
 import AssetsList from './AssetsList';
 import SearchBar from './SearchBar';
 
-const AddAsset = () => {
+const AddAsset: React.FC = (): JSX.Element => {
   return (
     <section id="add-asset">
       <header className="header">

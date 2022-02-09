@@ -2,14 +2,27 @@ import { priceChangeFormatter, priceFormatter } from '../../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { openModal, openEditAsset } from '../../../actions/modalActions';
-import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
+import {
+  AssetType,
+  removeAsset,
+  setActiveCoin,
+} from '../../../actions/assetActions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   coinInfo: state.asset.coinInfo,
   defaultCurrency: state.asset.defaultCurrency,
 });
 
-const AssetRow = ({
+type Props = {
+  asset: AssetType;
+  setActiveCoin: any;
+  openModal: any;
+  openEditAsset: any;
+  removeAsset: any;
+  coinInfo: any;
+  defaultCurrency: string;
+};
+const AssetRow: React.FC<Props> = ({
   asset,
   setActiveCoin,
   openModal,
@@ -17,8 +30,10 @@ const AssetRow = ({
   removeAsset,
   coinInfo,
   defaultCurrency,
-}) => {
-  const [correctCoin] = coinInfo.filter((coin) => coin.id === asset.id);
+}): JSX.Element => {
+  const [correctCoin] = coinInfo.filter(
+    (coin: AssetType) => coin.id === asset.id
+  );
 
   const {
     name,
@@ -30,14 +45,14 @@ const AssetRow = ({
     id,
   } = correctCoin || {};
 
-  if (!asset) return null;
+  if (!asset) return <></>;
 
   return (
     <tr>
-      <td className='table-name'>
+      <td className="table-name">
         <img src={image} alt={name} />
         <p>
-          {name} <br /> <span className='symbol'>{symbol}</span>
+          {name} <br /> <span className="symbol">{symbol}</span>
         </p>
       </td>
       {/**PRICE */}
@@ -53,11 +68,11 @@ const AssetRow = ({
         {priceChangeFormatter(changePercentage)}
       </td>
       {/**HOLDINGS */}
-      <td className='holdings-row'>
+      <td className="holdings-row">
         {priceFormatter(price * asset.holdings, defaultCurrency)} <br />
-        <span className='holdings'>
+        <span className="holdings">
           {asset.holdings?.toFixed(4)}
-          <span className='symbol'>&nbsp;{symbol}</span>
+          <span className="symbol">&nbsp;{symbol}</span>
         </span>
       </td>
       {/**PROFIT/LOSS */}
@@ -69,24 +84,24 @@ const AssetRow = ({
         {priceFormatter(changeValue * asset.holdings, defaultCurrency)}
       </td>
       {/**ACTIONS */}
-      <td className='actions-row'>
+      <td className="actions-row">
         <button
-          type='button'
-          className='edit-btn'
+          type="button"
+          className="edit-btn"
           onClick={() => {
             setActiveCoin(id);
             openModal();
             openEditAsset();
           }}
         >
-          <FaEdit className='icons' title='Edit transaction' />
+          <FaEdit className="icons" title="Edit transaction" />
         </button>
         <button
-          type='button'
-          className='remove-btn'
+          type="button"
+          className="remove-btn"
           onClick={() => removeAsset(asset.id)}
         >
-          <FaRegMinusSquare className='icons' title='Remove transaction' />
+          <FaRegMinusSquare className="icons" title="Remove transaction" />
         </button>
       </td>
     </tr>

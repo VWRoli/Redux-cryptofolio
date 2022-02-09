@@ -3,23 +3,23 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { setSearchQuery } from '../../actions/assetActions';
 
-const SearchBar = ({ setSearchQuery }) => {
+const SearchBar: React.FC = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formatSearchTerm = searchTerm.toLowerCase().trim().replace(' ', '-');
     setSearchQuery(formatSearchTerm);
   };
 
   return (
-    <section id='search-section'>
-      <form action='/' method='get' onSubmit={onSubmit}>
-        <label htmlFor='search'>Search your Coin: </label>
+    <section id="search-section">
+      <form action="/" method="get" onSubmit={onSubmit}>
+        <label htmlFor="search">Search your Coin: </label>
         <input
-          type='text'
-          name='search'
-          id='search'
+          type="text"
+          name="search"
+          id="search"
           value={searchTerm}
           onChange={(e) => {
             if (e.target.value === '') setSearchQuery(e.target.value);
@@ -27,7 +27,7 @@ const SearchBar = ({ setSearchQuery }) => {
             setSearchTerm(e.target.value);
           }}
         />
-        <button type='submit' className='search-btn'>
+        <button type="submit" className="search-btn">
           <FaSearch />
         </button>
       </form>

@@ -7,38 +7,46 @@ import { openSuccess } from '../../actions/modalActions';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
+import { AssetStateType } from '../../reducers/asset';
 
-const mapStateToProps = (state) => ({
+//todo
+const mapStateToProps = (state: any) => ({
   defaultCurrency: state.asset.defaultCurrency,
 });
 
-const AddNewAsset = ({ id, defaultCurrency, openSuccess, addAsset }) => {
+type Props = {
+  id: string;
+  defaultCurrency: string;
+  openSuccess: any;
+  addAsset: any;
+};
+const AddNewAsset: React.FC<Props> = ({
+  id,
+  defaultCurrency,
+  openSuccess,
+  addAsset,
+}): JSX.Element => {
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
   );
 
   const [holdings, setHoldings] = useState('');
 
-  if (!data[0]) return null;
+  if (!data[0]) return <></>;
 
-  const {
-    name,
-    image,
-    symbol,
-    price_change_percentage_24h,
-    current_price,
-  } = data[0];
+  const { name, image, symbol, price_change_percentage_24h, current_price } =
+    data[0];
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     //Handle unfilled input field
-    if (!holdings) {
-      e.target.querySelector('#holdings').placeholder =
-        'Please fill out the field!';
-      e.target.querySelector('#holdings').classList.add('input-error');
-      return;
-    }
+    // if (!holdings) {
+    //   e.target.querySelector('#holdings').placeholder =
+    //     'Please fill out the field!';
+    //   e.target.querySelector('#holdings').classList.add('input-error');
+    //   return;
+    // }
     openSuccess();
 
     addAsset({ id, holdings: +holdings });
@@ -47,7 +55,7 @@ const AddNewAsset = ({ id, defaultCurrency, openSuccess, addAsset }) => {
 
   if (isError) {
     return (
-      <div id='add-new-asset'>
+      <div id="add-new-asset">
         <h1>Add New Asset</h1>
         <Error />
       </div>
@@ -55,7 +63,7 @@ const AddNewAsset = ({ id, defaultCurrency, openSuccess, addAsset }) => {
   }
 
   return (
-    <div id='add-new-asset'>
+    <div id="add-new-asset">
       <h1>Add New Asset</h1>
       {isLoading ? (
         <Loading />
@@ -83,17 +91,17 @@ const AddNewAsset = ({ id, defaultCurrency, openSuccess, addAsset }) => {
             Current Price:{' '}
             <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
-          <form action='/' onSubmit={onSubmit}>
-            <label htmlFor='holdings'>Quantity: </label>
+          <form action="/" onSubmit={onSubmit}>
+            <label htmlFor="holdings">Quantity: </label>
             <input
-              type='number'
-              name='holdings'
-              id='holdings'
+              type="number"
+              name="holdings"
+              id="holdings"
               value={holdings}
               onChange={(e) => setHoldings(e.target.value)}
             />
 
-            <button type='submit' className='primary-btn'>
+            <button type="submit" className="primary-btn">
               Add Asset
             </button>
           </form>

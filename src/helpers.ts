@@ -1,11 +1,13 @@
+import { AssetType } from './actions/assetActions';
+
 //Locale
 const locale = navigator.language;
 
 //Format Price Change
-export const priceChangeFormatter = (priceChange) => {
+export const priceChangeFormatter = (priceChange: number) => {
   const formattedPriceChange = new Intl.NumberFormat(locale, {
     style: 'percent',
-    signDisplay: 'exceptZero',
+    signDisplay: 'auto',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(priceChange / 100);
@@ -14,7 +16,7 @@ export const priceChangeFormatter = (priceChange) => {
 };
 
 //Price formatter
-export const priceFormatter = (price, currency) => {
+export const priceFormatter = (price: number, currency: string) => {
   //Locale
   const locale = navigator.language;
   const formattedPrice = new Intl.NumberFormat(locale, {
@@ -27,9 +29,10 @@ export const priceFormatter = (price, currency) => {
 };
 
 //URL formatter
-export const urlFormatter = (url, array) => {
+//todo
+export const urlFormatter = (url: string, array: []) => {
   const urlPart = array
-    .map((item) => {
+    .map((item: any) => {
       return `${item.id}%2C%20`;
     })
     .join('');
@@ -41,7 +44,7 @@ export const urlFormatter = (url, array) => {
 export const calcYtd = () => {
   const today = new Date();
   const startYear = new Date(today.getFullYear(), 0);
-  const days = Math.floor((today - startYear) / (1000 * 60 * 60 * 24));
+  const days = Math.floor((+today - +startYear) / (1000 * 60 * 60 * 24));
   return days;
 };
 
@@ -55,31 +58,33 @@ export const BUTTONS = [
 ];
 
 //Format chart data
-export const chartDataFormatter = (data, assets) => {
+export const chartDataFormatter = (data: any, assets: AssetType[]) => {
   //Get prices from chart data array, because it has market and voluma data too
 
-  const priceData = data.map((item) => {
+  const priceData = data.map((item: any) => {
     return item.prices;
   });
 
   //Calculate prices of holdings
-  const holdingPrices = priceData.map((array, i) => {
+  const holdingPrices = priceData.map((array: any, i: number) => {
     const currentHoldings = assets[i].holdings;
-    return array.map((item) => currentHoldings * item[1]);
+    return array.map((item: any) => currentHoldings * item[1]);
   });
 
   if (!priceData[0]) return;
 
   //Get timestamps for chart
-  const timeStamps = priceData[0].map((stamp) => stamp[0]);
+  const timeStamps = priceData[0].map((stamp: any) => stamp[0]);
 
   //Get and add the total price values
   const totalPrices = holdingPrices
-    .map((array) => array.map((el) => el))
-    .reduce((acc, curr) => acc.map((el, i) => el + curr[i]));
+    .map((array: any) => array.map((el: number) => el))
+    .reduce((acc: any, curr: any) =>
+      acc.map((el: number, i: number) => el + curr[i])
+    );
 
   //Createing a data Object for the chart
-  const chartDataObj = timeStamps.map((el, i) => {
+  const chartDataObj = timeStamps.map((el: number, i: number) => {
     //Configuration
     const options = {
       hour: 'numeric',
@@ -88,7 +93,7 @@ export const chartDataFormatter = (data, assets) => {
       month: 'short',
       year: 'numeric',
       weekday: 'long',
-    };
+    } as const;
 
     //Locale
     const locale = navigator.language;
@@ -102,9 +107,12 @@ export const chartDataFormatter = (data, assets) => {
   return chartDataObj;
 };
 //Create Pie chart data
-export const calcPieChartData = (assets, info) => {
+//todo
+export const calcPieChartData = (assets: AssetType[], info: any) => {
   return assets.map((asset) => {
-    const [currentCoin] = info.filter((item) => asset.id === item.id);
+    const [currentCoin] = info.filter(
+      (item: AssetType) => asset.id === item.id
+    );
 
     const totalValue = currentCoin.current_price * asset.holdings;
     return { id: asset.id, value: totalValue };
@@ -112,15 +120,20 @@ export const calcPieChartData = (assets, info) => {
 };
 
 //Calculate percentage change
-export const calcChangePercentage = (curValue, change) => {
+export const calcChangePercentage = (
+  curValue: number,
+  change: number
+): number => {
   let percentage;
   const newPrice = curValue;
 
   if (change > 0) {
     const oldPrice = curValue - change;
-    return (percentage = [(newPrice - oldPrice) / oldPrice] * 100);
+    return 1;
+    // return (percentage = [(newPrice - oldPrice) / oldPrice] * 100);
   } else {
     const oldPrice = curValue + Math.abs(change);
-    return -Math.abs((percentage = [(oldPrice - newPrice) / oldPrice] * 100));
+    return 0;
+    // return -Math.abs((percentage = [(oldPrice - newPrice) / oldPrice] * 100));
   }
 };

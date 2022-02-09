@@ -1,34 +1,36 @@
-import {
-  SET_ACTIVE_COIN,
-  OPEN_MODAL,
-  CLOSE_MODAL,
-  OPEN_SUCCESS,
-  OPEN_EDIT_ASSET,
-} from '../constants/actionTypes';
+import { Action } from '../actions/Types';
+import { ActionType } from '../constants/actionTypes';
 
-const defaultState = {
+export type ModalStateType = {
+  isModalOpen: boolean;
+  activeCoin: string;
+  displaySuccess: boolean;
+  isEditAsset: boolean;
+};
+
+const defaultState: ModalStateType = {
   isModalOpen: false,
   activeCoin: '',
   displaySuccess: false,
   isEditAsset: false,
 };
 
-const modalReducer = (state = defaultState, action) => {
+const modalReducer = (state = defaultState, action: Action) => {
   switch (action.type) {
-    case SET_ACTIVE_COIN:
+    case ActionType.SET_ACTIVE_COIN:
       return { ...state, activeCoin: action.payload };
-    case OPEN_MODAL:
+    case ActionType.OPEN_MODAL:
       return { ...state, isModalOpen: true };
-    case CLOSE_MODAL:
+    case ActionType.CLOSE_MODAL:
       return {
         ...state,
         isModalOpen: false,
         isEditAsset: false,
         displaySuccess: false,
       };
-    case OPEN_SUCCESS:
+    case ActionType.OPEN_SUCCESS:
       return { ...state, displaySuccess: true };
-    case OPEN_EDIT_ASSET:
+    case ActionType.OPEN_EDIT_ASSET:
       return { ...state, isEditAsset: true };
     default:
       return state;

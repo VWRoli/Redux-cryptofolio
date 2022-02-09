@@ -1,4 +1,4 @@
-const AssetsHeader = () => {
+const AssetsHeader: React.FC = (): JSX.Element => {
   return (
     <>
       <tr>

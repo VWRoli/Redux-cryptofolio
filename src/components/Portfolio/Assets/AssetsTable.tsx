@@ -3,19 +3,30 @@ import { connect } from 'react-redux';
 import Loading from '../../Loading';
 import Error from '../../Error';
 import AssetRow from './AssetRow';
+import { AssetType } from '../../../actions/assetActions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   assets: state.asset.assets,
   isError: state.asset.isError,
   isLoading: state.asset.isLoading,
 });
 
-const AssetsTable = ({ isLoading, isError, assets }) => {
+type Props = {
+  isLoading: boolean;
+  isError: boolean;
+  assets: AssetType[];
+};
+
+const AssetsTable: React.FC<Props> = ({
+  isLoading,
+  isError,
+  assets,
+}): JSX.Element => {
   if (isError) {
     return (
       <tbody>
         <tr>
-          <td colSpan='6'>
+          <td colSpan={6}>
             <Error />
           </td>
         </tr>
@@ -27,7 +38,7 @@ const AssetsTable = ({ isLoading, isError, assets }) => {
     <tbody>
       {isLoading ? (
         <tr>
-          <td colSpan='6'>
+          <td colSpan={6}>
             <Loading />
           </td>
         </tr>

@@ -2,24 +2,32 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
-import { editAsset } from '../../actions/assetActions';
+import { AssetType, editAsset } from '../../actions/assetActions';
 import { openSuccess } from '../../actions/modalActions';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   defaultCurrency: state.asset.defaultCurrency,
   assets: state.asset.assets,
 });
 
-const AddNewAsset = ({
+type Props = {
+  id: string;
+  defaultCurrency: string;
+  openSuccess: any;
+  assets: AssetType[];
+  editAsset: any;
+};
+
+const AddNewAsset: React.FC<Props> = ({
   id,
   defaultCurrency,
   assets,
   editAsset,
   openSuccess,
-}) => {
+}): JSX.Element => {
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
   );
@@ -28,38 +36,34 @@ const AddNewAsset = ({
 
   const [holdings, setHoldings] = useState(correctCoin.holdings);
 
-  if (!data[0]) return null;
+  if (!data[0]) return <></>;
 
-  const {
-    name,
-    image,
-    symbol,
-    price_change_percentage_24h,
-    current_price,
-  } = data[0];
+  const { name, image, symbol, price_change_percentage_24h, current_price } =
+    data[0];
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    //Handle unfilled input field
-    if (!holdings) {
-      e.target.querySelector('#holdings').placeholder =
-        'Please fill out the field!';
-      e.target.querySelector('#holdings').classList.add('input-error');
-      return;
-    }
+    // //Handle unfilled input field
+    // if (!holdings) {
+    //   e.target.querySelector('#holdings').placeholder =
+    //     'Please fill out the field!';
+    //   e.target.querySelector('#holdings').classList.add('input-error');
+    //   return;
+    // }
     openSuccess();
 
     //Edit holdings
     //correctCoin.holdings = +holdings;
     editAsset(correctCoin, holdings);
 
-    setHoldings('');
+    //todo? was empty string
+    setHoldings(0);
   };
 
   if (isError) {
     return (
-      <div id='add-new-asset'>
+      <div id="add-new-asset">
         <h1>Add New Asset</h1>
         <Error />
       </div>
@@ -67,7 +71,7 @@ const AddNewAsset = ({
   }
 
   return (
-    <div id='add-new-asset'>
+    <div id="add-new-asset">
       <h1>Edit Asset</h1>
       {isLoading ? (
         <Loading />
@@ -95,7 +99,7 @@ const AddNewAsset = ({
             Current Price:{' '}
             <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
-          <div className='your-data'>
+          <div className="your-data">
             <h3>
               Your Holdings:{' '}
               <span>
@@ -113,17 +117,17 @@ const AddNewAsset = ({
             </h3>
           </div>
 
-          <form action='/' onSubmit={onSubmit}>
-            <label htmlFor='holdings'>Quantity: </label>
+          <form action="/" onSubmit={onSubmit}>
+            <label htmlFor="holdings">Quantity: </label>
             <input
-              type='number'
-              name='holdings'
-              id='holdings'
+              type="number"
+              name="holdings"
+              id="holdings"
               value={holdings}
-              onChange={(e) => setHoldings(e.target.value)}
+              onChange={(e) => setHoldings(+e.target.value)}
             />
 
-            <button type='submit' className='primary-btn'>
+            <button type="submit" className="primary-btn">
               Edit Asset
             </button>
           </form>

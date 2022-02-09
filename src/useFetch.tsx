@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export const useFetch = (url) => {
+export const useFetch = (url: string) => {
   //Loading state
   const [isLoading, setIsLoading] = useState(true);
   //Error state
   const [isError, setIsError] = useState(false);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
