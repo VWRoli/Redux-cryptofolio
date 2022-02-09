@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
 import { addAsset } from '../../actions/assetActions';
@@ -7,25 +7,17 @@ import { openSuccess } from '../../actions/modalActions';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
-import { AssetStateType } from '../../reducers/asset';
-
-//todo
-const mapStateToProps = (state: any) => ({
-  defaultCurrency: state.asset.defaultCurrency,
-});
+import { State } from '../../reducers';
 
 type Props = {
   id: string;
-  defaultCurrency: string;
-  openSuccess: any;
-  addAsset: any;
 };
-const AddNewAsset: React.FC<Props> = ({
-  id,
-  defaultCurrency,
-  openSuccess,
-  addAsset,
-}): JSX.Element => {
+
+const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
+  const defaultCurrency = useSelector(
+    (state: State) => state.asset.defaultCurrency
+  );
+
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
   );
@@ -111,4 +103,4 @@ const AddNewAsset: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, { addAsset, openSuccess })(AddNewAsset);
+export default AddNewAsset;

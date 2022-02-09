@@ -1,22 +1,17 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { AssetStateType } from './reducers/asset';
+import { useSelector } from 'react-redux';
+import { State } from './reducers';
+
 //Components
 import AddAsset from './components/AddAsset/AddAsset';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home/Home';
 import Modal from './components/Modal/Modal';
 import Portfolio from './components/Portfolio/Portfolio';
-import { AssetType } from './actions/assetActions';
 
-const mapStateToProps = (state: AssetStateType) => ({
-  //todo assets: state.asset.assets,
-});
+const App: React.FC = (): JSX.Element => {
+  const assets = useSelector((state: State) => state.asset.assets);
 
-type Props = {
-  assets?: AssetType[];
-};
-const App: React.FC<Props> = ({ assets }): JSX.Element => {
   return (
     <Router>
       <div className="App">
@@ -40,4 +35,4 @@ const App: React.FC<Props> = ({ assets }): JSX.Element => {
   );
 };
 
-export default connect(mapStateToProps)(App);
+export default App;

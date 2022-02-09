@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import assetReducer from './asset';
-import modalReducer from './modal';
+import asset from './asset';
+import modal from './modal';
 
 const reducers = combineReducers({
-  asset: assetReducer,
-  modal: modalReducer,
+  modal,
+  asset,
 });
 
 export default reducers;

@@ -1,23 +1,8 @@
 import { AssetType } from '../actions/assetActions';
-import { Action } from '../actions/Types';
 import { ActionType } from '../constants/actionTypes';
+import { IAssetState, Action } from '../Types';
 
-export type AssetStateType = {
-  isLoading: boolean;
-  isError: boolean;
-  assets: AssetType[];
-  //todo
-  coinInfo: any[];
-  searchQuery: string;
-  defaultCurrency: string;
-  totalValue: number;
-  totalValueChange: number;
-  //todo
-  chartData: any[];
-  chartDays: string;
-};
-
-const defaultState: AssetStateType = {
+const defaultState: IAssetState = {
   isLoading: false,
   isError: false,
   assets: [],
@@ -29,10 +14,13 @@ const defaultState: AssetStateType = {
   totalValue: 0,
   totalValueChange: 0,
   chartData: [],
-  chartDays: '7',
+  chartDays: 7,
 };
 
-const assetReducer = (state = defaultState, action: Action) => {
+const asset = (
+  state: IAssetState = defaultState,
+  action: Action
+): IAssetState => {
   switch (action.type) {
     case ActionType.CLEAR_ASSETS:
       return { ...state, assets: [] };
@@ -92,4 +80,4 @@ const assetReducer = (state = defaultState, action: Action) => {
       return state;
   }
 };
-export default assetReducer;
+export default asset;

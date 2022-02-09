@@ -1,5 +1,27 @@
-import { ActionType } from '../constants/actionTypes';
-import { AssetType } from './assetActions';
+import { AssetType } from './actions/assetActions';
+import { ActionType } from './constants/actionTypes';
+
+export interface IAssetState {
+  isLoading: boolean;
+  isError: boolean;
+  assets: AssetType[];
+  //todo
+  coinInfo: any[];
+  searchQuery: string;
+  defaultCurrency: string;
+  totalValue: number;
+  totalValueChange: number;
+  //todo
+  chartData: any[];
+  chartDays: number;
+}
+
+export interface IModalState {
+  isModalOpen: boolean;
+  activeCoin: string;
+  displaySuccess: boolean;
+  isEditAsset: boolean;
+}
 
 interface CloseModalAction {
   type: ActionType.CLOSE_MODAL;

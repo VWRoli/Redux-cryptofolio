@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { ActionType } from '../constants/actionTypes';
-import { Action } from './Types';
+import { Action } from '../Types';
 
 export const closeModal = () => (dispatch: Dispatch<Action>) => {
   dispatch({ type: ActionType.CLOSE_MODAL });

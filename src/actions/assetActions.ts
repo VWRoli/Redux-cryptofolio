@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { ActionType } from '../constants/actionTypes';
 import { chartDataFormatter, urlFormatter } from '../helpers';
-import { Action } from './Types';
+import { Action } from '../Types';
 
 export type AssetType = {
   id: string;
