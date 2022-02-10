@@ -18,8 +18,7 @@ const Modal: React.FC = (): JSX.Element => {
   };
 
   //Close Modal with Esc
-  //todo
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       closeModal();
     }

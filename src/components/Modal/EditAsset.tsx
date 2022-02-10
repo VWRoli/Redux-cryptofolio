@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
 import { editAsset } from '../../actions/assetActions';
@@ -47,7 +47,6 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
     //correctCoin.holdings = +holdings;
     editAsset(correctCoin, holdings);
 
-    //todo? was empty string
     setHoldings(0);
   };
 

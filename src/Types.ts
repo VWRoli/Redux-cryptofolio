@@ -1,17 +1,14 @@
-import { AssetType } from './actions/assetActions';
 import { ActionType } from './constants/actionTypes';
 
 export interface IAssetState {
   isLoading: boolean;
   isError: boolean;
   assets: AssetType[];
-  //todo
-  coinInfo: any[];
+  coinInfo: CoinType[];
   searchQuery: string;
   defaultCurrency: string;
   totalValue: number;
   totalValueChange: number;
-  //todo
   chartData: any[];
   chartDays: number;
 }
@@ -73,13 +70,11 @@ interface SetLoadingAction {
 }
 interface DisplayInfoAction {
   type: ActionType.DISPLAY_INFO;
-  //todo
-  payload: any[];
+  payload: CoinType[];
 }
 interface SetChartDataAction {
   type: ActionType.SET_CHART_DATA;
-  //todo
-  payload: any;
+  payload: any[];
 }
 interface GetTotalsAction {
   type: ActionType.GET_TOTALS;
@@ -110,3 +105,18 @@ export type Action =
   | GetTotalChangeAction
   | SetErrorAction
   | CloseModalAction;
+
+export type CoinType = {
+  name: string;
+  image: string;
+  symbol: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+  price_change_24h: number;
+  id: string;
+};
+
+export type AssetType = {
+  id: string;
+  holdings: number;
+};

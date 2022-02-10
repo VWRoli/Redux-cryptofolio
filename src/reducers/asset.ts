@@ -1,4 +1,4 @@
-import { AssetType } from '../actions/assetActions';
+import { AssetType, CoinType } from '../Types';
 import { ActionType } from '../constants/actionTypes';
 import { IAssetState, Action } from '../Types';
 
@@ -6,8 +6,6 @@ const defaultState: IAssetState = {
   isLoading: false,
   isError: false,
   assets: [],
-  //todo
-  //assets: JSON.parse(localStorage.getItem('coinAssets')) || [],
   coinInfo: [],
   searchQuery: '',
   defaultCurrency: 'usd',
@@ -49,9 +47,9 @@ const asset = (
       const currentAssetValue = state.assets
         .map((asset: AssetType) => {
           const [correctCoin] = state.coinInfo.filter(
-            (coin: AssetType) => coin.id === asset.id
+            (coin: CoinType) => coin.id === asset.id
           );
-          return asset.holdings * correctCoin.current_price;
+          return asset.holdings * +correctCoin.current_price;
         })
         .reduce((acc: number, cur: number) => acc + cur, 0);
 
@@ -62,10 +60,10 @@ const asset = (
       const assetValueChange = state.assets
         .map((asset: AssetType) => {
           const [correctCoin] = state.coinInfo.filter(
-            (coin: AssetType) => coin.id === asset.id
+            (coin: CoinType) => coin.id === asset.id
           );
 
-          return asset.holdings * correctCoin.price_change_24h;
+          return asset.holdings * +correctCoin.price_change_24h;
         })
         .reduce((acc: number, cur: number) => acc + cur, 0);
 

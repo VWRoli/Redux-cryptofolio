@@ -1,4 +1,4 @@
-import { AssetType } from './actions/assetActions';
+import { AssetType, CoinType } from './Types';
 
 //Locale
 const locale = navigator.language;
@@ -29,10 +29,10 @@ export const priceFormatter = (price: number, currency: string) => {
 };
 
 //URL formatter
-//todo
-export const urlFormatter = (url: string, array: []) => {
+export const urlFormatter = (url: string, array: AssetType[]) => {
+  console.log(array);
   const urlPart = array
-    .map((item: any) => {
+    .map((item) => {
       return `${item.id}%2C%20`;
     })
     .join('');
@@ -107,12 +107,9 @@ export const chartDataFormatter = (data: any, assets: AssetType[]) => {
   return chartDataObj;
 };
 //Create Pie chart data
-//todo
-export const calcPieChartData = (assets: AssetType[], info: any) => {
+export const calcPieChartData = (assets: AssetType[], info: CoinType[]) => {
   return assets.map((asset) => {
-    const [currentCoin] = info.filter(
-      (item: AssetType) => asset.id === item.id
-    );
+    const [currentCoin] = info.filter((item) => asset.id === item.id);
 
     const totalValue = currentCoin.current_price * asset.holdings;
     return { id: asset.id, value: totalValue };

@@ -1,23 +1,16 @@
 import { FaPlus } from 'react-icons/fa';
-import { connect } from 'react-redux';
 import { setActiveCoin } from '../actions/assetActions';
 import { openModal } from '../actions/modalActions';
+import { CoinType } from '../Types';
 
 type Props = {
-  //todo
-  coin: any;
-  owned?: any;
-  openModal: any;
-  setActiveCoin: any;
+  coin: CoinType;
+  owned?: boolean;
 };
 
-const ListItem: React.FC<Props> = ({
-  coin,
-  owned,
-  openModal,
-  setActiveCoin,
-}): JSX.Element => {
+const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
   const { name, symbol, image, id } = coin;
+
   return (
     <article
       className={owned ? 'list-item owned-coin' : 'list-item'}
@@ -48,4 +41,4 @@ const ListItem: React.FC<Props> = ({
   );
 };
 
-export default connect(null, { openModal, setActiveCoin })(ListItem);
+export default ListItem;

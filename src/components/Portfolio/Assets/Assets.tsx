@@ -17,7 +17,6 @@ const Assets: React.FC = (): JSX.Element => {
     (state: State) => state.asset
   );
 
-  //todo
   const { data: currencies } = useFetch(CURRENCY_URL);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

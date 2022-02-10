@@ -2,12 +2,9 @@ import { priceChangeFormatter, priceFormatter } from '../../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { openModal, openEditAsset } from '../../../actions/modalActions';
-import {
-  AssetType,
-  removeAsset,
-  setActiveCoin,
-} from '../../../actions/assetActions';
+import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
 import { State } from '../../../reducers';
+import { AssetType, CoinType } from '../../../Types';
 
 type Props = {
   asset: AssetType;
@@ -19,7 +16,7 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
   );
 
   const [correctCoin] = coinInfo.filter(
-    (coin: AssetType) => coin.id === asset.id
+    (coin: CoinType) => coin.id === asset.id
   );
 
   const {

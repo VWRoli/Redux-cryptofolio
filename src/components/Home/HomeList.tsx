@@ -4,7 +4,7 @@ import { useFetch } from '../../useFetch';
 import ListItem from '../ListItem';
 import Loading from '../Loading';
 import Error from '../Error';
-import { AssetType } from '../../actions/assetActions';
+import { CoinType } from '../../Types';
 
 const HomeList: React.FC = (): JSX.Element => {
   const { data: coins, isLoading, isError } = useFetch(BASE_URL);
@@ -20,7 +20,7 @@ const HomeList: React.FC = (): JSX.Element => {
   }
   return (
     <>
-      {coins.map((coin: AssetType) => {
+      {coins.map((coin: CoinType) => {
         return <ListItem key={coin.id} coin={coin} />;
       })}
     </>

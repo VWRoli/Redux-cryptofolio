@@ -1,8 +1,8 @@
 import { useFetch } from '../../useFetch';
-import { connect } from 'react-redux';
-import { AssetType } from '../../actions/assetActions';
+import { AssetType } from '../../Types';
 import { useSelector } from 'react-redux';
 import { State } from '../../reducers';
+import { CoinType } from '../../Types';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
@@ -41,7 +41,7 @@ const AssetsList: React.FC = (): JSX.Element => {
           We couldn't find your coin, please try again.
         </h3>
       ) : (
-        coins.map((coin: AssetType) => {
+        coins.map((coin: CoinType) => {
           const owned = ownedCoins.some(
             (item: AssetType) => item.id === coin.id
           );
