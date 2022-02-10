@@ -1,27 +1,14 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { State } from '../../reducers';
 //Components
 import AddNewAsset from './AddNewAsset';
 import EditAsset from './EditAsset';
 import Success from './Success';
 
-const mapStateToProps = (state: any) => ({
-  isEditAsset: state.modal.isEditAsset,
-  displaySuccess: state.modal.displaySuccess,
-  activeCoin: state.modal.activeCoin,
-});
-
-type Props = {
-  activeCoin: string;
-  //todo
-  displaySuccess: any;
-  isEditAsset: boolean;
-};
-
-const ModalContent: React.FC<Props> = ({
-  activeCoin,
-  displaySuccess,
-  isEditAsset,
-}): JSX.Element => {
+const ModalContent: React.FC = (): JSX.Element => {
+  const { activeCoin, displaySuccess, isEditAsset } = useSelector(
+    (state: State) => state.modal
+  );
   if (displaySuccess) return <Success />;
 
   if (isEditAsset) return <EditAsset id={activeCoin} />;
@@ -29,4 +16,4 @@ const ModalContent: React.FC<Props> = ({
   return <AddNewAsset id={activeCoin} />;
 };
 
-export default connect(mapStateToProps)(ModalContent);
+export default ModalContent;

@@ -1,21 +1,12 @@
 import { Link } from 'react-router-dom';
 import { FaRegCheckCircle } from 'react-icons/fa';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
+import { State } from '../../reducers';
 
-const mapStateToProps = (state: any) => ({
-  isEditAsset: state.modal.isEditAsset,
-});
+const AddSuccess: React.FC = (): JSX.Element => {
+  const isEditAsset = useSelector((state: State) => state.modal.isEditAsset);
 
-type Props = {
-  closeModal: any;
-  isEditAsset: boolean;
-};
-
-const AddSuccess: React.FC<Props> = ({
-  closeModal,
-  isEditAsset,
-}): JSX.Element => {
   return (
     <section className="success-message">
       <h1>Success</h1>
@@ -45,4 +36,4 @@ const AddSuccess: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, { closeModal })(AddSuccess);
+export default AddSuccess;

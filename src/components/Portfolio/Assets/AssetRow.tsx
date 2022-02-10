@@ -1,36 +1,23 @@
 import { priceChangeFormatter, priceFormatter } from '../../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { openModal, openEditAsset } from '../../../actions/modalActions';
 import {
   AssetType,
   removeAsset,
   setActiveCoin,
 } from '../../../actions/assetActions';
-
-const mapStateToProps = (state: any) => ({
-  coinInfo: state.asset.coinInfo,
-  defaultCurrency: state.asset.defaultCurrency,
-});
+import { State } from '../../../reducers';
 
 type Props = {
   asset: AssetType;
-  setActiveCoin: any;
-  openModal: any;
-  openEditAsset: any;
-  removeAsset: any;
-  coinInfo: any;
-  defaultCurrency: string;
 };
-const AssetRow: React.FC<Props> = ({
-  asset,
-  setActiveCoin,
-  openModal,
-  openEditAsset,
-  removeAsset,
-  coinInfo,
-  defaultCurrency,
-}): JSX.Element => {
+
+const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
+  const { coinInfo, defaultCurrency } = useSelector(
+    (state: State) => state.asset
+  );
+
   const [correctCoin] = coinInfo.filter(
     (coin: AssetType) => coin.id === asset.id
   );
@@ -91,7 +78,7 @@ const AssetRow: React.FC<Props> = ({
           onClick={() => {
             setActiveCoin(id);
             openModal();
-            openEditAsset();
+            openEditAsset(id);
           }}
         >
           <FaEdit className="icons" title="Edit transaction" />
@@ -108,9 +95,4 @@ const AssetRow: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, {
-  openEditAsset,
-  openModal,
-  removeAsset,
-  setActiveCoin,
-})(AssetRow);
+export default AssetRow;

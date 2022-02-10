@@ -1,37 +1,22 @@
 import { FaSyncAlt } from 'react-icons/fa';
 import { useFetch } from '../../../useFetch';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   setCurrency,
   clearAssets,
   fetchCoinData,
-  AssetType,
 } from '../../../actions/assetActions';
 import { CURRENCY_URL } from '../../../constants/constant';
+import { State } from '../../../reducers';
 //Components
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 
-const mapStateToProps = (state: any) => ({
-  assets: state.asset.assets,
-  defaultCurrency: state.asset.defaultCurrency,
-});
+const Assets: React.FC = (): JSX.Element => {
+  const { assets, defaultCurrency } = useSelector(
+    (state: State) => state.asset
+  );
 
-type Props = {
-  assets: AssetType[];
-  defaultCurrency: string;
-  setCurrency: any;
-  fetchCoinData: any;
-  clearAssets: any;
-};
-
-const Assets: React.FC<Props> = ({
-  assets,
-  defaultCurrency,
-  setCurrency,
-  fetchCoinData,
-  clearAssets,
-}): JSX.Element => {
   //todo
   const { data: currencies } = useFetch(CURRENCY_URL);
 
@@ -89,8 +74,4 @@ const Assets: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, {
-  setCurrency,
-  clearAssets,
-  fetchCoinData,
-})(Assets);
+export default Assets;

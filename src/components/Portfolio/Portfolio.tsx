@@ -1,26 +1,11 @@
 import { FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { fetchCoinData, setSearchQuery } from '../../actions/assetActions';
 //Components
 import Assets from './Assets/Assets';
 import Stats from './Stats/Stats';
 
-const mapStateToProps = (state: any) => ({
-  defaultCurrency: state.asset.defaultCurrency,
-  assets: state.asset.assets,
-  chartDays: state.asset.chartDays,
-});
-
-type Props = {
-  setSearchQuery: any;
-  fetchCoinData: any;
-};
-
-const Portfolio: React.FC<Props> = ({
-  setSearchQuery,
-  fetchCoinData,
-}): JSX.Element => {
+const Portfolio: React.FC = (): JSX.Element => {
   fetchCoinData();
 
   return (
@@ -48,6 +33,4 @@ const Portfolio: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps, { fetchCoinData, setSearchQuery })(
-  Portfolio
-);
+export default Portfolio;

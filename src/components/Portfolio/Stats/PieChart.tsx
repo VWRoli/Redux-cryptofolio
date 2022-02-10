@@ -7,27 +7,17 @@ import {
 import { useEffect, useState } from 'react';
 import { calcPieChartData } from '../../../helpers';
 import { COLORS, RADIAN } from '../../../constants/constant';
-import { connect } from 'react-redux';
-import { AssetType } from '../../../actions/assetActions';
-
-const mapStateToProps = (state: any) => ({
-  assets: state.asset.assets,
-  coinInfo: state.asset.coinInfo,
-});
+import { useSelector } from 'react-redux';
+import { State } from '../../../reducers';
 
 type Props = {
   clicked: any;
-  assets: AssetType[];
-  coinInfo: any;
 };
 
 type LabelProps = { [key: string]: number };
 
-const PieChart: React.FC<Props> = ({
-  clicked,
-  assets,
-  coinInfo,
-}): JSX.Element => {
+const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
+  const { assets, coinInfo } = useSelector((state: State) => state.asset);
   //todo
   const [data, setData] = useState<any>([]);
 
@@ -83,4 +73,4 @@ const PieChart: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps)(PieChart);
+export default PieChart;

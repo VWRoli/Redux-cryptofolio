@@ -1,42 +1,25 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
 import { BUTTONS, priceFormatter } from '../../../helpers';
 import { priceChangeFormatter, calcChangePercentage } from '../../../helpers';
+import ChartButtons from './ChartButtons';
 //Components
 import Loading from '../../Loading';
 import Error from '../../Error';
 import Chart from './LineChart';
 import PieChart from './PieChart';
-import ChartButtons from './ChartButtons';
-import { AssetType } from '../../../actions/assetActions';
+import { State } from '../../../reducers';
 
-const mapStateToProps = (state: any) => ({
-  assets: state.asset.assets,
-  isLoading: state.asset.isLoading,
-  isError: state.asset.isError,
-  totalValue: state.asset.totalValue,
-  totalValueChange: state.asset.totalValueChange,
-  defaultCurrency: state.asset.defaultCurrency,
-});
-
-type Props = {
-  assets: AssetType[];
-  isError: boolean;
-  isLoading: boolean;
-  totalValue: number;
-  totalValueChange: number;
-  defaultCurrency: string;
-};
-
-const Stats: React.FC<Props> = ({
-  assets,
-  isError,
-  isLoading,
-  totalValue,
-  totalValueChange,
-  defaultCurrency,
-}): JSX.Element => {
+const Stats: React.FC = (): JSX.Element => {
+  const {
+    assets,
+    isError,
+    isLoading,
+    totalValue,
+    totalValueChange,
+    defaultCurrency,
+  } = useSelector((state: State) => state.asset);
   const [isLineChart, setIsLineChart] = useState(true);
 
   if (isError) return <Error />;
@@ -77,4 +60,4 @@ const Stats: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps)(Stats);
+export default Stats;

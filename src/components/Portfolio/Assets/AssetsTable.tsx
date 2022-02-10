@@ -1,27 +1,15 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 //Components
 import Loading from '../../Loading';
 import Error from '../../Error';
 import AssetRow from './AssetRow';
-import { AssetType } from '../../../actions/assetActions';
+import { State } from '../../../reducers';
 
-const mapStateToProps = (state: any) => ({
-  assets: state.asset.assets,
-  isError: state.asset.isError,
-  isLoading: state.asset.isLoading,
-});
+const AssetsTable: React.FC = (): JSX.Element => {
+  const { assets, isError, isLoading } = useSelector(
+    (state: State) => state.asset
+  );
 
-type Props = {
-  isLoading: boolean;
-  isError: boolean;
-  assets: AssetType[];
-};
-
-const AssetsTable: React.FC<Props> = ({
-  isLoading,
-  isError,
-  assets,
-}): JSX.Element => {
   if (isError) {
     return (
       <tbody>
@@ -51,4 +39,4 @@ const AssetsTable: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps)(AssetsTable);
+export default AssetsTable;

@@ -7,26 +7,16 @@ import {
   Area,
 } from 'recharts';
 import { priceFormatter } from '../../../helpers';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 //Components
 import Loading from '../../Loading';
+import { State } from '../../../reducers';
 
-const mapStateToProps = (state: any) => ({
-  isLoading: state.asset.isLoading,
-  defaultCurrency: state.asset.defaultCurrency,
-  chartData: state.asset.chartData,
-});
+const Chart: React.FC = (): JSX.Element => {
+  const { isLoading, defaultCurrency, chartData } = useSelector(
+    (state: State) => state.asset
+  );
 
-type Props = {
-  chartData: any;
-  isLoading: boolean;
-  defaultCurrency: string;
-};
-const Chart: React.FC<Props> = ({
-  chartData,
-  isLoading,
-  defaultCurrency,
-}): JSX.Element => {
   if (isLoading) {
     return <Loading />;
   }
@@ -66,4 +56,4 @@ const Chart: React.FC<Props> = ({
   );
 };
 
-export default connect(mapStateToProps)(Chart);
+export default Chart;

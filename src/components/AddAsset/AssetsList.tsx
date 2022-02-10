@@ -1,23 +1,16 @@
 import { useFetch } from '../../useFetch';
 import { connect } from 'react-redux';
 import { AssetType } from '../../actions/assetActions';
+import { useSelector } from 'react-redux';
+import { State } from '../../reducers';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
 import ListItem from '../ListItem';
 
-//todo any
-const mapStateToProps = (state: any) => ({
-  assets: state.asset.assets,
-  searchQuery: state.asset.searchQuery,
-});
+const AssetsList: React.FC = (): JSX.Element => {
+  const { assets, searchQuery } = useSelector((state: State) => state.asset);
 
-type Props = {
-  assets: AssetType[];
-  searchQuery: string;
-};
-
-const AssetsList: React.FC<Props> = ({ assets, searchQuery }): JSX.Element => {
   let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
 
   const { data: coins, isError, isLoading } = useFetch(url);
@@ -59,4 +52,4 @@ const AssetsList: React.FC<Props> = ({ assets, searchQuery }): JSX.Element => {
   );
 };
 
-export default connect(mapStateToProps)(AssetsList);
+export default AssetsList;

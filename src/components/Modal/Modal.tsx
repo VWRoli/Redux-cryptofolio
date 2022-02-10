@@ -1,20 +1,13 @@
 import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
+import { State } from '../../reducers';
 //Components
 import ModalContent from './ModalContent';
 
-const mapStateToProps = (state: any) => ({
-  isModalOpen: state.modal.isModalOpen,
-});
-
-type Props = {
-  isModalOpen: boolean;
-  closeModal: any;
-};
-
-const Modal: React.FC<Props> = ({ isModalOpen, closeModal }): JSX.Element => {
+const Modal: React.FC = (): JSX.Element => {
+  const isModalOpen = useSelector((state: State) => state.modal.isModalOpen);
   //Close Modal with clicking on overlay
   const handleClick = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
@@ -53,4 +46,4 @@ const Modal: React.FC<Props> = ({ isModalOpen, closeModal }): JSX.Element => {
   );
 };
 
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default Modal;
