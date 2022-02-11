@@ -32,7 +32,7 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
           type="button"
           className="add-btn"
           onClick={() => {
-            setActiveCoin(id);
+            dispatch(setActiveCoin(id));
             dispatch(openModal());
           }}
         >

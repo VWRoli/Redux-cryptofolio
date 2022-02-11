@@ -1,6 +1,6 @@
 import { FaSyncAlt } from 'react-icons/fa';
 import { useFetch } from '../../../useFetch';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setCurrency,
   clearAssets,
@@ -13,6 +13,8 @@ import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 
 const Assets: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
+
   const { assets, defaultCurrency } = useSelector(
     (state: State) => state.asset
   );
@@ -20,7 +22,7 @@ const Assets: React.FC = (): JSX.Element => {
   const { data: currencies } = useFetch(CURRENCY_URL);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrency(e.target.value);
+    dispatch(setCurrency(e.target.value));
   };
 
   return (
@@ -44,7 +46,10 @@ const Assets: React.FC = (): JSX.Element => {
             })}
           </select>
         </form>
-        <FaSyncAlt className="refresh-btn" onClick={fetchCoinData} />
+        <FaSyncAlt
+          className="refresh-btn"
+          onClick={() => dispatch(fetchCoinData())}
+        />
       </header>
       <table>
         <thead>
@@ -65,7 +70,11 @@ const Assets: React.FC = (): JSX.Element => {
       {assets.length === 0 ? (
         ''
       ) : (
-        <button type="button" className="clear-btn" onClick={clearAssets}>
+        <button
+          type="button"
+          className="clear-btn"
+          onClick={() => dispatch(clearAssets())}
+        >
           Clear Assets
         </button>
       )}

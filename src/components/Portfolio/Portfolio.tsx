@@ -1,4 +1,5 @@
 import { FaPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCoinData, setSearchQuery } from '../../actions/assetActions';
 //Components
@@ -6,7 +7,8 @@ import Assets from './Assets/Assets';
 import Stats from './Stats/Stats';
 
 const Portfolio: React.FC = (): JSX.Element => {
-  fetchCoinData();
+  const dispatch = useDispatch();
+  dispatch(fetchCoinData());
 
   return (
     <section id="portfolio">

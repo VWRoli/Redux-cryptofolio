@@ -1,25 +1,25 @@
-import { useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import { ActionType } from '../constants/actionTypes';
 import { chartDataFormatter, urlFormatter } from '../helpers';
 import { State } from '../reducers';
-import { Action, AssetType, CoinType } from '../Types';
+import { Action, AssetType } from '../Types';
 
-export const addAsset = (asset: AssetType) => (dispatch: Dispatch<Action>) => {
-  const prevAssets = useSelector((state: State) => state.asset.assets);
+export const addAsset =
+  (asset: AssetType) => (dispatch: Dispatch<Action>, getState: () => State) => {
+    const prevAssets = getState().asset.assets;
+    dispatch({ type: ActionType.ADD_ASSET, payload: asset });
+    localStorage.setItem('coinAssets', JSON.stringify([...prevAssets, asset]));
+  };
 
-  dispatch({ type: ActionType.ADD_ASSET, payload: asset });
-  localStorage.setItem('coinAssets', JSON.stringify([...prevAssets, asset]));
-};
+export const removeAsset =
+  (id: string) => (dispatch: Dispatch<Action>, getState: () => State) => {
+    const assets = getState().asset.assets.filter((asset) => asset.id !== id);
 
-export const removeAsset = (id: string) => (dispatch: Dispatch<Action>) => {
-  const assets = useSelector((state: State) => state.asset.assets);
+    assets.filter((asset: AssetType) => asset.id !== id);
 
-  assets.filter((asset: AssetType) => asset.id !== id);
-
-  dispatch({ type: ActionType.REMOVE_ASSET, payload: assets });
-  localStorage.setItem('coinAssets', JSON.stringify(assets));
-};
+    dispatch({ type: ActionType.REMOVE_ASSET, payload: assets });
+    localStorage.setItem('coinAssets', JSON.stringify(assets));
+  };
 
 export const clearAssets = () => (dispatch: Dispatch<Action>) => {
   dispatch({ type: ActionType.CLEAR_ASSETS });
@@ -45,12 +45,11 @@ export const setChartDays = (day: number) => (dispatch: Dispatch<Action>) => {
 };
 
 export const editAsset =
-  (coin: AssetType, holdings: number) => (dispatch: Dispatch<Action>) => {
-    const assets = useSelector((state: State) => state.asset.assets);
+  (coin: AssetType, holdings: number) =>
+  (dispatch: Dispatch<Action>, getState: () => State) => {
+    const { assets } = getState().asset;
     //Remove edited coin
-    const strippedCoin = assets.filter(
-      (asset: AssetType | CoinType) => asset.id !== coin.id
-    );
+    const strippedCoin = assets.filter((asset) => asset.id !== coin.id);
     //Edit coin and put it back into the array
     const editedCoin = { ...coin, holdings: +holdings };
 
@@ -64,50 +63,52 @@ export const editAsset =
     );
   };
 
-export const fetchCoinData = () => async (dispatch: Dispatch<Action>) => {
-  try {
-    const { assets, defaultCurrency, chartDays } = useSelector(
-      (state: State) => state.asset
-    );
-    dispatch({ type: ActionType.LOADING });
-    const formattedUrl = urlFormatter(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=`,
-      assets
-    );
+export const fetchCoinData =
+  () => async (dispatch: Dispatch<Action>, getState: () => State) => {
+    try {
+      const { assets, defaultCurrency, chartDays } = getState().asset;
 
-    const response = await fetch(`${formattedUrl}`);
-    const coinInfo = await response.json();
+      dispatch({ type: ActionType.LOADING });
+      const formattedUrl = urlFormatter(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=`,
+        assets
+      );
 
-    dispatch({ type: ActionType.DISPLAY_INFO, payload: coinInfo });
+      const response = await fetch(`${formattedUrl}`);
+      const coinInfo = await response.json();
 
-    //Get API urls for chart
-    const chartUrls = assets.map(
-      (item: AssetType) =>
-        `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`
-    );
-    //Fetch chart data
-    const chartRes = await Promise.all(
-      chartUrls.map((url: string) => fetch(url).catch((error: any) => error))
-    );
-    console.log(chartRes);
-    const chartData = await Promise.all(
-      chartRes.map((response) =>
-        response.json ? response.json().catch((error: any) => error) : response
-      )
-    );
+      dispatch({ type: ActionType.DISPLAY_INFO, payload: coinInfo });
 
-    // Set chart data
-    dispatch({
-      type: ActionType.SET_CHART_DATA,
-      payload: chartDataFormatter(chartData, assets),
-    });
+      //Get API urls for chart
+      const chartUrls = assets.map(
+        (item: AssetType) =>
+          `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`
+      );
+      //Fetch chart data
+      const chartRes = await Promise.all(
+        chartUrls.map((url: string) => fetch(url).catch((error: any) => error))
+      );
+      console.log(chartRes);
+      const chartData = await Promise.all(
+        chartRes.map((response) =>
+          response.json
+            ? response.json().catch((error: any) => error)
+            : response
+        )
+      );
 
-    //Get total asset values
-    dispatch({ type: ActionType.GET_TOTALS });
+      // Set chart data
+      dispatch({
+        type: ActionType.SET_CHART_DATA,
+        payload: chartDataFormatter(chartData, assets),
+      });
 
-    //Get total value change
-    dispatch({ type: ActionType.GET_TOTAL_CHANGE });
-  } catch (error) {
-    dispatch({ type: ActionType.SET_ERROR });
-  }
-};
+      //Get total asset values
+      dispatch({ type: ActionType.GET_TOTALS });
+
+      //Get total value change
+      dispatch({ type: ActionType.GET_TOTAL_CHANGE });
+    } catch (error) {
+      dispatch({ type: ActionType.SET_ERROR });
+    }
+  };

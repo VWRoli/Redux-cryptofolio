@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { BUTTONS, priceFormatter } from '../../../helpers';
+import { priceFormatter } from '../../../helpers';
 import { priceChangeFormatter, calcChangePercentage } from '../../../helpers';
 import ChartButtons from './ChartButtons';
 //Components
@@ -55,7 +55,7 @@ const Stats: React.FC = (): JSX.Element => {
       </div>
 
       {isLineChart ? <Chart /> : <PieChart clicked={isLineChart} />}
-      {isLineChart ? <ChartButtons buttons={BUTTONS} /> : ''}
+      {isLineChart ? <ChartButtons /> : ''}
     </section>
   );
 };

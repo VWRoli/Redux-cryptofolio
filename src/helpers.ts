@@ -4,7 +4,7 @@ import { AssetType, CoinType } from './Types';
 const locale = navigator.language;
 
 //Format Price Change
-export const priceChangeFormatter = (priceChange: number) => {
+export const priceChangeFormatter = (priceChange: number): string => {
   const formattedPriceChange = new Intl.NumberFormat(locale, {
     style: 'percent',
     signDisplay: 'auto',
@@ -16,7 +16,7 @@ export const priceChangeFormatter = (priceChange: number) => {
 };
 
 //Price formatter
-export const priceFormatter = (price: number, currency: string) => {
+export const priceFormatter = (price: number, currency: string): string => {
   //Locale
   const locale = navigator.language;
   const formattedPrice = new Intl.NumberFormat(locale, {
@@ -29,8 +29,7 @@ export const priceFormatter = (price: number, currency: string) => {
 };
 
 //URL formatter
-export const urlFormatter = (url: string, array: AssetType[]) => {
-  console.log(array);
+export const urlFormatter = (url: string, array: AssetType[]): string => {
   const urlPart = array
     .map((item) => {
       return `${item.id}%2C%20`;
@@ -41,7 +40,7 @@ export const urlFormatter = (url: string, array: AssetType[]) => {
 };
 
 //Calculate year to date
-export const calcYtd = () => {
+export const calcYtd = (): number => {
   const today = new Date();
   const startYear = new Date(today.getFullYear(), 0);
   const days = Math.floor((+today - +startYear) / (1000 * 60 * 60 * 24));
@@ -50,10 +49,10 @@ export const calcYtd = () => {
 
 //Buttons
 export const BUTTONS = [
-  { label: '1d', days: '1' },
-  { label: '7d', days: '7' },
-  { label: '30d', days: '30' },
-  { label: '90d', days: '90' },
+  { label: '1d', days: 1 },
+  { label: '7d', days: 7 },
+  { label: '30d', days: 30 },
+  { label: '90d', days: 90 },
   { label: 'YTD', days: calcYtd() },
 ];
 

@@ -1,24 +1,15 @@
-import { connect } from 'react-redux';
 import { useState } from 'react';
+import { BUTTONS } from '../../../helpers';
 import { setChartDays } from '../../../actions/assetActions';
+import { useDispatch } from 'react-redux';
 
-type Props = {
-  buttons: {
-    label: string;
-    days: string | number;
-  }[];
-  setChartDays: any;
-};
-
-const ChartButtons: React.FC<Props> = ({
-  buttons,
-  setChartDays,
-}): JSX.Element => {
+const ChartButtons: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
   const [active, setActive] = useState(1);
 
   return (
     <div className="graph-btn-container">
-      {buttons.map((btn, i) => {
+      {BUTTONS.map((btn, i) => {
         return (
           <button
             key={i}
@@ -26,7 +17,7 @@ const ChartButtons: React.FC<Props> = ({
             className={i === active ? 'chart-btn active' : 'chart-btn'}
             onClick={() => {
               setActive(i);
-              setChartDays(btn.days);
+              dispatch(setChartDays(btn.days));
             }}
           >
             {btn.label}
@@ -37,4 +28,4 @@ const ChartButtons: React.FC<Props> = ({
   );
 };
 
-export default connect(null, { setChartDays })(ChartButtons);
+export default ChartButtons;

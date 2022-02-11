@@ -9,6 +9,7 @@ const ModalContent: React.FC = (): JSX.Element => {
   const { activeCoin, displaySuccess, isEditAsset } = useSelector(
     (state: State) => state.modal
   );
+
   if (displaySuccess) return <Success />;
 
   if (isEditAsset) return <EditAsset id={activeCoin} />;

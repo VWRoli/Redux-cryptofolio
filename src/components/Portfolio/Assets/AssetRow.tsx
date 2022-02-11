@@ -1,6 +1,6 @@
 import { priceChangeFormatter, priceFormatter } from '../../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openModal, openEditAsset } from '../../../actions/modalActions';
 import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
 import { State } from '../../../reducers';
@@ -11,6 +11,8 @@ type Props = {
 };
 
 const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
+  const dispatch = useDispatch();
+
   const { coinInfo, defaultCurrency } = useSelector(
     (state: State) => state.asset
   );
@@ -18,7 +20,6 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
   const [correctCoin] = coinInfo.filter(
     (coin: CoinType) => coin.id === asset.id
   );
-
   const {
     name,
     image,
@@ -73,9 +74,9 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
           type="button"
           className="edit-btn"
           onClick={() => {
-            setActiveCoin(id);
-            openModal();
-            openEditAsset(id);
+            dispatch(setActiveCoin(id));
+            dispatch(openModal());
+            dispatch(openEditAsset(id));
           }}
         >
           <FaEdit className="icons" title="Edit transaction" />
@@ -83,7 +84,7 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
         <button
           type="button"
           className="remove-btn"
-          onClick={() => removeAsset(asset.id)}
+          onClick={() => dispatch(removeAsset(asset.id))}
         >
           <FaRegMinusSquare className="icons" title="Remove transaction" />
         </button>

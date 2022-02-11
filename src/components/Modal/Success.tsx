@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FaRegCheckCircle } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 
 const AddSuccess: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
   const isEditAsset = useSelector((state: State) => state.modal.isEditAsset);
 
   return (
@@ -17,7 +18,11 @@ const AddSuccess: React.FC = (): JSX.Element => {
         <h2>You successfully added your new asset!</h2>
       )}
 
-      <button type="button" className="primary-btn" onClick={closeModal}>
+      <button
+        type="button"
+        className="primary-btn"
+        onClick={() => dispatch(closeModal())}
+      >
         <Link to="/portfolio">Go to my Portfolio</Link>
       </button>
       {isEditAsset ? (
@@ -26,7 +31,10 @@ const AddSuccess: React.FC = (): JSX.Element => {
         <p>
           Or add another{' '}
           <Link to="/addasset">
-            <span className="back-to-addassets" onClick={closeModal}>
+            <span
+              className="back-to-addassets"
+              onClick={() => dispatch(closeModal())}
+            >
               Asset
             </span>
           </Link>

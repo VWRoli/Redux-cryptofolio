@@ -33,17 +33,21 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     //Handle unfilled input field
+    //todo better error handling
     // if (!holdings) {
-    //   e.target.querySelector('#holdings').placeholder =
-    //     'Please fill out the field!';
-    //   e.target.querySelector('#holdings').classList.add('input-error');
+    //   const target = document.querySelector('#holdings');
+    //   console.log(
+    //     (target?.parentNode as HTMLElement).querySelector('#holdings')
+    //   );
+    //   //e.target.querySelector('#holdings').placeholder =
+    //   ('Please fill out the field!');
+    //   //e.target.querySelector('#holdings').classList.add('input-error');
     //   return;
     // }
     dispatch(openSuccess());
 
-    addAsset({ id, holdings: +holdings });
+    dispatch(addAsset({ id, holdings: +holdings }));
     setHoldings('');
   };
 
