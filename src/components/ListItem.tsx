@@ -1,4 +1,5 @@
 import { FaPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { setActiveCoin } from '../actions/assetActions';
 import { openModal } from '../actions/modalActions';
 import { CoinType } from '../Types';
@@ -10,6 +11,7 @@ type Props = {
 
 const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
   const { name, symbol, image, id } = coin;
+  const dispatch = useDispatch();
 
   return (
     <article
@@ -31,7 +33,7 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
           className="add-btn"
           onClick={() => {
             setActiveCoin(id);
-            openModal();
+            dispatch(openModal());
           }}
         >
           <FaPlus />

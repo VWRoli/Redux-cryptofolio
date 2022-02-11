@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
 import { addAsset } from '../../actions/assetActions';
@@ -14,6 +14,8 @@ type Props = {
 };
 
 const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
+  const dispatch = useDispatch();
+
   const defaultCurrency = useSelector(
     (state: State) => state.asset.defaultCurrency
   );
@@ -39,7 +41,7 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
     //   e.target.querySelector('#holdings').classList.add('input-error');
     //   return;
     // }
-    openSuccess();
+    dispatch(openSuccess());
 
     addAsset({ id, holdings: +holdings });
     setHoldings('');

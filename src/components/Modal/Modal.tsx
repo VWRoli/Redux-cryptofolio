@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 //Components
@@ -8,19 +8,21 @@ import ModalContent from './ModalContent';
 
 const Modal: React.FC = (): JSX.Element => {
   const isModalOpen = useSelector((state: State) => state.modal.isModalOpen);
+  const dispatch = useDispatch();
+
   //Close Modal with clicking on overlay
-  const handleClick = (
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-  ) => {
-    if (e.currentTarget.classList.contains('modal-overlay')) {
-      closeModal();
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // If you have to use event.target itself, you have to cast the object:
+    const target = e.target as HTMLButtonElement;
+    if (target.classList.contains('modal-overlay')) {
+      dispatch(closeModal());
     }
   };
 
   //Close Modal with Esc
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      closeModal();
+      dispatch(closeModal());
     }
   };
   useEffect(() => {
@@ -36,7 +38,11 @@ const Modal: React.FC = (): JSX.Element => {
       onMouseDown={handleClick}
     >
       <div className="modal-container">
-        <button type="button" className="close-modal" onClick={closeModal}>
+        <button
+          type="button"
+          className="close-modal"
+          onClick={() => dispatch(closeModal())}
+        >
           <FaTimes className="icons" />
         </button>
         <ModalContent />
