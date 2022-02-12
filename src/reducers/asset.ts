@@ -17,8 +17,10 @@ const defaultState: IAssetState = {
 
 const asset = (
   state: IAssetState = defaultState,
-  action: Action
+  action: Action,
 ): IAssetState => {
+  const assets = state.assets;
+
   switch (action.type) {
     case ActionType.CLEAR_ASSETS:
       return { ...state, assets: [] };
@@ -42,25 +44,26 @@ const asset = (
       return { ...state, defaultCurrency: action.payload };
     case ActionType.SET_QUERY:
       return { ...state, searchQuery: action.payload };
-    case ActionType.GET_TOTALS:
+    case ActionType.GET_TOTALS: {
       //Get the current value for the whole portfolio
-      const currentAssetValue = state.assets
+      const currentAssetValue = assets
         .map((asset: AssetType) => {
           const [correctCoin] = state.coinInfo.filter(
-            (coin: CoinType) => coin.id === asset.id
+            (coin: CoinType) => coin.id === asset.id,
           );
           return asset.holdings * +correctCoin.current_price;
         })
         .reduce((acc: number, cur: number) => acc + cur, 0);
 
       return { ...state, totalValue: currentAssetValue };
+    }
 
-    case ActionType.GET_TOTAL_CHANGE:
+    case ActionType.GET_TOTAL_CHANGE: {
       //Get the 24h price change for the whole portfolio
-      const assetValueChange = state.assets
+      const assetValueChange = assets
         .map((asset: AssetType) => {
           const [correctCoin] = state.coinInfo.filter(
-            (coin: CoinType) => coin.id === asset.id
+            (coin: CoinType) => coin.id === asset.id,
           );
 
           return asset.holdings * +correctCoin.price_change_24h;
@@ -68,6 +71,7 @@ const asset = (
         .reduce((acc: number, cur: number) => acc + cur, 0);
 
       return { ...state, totalValueChange: assetValueChange, isLoading: false };
+    }
 
     case ActionType.SET_CHART_DATA:
       return { ...state, chartData: action.payload, isLoading: false };

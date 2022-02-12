@@ -1,6 +1,6 @@
 import { FaExclamationTriangle } from 'react-icons/fa';
 
-const Error = () => {
+const Error: React.FC = (): JSX.Element => {
   return (
     <div className="error-container">
       <FaExclamationTriangle className="error-sign" />

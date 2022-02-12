@@ -11,7 +11,7 @@ import ListItem from '../ListItem';
 const AssetsList: React.FC = (): JSX.Element => {
   const { assets, searchQuery } = useSelector((state: State) => state.asset);
 
-  let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
 
   const { data: coins, isError, isLoading } = useFetch(url);
 
@@ -38,12 +38,12 @@ const AssetsList: React.FC = (): JSX.Element => {
     <section id="asset-list">
       {noResults ? (
         <h3 className="no-results">
-          We couldn't find your coin, please try again.
+          We couldn&apos;t find your coin, please try again.
         </h3>
       ) : (
         coins.map((coin: CoinType) => {
           const owned = ownedCoins.some(
-            (item: AssetType) => item.id === coin.id
+            (item: AssetType) => item.id === coin.id,
           );
           return <ListItem key={coin.id} coin={coin} owned={owned} />;
         })

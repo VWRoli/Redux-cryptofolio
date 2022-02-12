@@ -1,12 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
+import { CoinType } from './Types';
 
-export const useFetch = (url: string) => {
+export const useFetch = (
+  url: string,
+): {
+  data: any;
+  isLoading: boolean;
+  isError: boolean;
+} => {
   //Loading state
   const [isLoading, setIsLoading] = useState(true);
   //Error state
   const [isError, setIsError] = useState(false);
 
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<string[] | CoinType[]>([]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);

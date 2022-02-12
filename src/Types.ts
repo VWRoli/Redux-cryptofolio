@@ -9,7 +9,7 @@ export interface IAssetState {
   defaultCurrency: string;
   totalValue: number;
   totalValueChange: number;
-  chartData: any[];
+  chartData: chartDataType[] | undefined;
   chartDays: number;
 }
 
@@ -74,7 +74,7 @@ interface DisplayInfoAction {
 }
 interface SetChartDataAction {
   type: ActionType.SET_CHART_DATA;
-  payload: any[];
+  payload: chartDataType[] | undefined;
 }
 interface GetTotalsAction {
   type: ActionType.GET_TOTALS;
@@ -119,4 +119,9 @@ export type CoinType = {
 export type AssetType = {
   id: string;
   holdings: number;
+};
+
+export type chartDataType = {
+  day: string;
+  price: number;
 };

@@ -11,16 +11,20 @@ import { useSelector } from 'react-redux';
 import { State } from '../../../reducers';
 
 type Props = {
-  clicked: any;
+  clicked: boolean;
+};
+
+type DataType = {
+  id: string;
+  value: number;
 };
 
 type LabelProps = { [key: string]: number };
 
 const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
   const { assets, coinInfo } = useSelector((state: State) => state.asset);
-
-  const [data, setData] = useState<any[]>([]);
-
+  const [data, setData] = useState<DataType[]>([]);
+  console.log(data);
   useEffect(() => {
     setData(calcPieChartData(assets, coinInfo));
   }, [clicked, assets, coinInfo]);
@@ -64,7 +68,7 @@ const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
           labelLine={false}
           label={renderCustomizedLabel}
         >
-          {data.map((value: any, index: number) => (
+          {data.map((_: DataType, index: number) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

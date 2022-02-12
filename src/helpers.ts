@@ -1,4 +1,4 @@
-import { AssetType, CoinType } from './Types';
+import { AssetType, chartDataType, CoinType } from './Types';
 
 //Locale
 const locale = navigator.language;
@@ -57,7 +57,11 @@ export const BUTTONS = [
 ];
 
 //Format chart data
-export const chartDataFormatter = (data: any, assets: AssetType[]) => {
+
+export const chartDataFormatter = (
+  data: any,
+  assets: AssetType[],
+): chartDataType[] | undefined => {
   //Get prices from chart data array, because it has market and voluma data too
 
   const priceData = data.map((item: any) => {
@@ -79,7 +83,7 @@ export const chartDataFormatter = (data: any, assets: AssetType[]) => {
   const totalPrices = holdingPrices
     .map((array: any) => array.map((el: number) => el))
     .reduce((acc: any, curr: any) =>
-      acc.map((el: number, i: number) => el + curr[i])
+      acc.map((el: number, i: number) => el + curr[i]),
     );
 
   //Createing a data Object for the chart
@@ -98,7 +102,7 @@ export const chartDataFormatter = (data: any, assets: AssetType[]) => {
     const locale = navigator.language;
     //Formatting the date
     const formattedDate = new Intl.DateTimeFormat(locale, options).format(
-      new Date(el)
+      new Date(el),
     );
 
     return { day: formattedDate, price: totalPrices[i] };
@@ -106,7 +110,13 @@ export const chartDataFormatter = (data: any, assets: AssetType[]) => {
   return chartDataObj;
 };
 //Create Pie chart data
-export const calcPieChartData = (assets: AssetType[], info: CoinType[]) => {
+export const calcPieChartData = (
+  assets: AssetType[],
+  info: CoinType[],
+): {
+  id: string;
+  value: number;
+}[] => {
   return assets.map((asset) => {
     const [currentCoin] = info.filter((item) => asset.id === item.id);
 
@@ -118,18 +128,15 @@ export const calcPieChartData = (assets: AssetType[], info: CoinType[]) => {
 //Calculate percentage change
 export const calcChangePercentage = (
   curValue: number,
-  change: number
+  change: number,
 ): number => {
-  let percentage;
   const newPrice = curValue;
 
   if (change > 0) {
     const oldPrice = curValue - change;
-    return 1;
-    // return (percentage = [(newPrice - oldPrice) / oldPrice] * 100);
+    return +[(newPrice - oldPrice) / oldPrice] * 100;
   } else {
     const oldPrice = curValue + Math.abs(change);
-    return 0;
-    // return -Math.abs((percentage = [(oldPrice - newPrice) / oldPrice] * 100));
+    return -Math.abs(+[(oldPrice - newPrice) / oldPrice] * 100);
   }
 };

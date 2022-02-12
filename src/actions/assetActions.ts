@@ -5,14 +5,16 @@ import { State } from '../reducers';
 import { Action, AssetType } from '../Types';
 
 export const addAsset =
-  (asset: AssetType) => (dispatch: Dispatch<Action>, getState: () => State) => {
+  (asset: AssetType) =>
+  (dispatch: Dispatch<Action>, getState: () => State): void => {
     const prevAssets = getState().asset.assets;
     dispatch({ type: ActionType.ADD_ASSET, payload: asset });
     localStorage.setItem('coinAssets', JSON.stringify([...prevAssets, asset]));
   };
 
 export const removeAsset =
-  (id: string) => (dispatch: Dispatch<Action>, getState: () => State) => {
+  (id: string) =>
+  (dispatch: Dispatch<Action>, getState: () => State): void => {
     const assets = getState().asset.assets.filter((asset) => asset.id !== id);
 
     assets.filter((asset: AssetType) => asset.id !== id);
@@ -21,32 +23,40 @@ export const removeAsset =
     localStorage.setItem('coinAssets', JSON.stringify(assets));
   };
 
-export const clearAssets = () => (dispatch: Dispatch<Action>) => {
-  dispatch({ type: ActionType.CLEAR_ASSETS });
-  localStorage.setItem('coinAssets', JSON.stringify([]));
-};
+export const clearAssets =
+  () =>
+  (dispatch: Dispatch<Action>): void => {
+    dispatch({ type: ActionType.CLEAR_ASSETS });
+    localStorage.setItem('coinAssets', JSON.stringify([]));
+  };
 
 export const setSearchQuery =
-  (query: string) => (dispatch: Dispatch<Action>) => {
+  (query: string) =>
+  (dispatch: Dispatch<Action>): void => {
     dispatch({ type: ActionType.SET_QUERY, payload: query });
   };
 
-export const setActiveCoin = (id: string) => (dispatch: Dispatch<Action>) => {
-  dispatch({ type: ActionType.SET_ACTIVE_COIN, payload: id });
-};
+export const setActiveCoin =
+  (id: string) =>
+  (dispatch: Dispatch<Action>): void => {
+    dispatch({ type: ActionType.SET_ACTIVE_COIN, payload: id });
+  };
 
 export const setCurrency =
-  (currency: string) => (dispatch: Dispatch<Action>) => {
+  (currency: string) =>
+  (dispatch: Dispatch<Action>): void => {
     dispatch({ type: ActionType.SET_CURRENCY, payload: currency });
   };
 
-export const setChartDays = (day: number) => (dispatch: Dispatch<Action>) => {
-  dispatch({ type: ActionType.SET_DAYS, payload: day });
-};
+export const setChartDays =
+  (day: number) =>
+  (dispatch: Dispatch<Action>): void => {
+    dispatch({ type: ActionType.SET_DAYS, payload: day });
+  };
 
 export const editAsset =
   (coin: AssetType, holdings: number) =>
-  (dispatch: Dispatch<Action>, getState: () => State) => {
+  (dispatch: Dispatch<Action>, getState: () => State): void => {
     const { assets } = getState().asset;
     //Remove edited coin
     const strippedCoin = assets.filter((asset) => asset.id !== coin.id);
@@ -59,19 +69,20 @@ export const editAsset =
     });
     localStorage.setItem(
       'coinAssets',
-      JSON.stringify([...strippedCoin, editedCoin])
+      JSON.stringify([...strippedCoin, editedCoin]),
     );
   };
 
 export const fetchCoinData =
-  () => async (dispatch: Dispatch<Action>, getState: () => State) => {
+  () =>
+  async (dispatch: Dispatch<Action>, getState: () => State): Promise<void> => {
     try {
       const { assets, defaultCurrency, chartDays } = getState().asset;
 
       dispatch({ type: ActionType.LOADING });
       const formattedUrl = urlFormatter(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=`,
-        assets
+        assets,
       );
 
       const response = await fetch(`${formattedUrl}`);
@@ -82,19 +93,19 @@ export const fetchCoinData =
       //Get API urls for chart
       const chartUrls = assets.map(
         (item: AssetType) =>
-          `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`
+          `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`,
       );
       //Fetch chart data
-      const chartRes = await Promise.all(
-        chartUrls.map((url: string) => fetch(url).catch((error: any) => error))
+      const chartRes: any[] = await Promise.all(
+        chartUrls.map((url: string) => fetch(url).catch((error: any) => error)),
       );
-      console.log(chartRes);
-      const chartData = await Promise.all(
+
+      const chartData: any[] = await Promise.all(
         chartRes.map((response) =>
           response.json
             ? response.json().catch((error: any) => error)
-            : response
-        )
+            : response,
+        ),
       );
 
       // Set chart data

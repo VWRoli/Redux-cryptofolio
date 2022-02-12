@@ -16,7 +16,7 @@ const Assets: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const { assets, defaultCurrency } = useSelector(
-    (state: State) => state.asset
+    (state: State) => state.asset,
   );
 
   const { data: currencies } = useFetch(CURRENCY_URL);
@@ -59,7 +59,7 @@ const Assets: React.FC = (): JSX.Element => {
           <tbody>
             <tr>
               <td className="empty-table" colSpan={6}>
-                You don't have any assets in your portfolio.
+                You don&apos;t have any assets in your portfolio.
               </td>
             </tr>
           </tbody>
