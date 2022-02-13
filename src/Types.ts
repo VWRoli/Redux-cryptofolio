@@ -16,8 +16,7 @@ export interface IAssetState {
 export interface IModalState {
   isModalOpen: boolean;
   activeCoin: string;
-  displaySuccess: boolean;
-  isEditAsset: boolean;
+  modal: ModalType | undefined;
 }
 
 interface CloseModalAction {

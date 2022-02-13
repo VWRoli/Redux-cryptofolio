@@ -1,16 +1,15 @@
 import { ActionType } from '../constants/actionTypes';
-import { IModalState, Action } from '../Types';
+import { IModalState, Action, ModalType } from '../Types';
 
 const defaultState: IModalState = {
   isModalOpen: false,
   activeCoin: '',
-  displaySuccess: false,
-  isEditAsset: false,
+  modal: undefined,
 };
 
 const modal = (
   state: IModalState = defaultState,
-  action: Action
+  action: Action,
 ): IModalState => {
   switch (action.type) {
     case ActionType.SET_ACTIVE_COIN:
@@ -21,13 +20,12 @@ const modal = (
       return {
         ...state,
         isModalOpen: false,
-        isEditAsset: false,
-        displaySuccess: false,
+        modal: undefined,
       };
     case ActionType.OPEN_SUCCESS:
-      return { ...state, displaySuccess: true };
+      return { ...state, modal: ModalType.SUCCESS };
     case ActionType.OPEN_EDIT_ASSET:
-      return { ...state, isEditAsset: true };
+      return { ...state, modal: ModalType.EDIT };
     default:
       return state;
   }

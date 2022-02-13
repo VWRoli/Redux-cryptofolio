@@ -1,7 +1,4 @@
 import React from 'react';
-import { FaEdit } from 'react-icons/fa';
-//Components
-import Button from '../common/Button/Button';
 
 type Props = {
   submitHandler: any; //todo
@@ -24,8 +21,6 @@ const QuantityForm: React.FC<Props> = ({
         value={holdings}
         onChange={(e) => setHoldings(+e.target.value)}
       />
-
-      <Button label="Edit Asset" primary icon={<FaEdit />} fullWidth />
     </form>
   );
 };
