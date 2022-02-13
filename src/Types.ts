@@ -125,3 +125,9 @@ export type chartDataType = {
   day: string;
   price: number;
 };
+
+export enum ModalType {
+  ADD = 'ADD',
+  EDIT = 'EDIT',
+  SUCCESS = 'SUCCESS',
+}

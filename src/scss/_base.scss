@@ -8,6 +8,16 @@
 img {
   width: 100%;
 }
+h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: $blue-color;
+}
+h2 {
+  font-size: 1.25rem;
+  color: $blue-color;
+  font-weight: 400;
+}
 .App {
   display: grid;
   place-content: center;

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 //Components
-import ModalContent from './ModalContent';
+import ModalContent from './ModalContentWrapper';
 
 const Modal: React.FC = (): JSX.Element => {
   const isModalOpen = useSelector((state: State) => state.modal.isModalOpen);

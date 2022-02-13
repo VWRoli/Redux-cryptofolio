@@ -1,0 +1,16 @@
+.asset-info {
+  @include list-item();
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0;
+  img {
+    width: 30px;
+    height: 30px;
+    grid-column: span 2;
+  }
+  p {
+    font-weight: 400;
+  }
+}

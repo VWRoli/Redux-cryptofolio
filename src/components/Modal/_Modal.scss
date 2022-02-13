@@ -18,9 +18,13 @@
   @include main-page-setup();
   height: auto;
   background-color: #fff;
-  max-width: 500px;
+  width: 500px;
   padding: 3rem;
   z-index: 1001;
+}
+
+.modal-content-wrapper {
+  @include flex-center(column);
 }
 .close-modal {
   position: absolute;

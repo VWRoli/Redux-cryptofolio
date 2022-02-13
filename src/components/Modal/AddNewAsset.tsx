@@ -10,6 +10,7 @@ import Error from '../Error';
 import Loading from '../Loading';
 import { State } from '../../reducers';
 import Button from '../common/Button/Button';
+import ModalHeader from './ModalHeader';
 
 type Props = {
   id: string;
@@ -65,6 +66,7 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
   return (
     <div id="add-new-asset">
       <h1>Add New Asset</h1>
+
       {isLoading ? (
         <Loading />
       ) : (
