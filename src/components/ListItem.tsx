@@ -13,6 +13,11 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
   const { name, symbol, image, id } = coin;
   const dispatch = useDispatch();
 
+  const handleClick = () => {
+    dispatch(setActiveCoin(id));
+    dispatch(openModal());
+  };
+
   return (
     <article
       className={owned ? 'list-item owned-coin' : 'list-item'}
@@ -28,14 +33,7 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
       {owned ? (
         ''
       ) : (
-        <button
-          type="button"
-          className="add-btn"
-          onClick={() => {
-            dispatch(setActiveCoin(id));
-            dispatch(openModal());
-          }}
-        >
+        <button type="button" className="add-btn" onClick={handleClick}>
           <FaPlus />
         </button>
       )}

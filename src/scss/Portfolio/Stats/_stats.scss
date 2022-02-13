@@ -46,7 +46,7 @@
     justify-content: space-around;
 
     .chart-btn {
-      @include primary-btn($gray-gradient, $green-inverse-gradient);
+      //@include primary-btn($gray-gradient, $green-inverse-gradient);
       color: #222;
       margin: 0;
       padding: 1rem;

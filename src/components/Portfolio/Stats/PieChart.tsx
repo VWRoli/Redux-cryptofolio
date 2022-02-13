@@ -24,7 +24,7 @@ type LabelProps = { [key: string]: number };
 const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
   const { assets, coinInfo } = useSelector((state: State) => state.asset);
   const [data, setData] = useState<DataType[]>([]);
-  console.log(data);
+
   useEffect(() => {
     setData(calcPieChartData(assets, coinInfo));
   }, [clicked, assets, coinInfo]);

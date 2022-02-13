@@ -3,10 +3,14 @@ import { FaRegCheckCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
+import { IoArrowForwardOutline } from 'react-icons/io5';
+import Button from '../common/Button/Button';
 
-const AddSuccess: React.FC = (): JSX.Element => {
+const Success: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const isEditAsset = useSelector((state: State) => state.modal.isEditAsset);
+
+  const handleClick = () => dispatch(closeModal());
 
   return (
     <section className="success-message">
@@ -17,17 +21,17 @@ const AddSuccess: React.FC = (): JSX.Element => {
       ) : (
         <h2>You successfully added your new asset!</h2>
       )}
+      <div style={{ margin: '1rem 0' }}>
+        <Button
+          label="Go to my Portfolio"
+          route="/portfolio"
+          primary
+          clickHandler={handleClick}
+          icon={<IoArrowForwardOutline />}
+        />
+      </div>
 
-      <button
-        type="button"
-        className="primary-btn"
-        onClick={() => dispatch(closeModal())}
-      >
-        <Link to="/portfolio">Go to my Portfolio</Link>
-      </button>
-      {isEditAsset ? (
-        ''
-      ) : (
+      {!isEditAsset && (
         <p>
           Or add another{' '}
           <Link to="/addasset">
@@ -44,4 +48,4 @@ const AddSuccess: React.FC = (): JSX.Element => {
   );
 };
 
-export default AddSuccess;
+export default Success;

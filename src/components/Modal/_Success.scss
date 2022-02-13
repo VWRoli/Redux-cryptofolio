@@ -1,7 +1,5 @@
 .success-message {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  @include flex-center(column);
   .success-icon {
     font-size: 3rem;
     margin: 2rem auto;

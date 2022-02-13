@@ -62,9 +62,6 @@ a {
     color: #fff;
   }
 }
-.primary-btn {
-  @include primary-btn($green-gradient, $green-inverse-gradient);
-}
 
 @media screen and(max-width: 750px) {
   .App {

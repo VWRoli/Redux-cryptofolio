@@ -18,10 +18,6 @@
     margin-bottom: 1rem;
     color: $blue-color;
   }
-  button {
-    @include primary-btn($green-gradient, $green-inverse-gradient);
-    width: fit-content;
-  }
 }
 .home-right {
   position: relative;

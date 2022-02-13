@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { CgNotes } from 'react-icons/cg';
 //Components
 import AssetsList from './AssetsList';
 import SearchBar from './SearchBar';
+import Button from '../common/Button/Button';
 
 const AddAsset: React.FC = (): JSX.Element => {
   return (
@@ -11,11 +12,13 @@ const AddAsset: React.FC = (): JSX.Element => {
           <h1>Add New Asset</h1>
           <h3>Please Select or Search your Coin</h3>
         </div>
-        <button type="button" className="primary-btn">
-          <Link to="/portfolio">My Portfolio</Link>
-        </button>
+        <Button
+          route="/portfolio"
+          label="My Portfolio"
+          primary
+          icon={<CgNotes />}
+        />
       </header>
-
       <SearchBar />
       <AssetsList />
     </section>

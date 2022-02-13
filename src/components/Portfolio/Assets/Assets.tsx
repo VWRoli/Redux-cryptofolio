@@ -8,9 +8,11 @@ import {
 } from '../../../actions/assetActions';
 import { CURRENCY_URL } from '../../../constants/constant';
 import { State } from '../../../reducers';
+import { GrClear } from 'react-icons/gr';
 //Components
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
+import Button from '../../common/Button/Button';
 
 const Assets: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ const Assets: React.FC = (): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setCurrency(e.target.value));
   };
+
+  const handleClear = () => dispatch(clearAssets());
 
   return (
     <section id="assets">
@@ -67,16 +71,15 @@ const Assets: React.FC = (): JSX.Element => {
           <AssetsTable />
         )}
       </table>
-      {assets.length === 0 ? (
-        ''
-      ) : (
-        <button
-          type="button"
-          className="clear-btn"
-          onClick={() => dispatch(clearAssets())}
-        >
-          Clear Assets
-        </button>
+
+      {assets.length !== 0 && (
+        <div style={{ margin: 'auto' }}>
+          <Button
+            label="Clear Assets"
+            clickHandler={handleClear}
+            icon={<GrClear />}
+          />
+        </div>
       )}
     </section>
   );

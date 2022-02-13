@@ -1,0 +1,37 @@
+.btn {
+  border-radius: 20px;
+  font-size: 1.1rem;
+  color: $light-clr;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  outline: none;
+  //width: fit-content;
+  a {
+    @include flex-center(row);
+    padding: 1rem;
+  }
+  span {
+    font-weight: 400;
+    &:first-child {
+      @include flex-center(row);
+      margin-right: 5px;
+    }
+  }
+}
+
+.primary {
+  background: $green-gradient;
+  &:hover {
+    background: $green-inverse-gradient;
+  }
+}
+.secondary {
+  background: $gray-gradient;
+  a {
+    color: $dark-clr;
+  }
+  &:hover {
+    background: $gray-inverse-gradient;
+  }
+}

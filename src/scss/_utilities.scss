@@ -1,38 +1,14 @@
 //$blue-gradient: linear-gradient(#1489f3, #2cadfb);
 //$orange-gradient: linear-gradient(#fa5715, #f6d022);
-
-$green-gradient: linear-gradient(to bottom right, #00b6e3, #00e4ac);
-$green-inverse-gradient: linear-gradient(to top left, #00b6e3, #00e4ac);
-$gray-gradient: linear-gradient(to bottom right, #dce2e2, #f3f0f0);
-$gray-inverse-gradient: linear-gradient(to top left, #dce2e2, #f3f0f0);
-$blue-color: #1489f3;
-$error-color: #d84f4f;
-$success-color: #b0db7d;
-$hover: #fa5715;
-
+@mixin flex-center($dir) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $dir;
+}
 @mixin top-bottom-border() {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-}
-
-@mixin primary-btn($color, $hover) {
-  margin: 2rem;
-  border-radius: 20px;
-  background: $color;
-  font-size: 1.1rem;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: 400;
-  outline: none;
-  a {
-    padding: 1rem;
-    display: inline-block;
-  }
-
-  &:hover {
-    background: $hover;
-  }
 }
 
 @mixin main-page-setup() {

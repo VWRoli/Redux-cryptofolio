@@ -4,10 +4,12 @@ import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { useFetch } from '../../useFetch';
 import { addAsset } from '../../actions/assetActions';
 import { openSuccess } from '../../actions/modalActions';
+import { FaPlus } from 'react-icons/fa';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
 import { State } from '../../reducers';
+import Button from '../common/Button/Button';
 
 type Props = {
   id: string;
@@ -17,11 +19,11 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
   const dispatch = useDispatch();
 
   const defaultCurrency = useSelector(
-    (state: State) => state.asset.defaultCurrency
+    (state: State) => state.asset.defaultCurrency,
   );
 
   const { data, isLoading, isError } = useFetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`,
   );
 
   const [holdings, setHoldings] = useState('');
@@ -30,8 +32,8 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
 
   const { name, image, symbol, price_change_percentage_24h, current_price } =
     data[0];
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //todo disabled btn
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //Handle unfilled input field
     //todo better error handling
@@ -89,7 +91,7 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
             Current Price:{' '}
             <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
-          <form action="/" onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="holdings">Quantity: </label>
             <input
               type="number"
@@ -98,10 +100,13 @@ const AddNewAsset: React.FC<Props> = ({ id }): JSX.Element => {
               value={holdings}
               onChange={(e) => setHoldings(e.target.value)}
             />
-
-            <button type="submit" className="primary-btn">
-              Add Asset
-            </button>
+            <Button
+              label="Add Asset"
+              primary
+              icon={<FaPlus />}
+              fullWidth
+              submitHandler={handleSubmit}
+            />
           </form>
         </>
       )}

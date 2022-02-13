@@ -1,4 +1,5 @@
 #edit-asset {
+  @include flex-center(column);
   header {
     @include list-item();
     margin: 1rem 0;

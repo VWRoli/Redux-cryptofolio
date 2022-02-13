@@ -10,7 +10,7 @@
     font-size: 3rem;
   }
   .btn {
-    @include primary-btn($green-gradient, $green-inverse-gradient);
+    //@include primary-btn($green-gradient, $green-inverse-gradient);
     width: fit-content;
   }
 }

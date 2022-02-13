@@ -5,9 +5,11 @@ import { useFetch } from '../../useFetch';
 import { editAsset } from '../../actions/assetActions';
 import { openSuccess } from '../../actions/modalActions';
 import { State } from '../../reducers';
+import { FaEdit } from 'react-icons/fa';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
+import Button from '../common/Button/Button';
 
 type Props = {
   id: string;
@@ -16,11 +18,11 @@ type Props = {
 const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
   const dispatch = useDispatch();
   const { assets, defaultCurrency } = useSelector(
-    (state: State) => state.asset
+    (state: State) => state.asset,
   );
 
   const { data, isLoading, isError } = useFetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=${id}`,
   );
 
   const [correctCoin] = assets.filter((asset) => asset.id === id);
@@ -53,7 +55,7 @@ const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
 
   if (isError) {
     return (
-      <div id="add-new-asset">
+      <div id="edit-asset">
         <h1>Add New Asset</h1>
         <Error />
       </div>
@@ -61,7 +63,7 @@ const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
   }
 
   return (
-    <div id="add-new-asset">
+    <div id="edit-asset">
       <h1>Edit Asset</h1>
       {isLoading ? (
         <Loading />
@@ -89,6 +91,7 @@ const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
             Current Price:{' '}
             <span>{priceFormatter(current_price, defaultCurrency)}</span>
           </h3>
+
           <div className="your-data">
             <h3>
               Your Holdings:{' '}
@@ -101,7 +104,7 @@ const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
               <span>
                 {priceFormatter(
                   current_price * correctCoin.holdings,
-                  defaultCurrency
+                  defaultCurrency,
                 )}
               </span>
             </h3>
@@ -117,9 +120,7 @@ const EditAsset: React.FC<Props> = ({ id }): JSX.Element => {
               onChange={(e) => setHoldings(+e.target.value)}
             />
 
-            <button type="submit" className="primary-btn">
-              Edit Asset
-            </button>
+            <Button label="Edit Asset" primary icon={<FaEdit />} />
           </form>
         </>
       )}

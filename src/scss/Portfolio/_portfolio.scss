@@ -37,7 +37,7 @@
   @include reset-btn();
 }
 .clear-btn {
-  @include primary-btn($gray-gradient, $gray-inverse-gradient);
+  //@include primary-btn($gray-gradient, $gray-inverse-gradient);
   padding: 1rem;
   width: fit-content;
   margin: auto;
