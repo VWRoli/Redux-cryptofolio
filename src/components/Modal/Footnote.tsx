@@ -6,7 +6,7 @@ const Footnote = () => {
   const dispatch = useDispatch();
   return (
     <p style={{ margin: '1rem' }}>
-      Or add another{' '}
+      Or add an{' '}
       <Link to="/addasset">
         <span
           className="back-to-addassets"

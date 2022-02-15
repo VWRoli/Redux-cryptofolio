@@ -5,11 +5,10 @@ type Props = {
   primary?: boolean;
   route?: string;
   disabled?: boolean;
-  clickHandler?: () => void;
+  clickHandler?: any;
   icon: React.ReactNode;
   fullWidth?: boolean;
-  //todo better type
-  submitHandler?: any;
+  form?: string;
 };
 const Button: React.FC<Props> = ({
   route,
@@ -19,15 +18,16 @@ const Button: React.FC<Props> = ({
   disabled,
   icon,
   fullWidth,
-  submitHandler,
+  form,
 }): JSX.Element => {
   const classes = `${primary ? 'btn primary' : 'btn secondary'}`;
   return (
     <button
+      form={form}
       style={{ width: fullWidth ? '100%' : 'fit-content' }}
       type="submit"
       disabled={disabled}
-      onClick={clickHandler || submitHandler}
+      onClick={clickHandler}
       className={classes}
     >
       <Link to={route || '#'}>

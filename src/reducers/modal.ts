@@ -15,7 +15,7 @@ const modal = (
     case ActionType.SET_ACTIVE_COIN:
       return { ...state, activeCoin: action.payload };
     case ActionType.OPEN_MODAL:
-      return { ...state, isModalOpen: true };
+      return { ...state, isModalOpen: true, modal: ModalType.ADD };
     case ActionType.CLOSE_MODAL:
       return {
         ...state,

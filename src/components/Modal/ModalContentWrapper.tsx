@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
 import { ModalType } from '../../Types';
 import { useFetch } from '../../useFetch';
@@ -15,10 +15,17 @@ import ShowPrice from './ShowPrice';
 import UserAssetData from './UserAssetData';
 import Button from '../common/Button/Button';
 import Footnote from './Footnote';
+import { closeModal, openSuccess } from '../../actions/modalActions';
+import { addAsset, editAsset } from '../../actions/assetActions';
 
 const ModalContentWrapper: React.FC = (): JSX.Element => {
   const { modal, asset } = useSelector((state: State) => state);
   const [holdings, setHoldings] = useState(0);
+  const dispatch = useDispatch();
+
+  const [correctCoin] = asset.assets.filter(
+    (asset) => asset.id === modal.activeCoin,
+  );
 
   //Modal types
   const success = modal.modal === ModalType.SUCCESS;
@@ -32,8 +39,19 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
 
   if (!data[0]) return <></>;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log('submit');
+    console.log(holdings);
+    dispatch(openSuccess());
+    if (add) {
+      dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));
+    } else if (edit) {
+      dispatch(editAsset(correctCoin, holdings));
+    } else {
+      dispatch(closeModal());
+    }
+    setHoldings(0);
   };
   console.log(modal.modal);
   // if (displaySuccess) return <Success />;
@@ -65,6 +83,7 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
 
       {success || (
         <QuantityForm
+          id="add-form"
           holdings={holdings}
           setHoldings={setHoldings}
           submitHandler={handleSubmit}
@@ -75,7 +94,10 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
         label={
           success ? 'Go to my Portfolio' : edit ? 'Edit Asset' : 'Add Asset'
         }
+        form={add ? 'add-form' : 'edit-form'}
+        clickHandler={handleSubmit}
         primary
+        route={success ? '/portfolio' : '#'}
         icon={
           success ? <IoArrowForwardOutline /> : edit ? <FaEdit /> : <FaPlus />
         }

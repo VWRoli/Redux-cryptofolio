@@ -4,15 +4,17 @@ type Props = {
   submitHandler: any; //todo
   holdings: number;
   setHoldings: React.Dispatch<React.SetStateAction<number>>;
+  id: string;
 };
 
 const QuantityForm: React.FC<Props> = ({
   submitHandler,
   holdings,
   setHoldings,
+  id,
 }): JSX.Element => {
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} id={id}>
       <label htmlFor="holdings">Quantity: </label>
       <input
         type="number"
