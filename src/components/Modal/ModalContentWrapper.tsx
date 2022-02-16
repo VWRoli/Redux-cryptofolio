@@ -41,8 +41,7 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submit');
-    console.log(holdings);
+
     dispatch(openSuccess());
     if (add) {
       dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));
@@ -53,12 +52,7 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
     }
     setHoldings(0);
   };
-  console.log(modal.modal);
-  // if (displaySuccess) return <Success />;
 
-  // if (isEditAsset) return <EditAsset id={activeCoin} />;
-
-  // return <AddNewAsset id={activeCoin} />;
   return (
     <div className="modal-content-wrapper">
       <ModalHeader

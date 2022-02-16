@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setActiveCoin } from '../actions/assetActions';
 import { openModal } from '../actions/modalActions';
 import { CoinType } from '../Types';
+import IconButton from './common/IconButton/IconButton';
 
 type Props = {
   coin: CoinType;
@@ -33,9 +34,7 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
       {owned ? (
         ''
       ) : (
-        <button type="button" className="add-btn" onClick={handleClick}>
-          <FaPlus />
-        </button>
+        <IconButton primary clickHandler={handleClick} icon={<FaPlus />} />
       )}
     </article>
   );

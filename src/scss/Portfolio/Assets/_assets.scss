@@ -16,18 +16,6 @@
         margin-right: 5px;
       }
     }
-
-    .refresh-btn {
-      font-size: 1.25rem;
-      color: $blue-color;
-      cursor: pointer;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-        animation: push-down 0.5s ease-in-out;
-      }
-    }
   }
 
   table {

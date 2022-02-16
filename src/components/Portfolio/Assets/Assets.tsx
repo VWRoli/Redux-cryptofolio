@@ -13,6 +13,7 @@ import { GrClear } from 'react-icons/gr';
 import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 import Button from '../../common/Button/Button';
+import IconButton from '../../common/IconButton/IconButton';
 
 const Assets: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -50,10 +51,14 @@ const Assets: React.FC = (): JSX.Element => {
             })}
           </select>
         </form>
-        <FaSyncAlt
+        <IconButton
+          icon={<FaSyncAlt />}
+          clickHandler={() => dispatch(fetchCoinData())}
+        />
+        {/* <FaSyncAlt
           className="refresh-btn"
           onClick={() => dispatch(fetchCoinData())}
-        />
+        /> */}
       </header>
       <table>
         <thead>

@@ -5,6 +5,7 @@ import { openModal, openEditAsset } from '../../../actions/modalActions';
 import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
 import { State } from '../../../reducers';
 import { AssetType, CoinType } from '../../../Types';
+import IconButton from '../../common/IconButton/IconButton';
 
 type Props = {
   asset: AssetType;
@@ -14,11 +15,11 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
   const dispatch = useDispatch();
 
   const { coinInfo, defaultCurrency } = useSelector(
-    (state: State) => state.asset
+    (state: State) => state.asset,
   );
 
   const [correctCoin] = coinInfo.filter(
-    (coin: CoinType) => coin.id === asset.id
+    (coin: CoinType) => coin.id === asset.id,
   );
   const {
     name,
@@ -31,6 +32,12 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
   } = correctCoin || {};
 
   if (!asset) return <></>;
+
+  const handleEdit = () => {
+    dispatch(setActiveCoin(id));
+    dispatch(openModal());
+    dispatch(openEditAsset(id));
+  };
 
   return (
     <tr>
@@ -70,24 +77,21 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
       </td>
       {/**ACTIONS */}
       <td className="actions-row">
-        <button
-          type="button"
-          className="edit-btn"
-          onClick={() => {
-            dispatch(setActiveCoin(id));
-            dispatch(openModal());
-            dispatch(openEditAsset(id));
-          }}
-        >
+        <IconButton icon={<FaEdit />} clickHandler={handleEdit} />
+        <IconButton
+          icon={<FaRegMinusSquare />}
+          clickHandler={() => dispatch(removeAsset(asset.id))}
+        />
+        {/* <button type="button" className="edit-btn" onClick={() => {}}>
           <FaEdit className="icons" title="Edit transaction" />
-        </button>
-        <button
+        </button> */}
+        {/*  <button
           type="button"
           className="remove-btn"
           onClick={() => dispatch(removeAsset(asset.id))}
         >
           <FaRegMinusSquare className="icons" title="Remove transaction" />
-        </button>
+        </button> */}
       </td>
     </tr>
   );

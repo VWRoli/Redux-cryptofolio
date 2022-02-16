@@ -30,26 +30,6 @@
   }
 }
 
-.edit-btn {
-  @include reset-btn();
-}
-.remove-btn {
-  @include reset-btn();
-}
-.clear-btn {
-  //@include primary-btn($gray-gradient, $gray-inverse-gradient);
-  padding: 1rem;
-  width: fit-content;
-  margin: auto;
-  color: #222;
-}
-
-@keyframes push-down {
-  50% {
-    transform: translateY(10px);
-  }
-}
-
 @media screen and (max-width: 1200px) {
   #portfolio {
     #stats {
