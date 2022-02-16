@@ -14,6 +14,7 @@ import AssetsHeader from './AssetsHeader';
 import AssetsTable from './AssetsTable';
 import Button from '../../common/Button/Button';
 import IconButton from '../../common/IconButton/IconButton';
+import Title from '../../common/Title/Title';
 
 const Assets: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Assets: React.FC = (): JSX.Element => {
   return (
     <section id="assets">
       <header className="assets-header">
-        <h2 className="assets-title">Your Assets </h2>
+        <Title h2 title="Your Assets" />
         <form action="/">
           <label htmlFor="currency">Default Currency:</label>
           <select
@@ -55,10 +56,6 @@ const Assets: React.FC = (): JSX.Element => {
           icon={<FaSyncAlt />}
           clickHandler={() => dispatch(fetchCoinData())}
         />
-        {/* <FaSyncAlt
-          className="refresh-btn"
-          onClick={() => dispatch(fetchCoinData())}
-        /> */}
       </header>
       <table>
         <thead>

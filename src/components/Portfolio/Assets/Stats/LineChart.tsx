@@ -6,15 +6,15 @@ import {
   Tooltip,
   Area,
 } from 'recharts';
-import { priceFormatter } from '../../../helpers';
+import { priceFormatter } from '../../../../helpers';
 import { useSelector } from 'react-redux';
 //Components
-import Loading from '../../Loading';
-import { State } from '../../../reducers';
+import Loading from '../../../Loading';
+import { State } from '../../../../reducers';
 
 const Chart: React.FC = (): JSX.Element => {
   const { isLoading, defaultCurrency, chartData } = useSelector(
-    (state: State) => state.asset
+    (state: State) => state.asset,
   );
 
   if (isLoading) {

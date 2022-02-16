@@ -3,13 +3,14 @@ import { CgNotes } from 'react-icons/cg';
 import AssetsList from './AssetsList';
 import SearchBar from './SearchBar';
 import Button from '../common/Button/Button';
+import Title from '../common/Title/Title';
 
 const AddAsset: React.FC = (): JSX.Element => {
   return (
     <section id="add-asset">
       <header className="header">
         <div className="header-text">
-          <h1>Add New Asset</h1>
+          <Title title="Add New Asset" />
           <h3>Please Select or Search your Coin</h3>
         </div>
         <Button

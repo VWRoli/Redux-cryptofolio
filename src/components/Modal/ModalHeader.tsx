@@ -1,4 +1,5 @@
 import React from 'react';
+import Title from '../common/Title/Title';
 
 type Props = {
   headerTitle: string;
@@ -7,7 +8,7 @@ type Props = {
 const ModalHeader: React.FC<Props> = ({ headerTitle }): JSX.Element => {
   return (
     <header>
-      <h1>{headerTitle}</h1>
+      <Title title={headerTitle} />
     </header>
   );
 };

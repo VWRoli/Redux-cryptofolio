@@ -6,7 +6,7 @@ import { CoinType } from '../../Types';
 //Components
 import Error from '../Error';
 import Loading from '../Loading';
-import ListItem from '../ListItem';
+import ListItem from '../common/ListItem/ListItem';
 
 const AssetsList: React.FC = (): JSX.Element => {
   const { assets, searchQuery } = useSelector((state: State) => state.asset);

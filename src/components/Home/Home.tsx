@@ -1,6 +1,7 @@
 import { IoMdCreate } from 'react-icons/io';
 //Components
 import Button from '../common/Button/Button';
+import Title from '../common/Title/Title';
 import HomeList from './HomeList';
 
 const Home: React.FC = (): JSX.Element => {
@@ -8,7 +9,8 @@ const Home: React.FC = (): JSX.Element => {
     <section id="home">
       <div className="container">
         <div className="home-left">
-          <h1>Crypto Portfolio Tracker</h1>
+          <Title title="Crypto Portfolio Tracker" />
+          {/* <h1>Crypto Portfolio Tracker</h1> */}
           <h2>
             Keep track of your profits, losses and portfolio valuation with our
             easy to use platform.

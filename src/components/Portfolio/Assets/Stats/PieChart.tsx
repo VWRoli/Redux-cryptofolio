@@ -5,10 +5,10 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
-import { calcPieChartData } from '../../../helpers';
-import { COLORS, RADIAN } from '../../../constants/constant';
+import { calcPieChartData } from '../../../../helpers';
+import { COLORS, RADIAN } from '../../../../constants/constant';
 import { useSelector } from 'react-redux';
-import { State } from '../../../reducers';
+import { State } from '../../../../reducers';
 
 type Props = {
   clicked: boolean;

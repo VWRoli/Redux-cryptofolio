@@ -1,7 +1,7 @@
 import { BASE_URL } from '../../constants/constant';
 import { useFetch } from '../../useFetch';
 //Components
-import ListItem from '../ListItem';
+import ListItem from '../common/ListItem/ListItem';
 import Loading from '../Loading';
 import Error from '../Error';
 import { CoinType } from '../../Types';

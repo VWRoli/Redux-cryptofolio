@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { BUTTONS } from '../../../helpers';
-import { setChartDays } from '../../../actions/assetActions';
+import { BUTTONS } from '../../../../helpers';
+import { setChartDays } from '../../../../actions/assetActions';
 import { useDispatch } from 'react-redux';
 
 const ChartButtons: React.FC = (): JSX.Element => {

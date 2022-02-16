@@ -6,16 +6,16 @@
     background: darken(#eee, 5%);
     box-shadow: none;
   }
+  span {
+    color: $error-color;
+    font-weight: 400;
+    font-size: 1rem;
+  }
 }
 .owned-coin {
   cursor: not-allowed;
   background-color: #ddd;
   h2 {
     grid-column: span 5;
-    span {
-      color: $error-color;
-      font-weight: 400;
-      font-size: 0.65rem;
-    }
   }
 }

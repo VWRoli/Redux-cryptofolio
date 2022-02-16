@@ -1,15 +1,19 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { priceFormatter } from '../../../helpers';
-import { priceChangeFormatter, calcChangePercentage } from '../../../helpers';
+import { priceFormatter } from '../../../../helpers';
+import {
+  priceChangeFormatter,
+  calcChangePercentage,
+} from '../../../../helpers';
 import ChartButtons from './ChartButtons';
 //Components
-import Loading from '../../Loading';
-import Error from '../../Error';
+import Loading from '../../../Loading';
+import Error from '../../../Error';
 import Chart from './LineChart';
 import PieChart from './PieChart';
-import { State } from '../../../reducers';
+import { State } from '../../../../reducers';
+import Title from '../../../common/Title/Title';
 
 const Stats: React.FC = (): JSX.Element => {
   const {
@@ -26,7 +30,7 @@ const Stats: React.FC = (): JSX.Element => {
 
   return (
     <section id="stats">
-      <h2>Overview</h2>
+      <Title h2 title="Overview" />
 
       {isLoading ? (
         <Loading />
@@ -39,7 +43,7 @@ const Stats: React.FC = (): JSX.Element => {
             <span className={totalValueChange > 0 ? 'positive' : 'negative'}>
               <span style={{ fontSize: '1.5rem', color: '#bbb' }}>24h: </span>
               {priceChangeFormatter(
-                calcChangePercentage(totalValue, totalValueChange)
+                calcChangePercentage(totalValue, totalValueChange),
               )}
             </span>
           )}
