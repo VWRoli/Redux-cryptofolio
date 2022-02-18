@@ -4,7 +4,7 @@
   margin: 1.5rem;
   width: 100%;
   h3 {
-    @include list-item();
+    @include bg-panel();
     @include flex-center(column);
     padding: 1rem;
     font-weight: 400;

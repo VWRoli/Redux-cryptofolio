@@ -1,6 +1,6 @@
 #add-new-asset {
   header {
-    @include list-item();
+    @include bg-panel();
     h2 {
       grid-column: span 3;
     }

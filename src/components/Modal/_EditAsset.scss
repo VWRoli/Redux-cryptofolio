@@ -1,7 +1,7 @@
 #edit-asset {
   @include flex-center(column);
   header {
-    @include list-item();
+    @include bg-panel();
     margin: 1rem 0;
     img {
       width: 30px;
@@ -37,7 +37,7 @@
   display: flex;
   justify-content: space-around;
   h3 {
-    @include list-item();
+    @include bg-panel();
     display: flex;
     flex-direction: column;
     span {

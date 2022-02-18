@@ -1,6 +1,25 @@
 .list-item {
-  @include list-item();
+  @include bg-panel();
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
   transition: all 0.25s;
+  min-height: 65px;
+
+  .img-wrapper {
+    max-width: 45px;
+    grid-column: span 1;
+  }
+  .title-wrapper {
+    margin-left: 5px;
+    grid-column: span 4;
+    span {
+      font-size: 0.7rem;
+    }
+  }
+  button {
+    grid-column: span 1;
+  }
 
   &:hover {
     background: darken(#eee, 5%);
@@ -15,7 +34,7 @@
 .owned-coin {
   cursor: not-allowed;
   background-color: #ddd;
-  h2 {
+  .title-wrapper {
     grid-column: span 5;
   }
 }

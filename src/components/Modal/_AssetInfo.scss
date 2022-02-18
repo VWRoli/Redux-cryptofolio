@@ -1,5 +1,5 @@
 .asset-info {
-  @include list-item();
+  @include bg-panel();
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -28,9 +28,14 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
       <div className="img-wrapper">
         <img src={image} alt={name} />
       </div>
-      <Title h2 title={name.substring(0, 12)} />
-
-      <span>{owned ? 'You already have this Coin' : symbol}</span>
+      <div className="title-wrapper">
+        <Title h2 title={name.substring(0, 10)} />
+        <span>
+          {owned
+            ? 'You already have this Coin'.toUpperCase()
+            : symbol.toUpperCase()}
+        </span>
+      </div>
 
       {owned ? (
         ''
