@@ -1,5 +1,6 @@
 import { priceChangeFormatter } from '../../helpers';
 import { CoinType } from '../../Types';
+import Title from '../common/Title/Title';
 
 type Props = {
   props: CoinType;
@@ -11,9 +12,9 @@ const AssetInfo: React.FC<Props> = ({ props }): JSX.Element => {
     <div className="asset-info">
       <img src={image} alt={name} />
 
-      <h2>
-        {name} <span>{symbol}</span>
-      </h2>
+      <Title title={name} h2>
+        <span>{symbol}</span>
+      </Title>
 
       <p>
         24h:{' '}

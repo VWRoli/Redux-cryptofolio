@@ -3,6 +3,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
+import IconButton from '../common/IconButton/IconButton';
 //Components
 import ModalContent from './ModalContentWrapper';
 
@@ -38,13 +39,12 @@ const Modal: React.FC = (): JSX.Element => {
       onMouseDown={handleClick}
     >
       <div className="modal-container">
-        <button
-          type="button"
-          className="close-modal"
-          onClick={() => dispatch(closeModal())}
-        >
-          <FaTimes className="icons" />
-        </button>
+        <div className="close-modal">
+          <IconButton
+            icon={<FaTimes />}
+            clickHandler={() => dispatch(closeModal())}
+          />
+        </div>
         <ModalContent />
       </div>
     </div>
