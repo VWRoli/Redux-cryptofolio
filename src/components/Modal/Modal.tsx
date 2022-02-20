@@ -5,7 +5,7 @@ import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 import IconButton from '../common/IconButton/IconButton';
 //Components
-import ModalContent from './ModalContentWrapper';
+import ModalContent from './ModalFrame';
 
 const Modal: React.FC = (): JSX.Element => {
   const isModalOpen = useSelector((state: State) => state.modal.isModalOpen);
