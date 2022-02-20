@@ -5,18 +5,18 @@ import { ModalType } from '../../Types';
 import { useFetch } from '../../useFetch';
 import { FaEdit, FaPlus, FaRegCheckCircle } from 'react-icons/fa';
 import { IoArrowForwardOutline } from 'react-icons/io5';
-
+import { closeModal, openSuccess } from '../../actions/modalActions';
+import { addAsset, editAsset } from '../../actions/assetActions';
+import { priceFormatter } from '../../helpers';
 //Components
 import AssetInfo from './AssetInfo';
 /* import Message from '../common/Message/Message'; */
 import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';
 import ShowPrice from './ShowPrice';
-import UserAssetData from './UserAssetData';
 import Button from '../common/Button/Button';
 import Footnote from './Footnote';
-import { closeModal, openSuccess } from '../../actions/modalActions';
-import { addAsset, editAsset } from '../../actions/assetActions';
+import DataTag from '../common/DataTag/DataTag';
 
 const ModalContentWrapper: React.FC = (): JSX.Element => {
   const { modal, asset } = useSelector((state: State) => state);
@@ -73,7 +73,22 @@ const ModalContentWrapper: React.FC = (): JSX.Element => {
 
       {/* <Message /> */}
 
-      {edit && <UserAssetData props={data[0]} id={modal.activeCoin} />}
+      {edit && (
+        <div className="user-data">
+          <DataTag
+            title="Your Holdings:"
+            data={`${correctCoin?.holdings} ${data[0].symbol}`}
+          />
+          <DataTag
+            title="Your Asset Value:"
+            data={priceFormatter(
+              data[0].current_price * correctCoin?.holdings,
+              asset.defaultCurrency,
+            )}
+          />
+        </div>
+      )}
+      {/* {edit && <UserAssetData props={data[0]} id={modal.activeCoin} />} */}
 
       {success || (
         <QuantityForm
