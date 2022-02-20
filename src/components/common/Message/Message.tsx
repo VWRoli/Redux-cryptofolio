@@ -1,13 +1,21 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+export enum roleType {
+  ERROR = 'ERROR',
+  SUCCESS = 'SUCCESS',
+  INFO = 'INFO',
+}
+/* eslint-disable */
 
-const Message: React.FC = (): JSX.Element => {
-  return (
-    <>
-      <h2>You successfully edited your asset!</h2>
+type Props = {
+  msg: string;
+  role: roleType;
+};
 
-      <h2>You successfully added your new asset!</h2>
-    </>
-  );
+const Message: React.FC<Props> = ({ msg, role }): JSX.Element => {
+  const classes = `msg ${role === roleType.ERROR && 'error'} ${
+    role === roleType.SUCCESS && 'success'
+  } ${role === roleType.INFO && 'info'}`;
+  return <p className={classes}>{msg}</p>;
 };
 
 export default Message;
