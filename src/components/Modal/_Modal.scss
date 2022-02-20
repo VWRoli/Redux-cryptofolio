@@ -19,12 +19,15 @@
   height: auto;
   background-color: #fff;
   width: 500px;
-  padding: 3rem;
+  padding: 1rem 3rem;
   z-index: 1001;
 }
 
 .modal-content-wrapper {
   @include flex-center(column);
+  & > * {
+    margin: 1rem 0;
+  }
 }
 .close-modal {
   position: absolute;
