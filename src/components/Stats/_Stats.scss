@@ -1,24 +1,13 @@
 #stats {
   grid-column: span 4;
   margin-right: 0.5rem;
-  .chart-btn-container {
+  .chart-tab-container {
     display: flex;
     & > * {
       margin: 0.25rem;
     }
   }
 
-  .main-asset-value {
-    font-size: 2rem;
-    font-weight: 400;
-    @include top-bottom-border();
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    span {
-      font-weight: 400;
-    }
-  }
   .graph-btn-container {
     display: flex;
     justify-content: space-around;
