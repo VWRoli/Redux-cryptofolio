@@ -10,11 +10,13 @@ import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';
 import ShowPrice from './ShowPrice';
 import { closeModal } from '../../actions/modalActions';
+import SkeletonModal from './SkeletonModal';
 
 const EditAssetModal: React.FC<AssetModalProps> = ({
   data,
   holdings,
   setHoldings,
+  isLoading,
 }) => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
@@ -31,23 +33,29 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
 
   return (
     <>
-      <ModalHeader headerTitle="Edit Asset" />
-      <AssetInfo props={data} />
-      <ShowPrice price={data.current_price} cur={asset.defaultCurrency} />
-      <QuantityForm
-        id="edit-form"
-        holdings={holdings}
-        setHoldings={setHoldings}
-        submitHandler={handleSubmit}
-      />
-      <Button
-        label="Edit Asset"
-        form="edit-form"
-        clickHandler={handleSubmit}
-        primary
-        icon={<FaEdit />}
-        fullWidth
-      />
+      {isLoading ? (
+        <SkeletonModal />
+      ) : (
+        <>
+          <ModalHeader headerTitle="Edit Asset" />
+          <AssetInfo props={data} />
+          <ShowPrice price={data.current_price} cur={asset.defaultCurrency} />
+          <QuantityForm
+            id="edit-form"
+            holdings={holdings}
+            setHoldings={setHoldings}
+            submitHandler={handleSubmit}
+          />
+          <Button
+            label="Edit Asset"
+            form="edit-form"
+            clickHandler={handleSubmit}
+            primary
+            icon={<FaEdit />}
+            fullWidth
+          />
+        </>
+      )}
     </>
   );
 };

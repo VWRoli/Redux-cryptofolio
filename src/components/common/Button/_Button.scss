@@ -1,12 +1,11 @@
 .btn {
-  border-radius: 20px;
+  border-radius: $primary-radius;
   font-size: 1.1rem;
   color: $light-clr;
   border: none;
   cursor: pointer;
   font-weight: 400;
   outline: none;
-  //width: fit-content;
   a {
     @include flex-center(row);
     padding: 1rem;

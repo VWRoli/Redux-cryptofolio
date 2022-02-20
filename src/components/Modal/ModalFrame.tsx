@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
 import { ModalType } from '../../Types';
 import { useFetch } from '../../useFetch';
+import Skeleton from '../common/Skeleton/Skeleton';
 //Components
 import AddAssetModal from './AddAssetModal';
 import EditAssetModal from './EditAssetModal';
+import SkeletonModal from './SkeletonModal';
 import SuccessModal from './SuccessModal';
 
 const ModalFrame: React.FC = (): JSX.Element => {
@@ -24,6 +26,8 @@ const ModalFrame: React.FC = (): JSX.Element => {
 
   if (!data[0]) return <></>;
 
+  //if (isLoading) return <SkeletonModal />;
+
   return (
     <div className="modal-content-wrapper">
       {add && (
@@ -31,6 +35,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
           data={data[0]}
           holdings={holdings}
           setHoldings={setHoldings}
+          isLoading={isLoading}
         />
       )}
       {edit && (
@@ -38,6 +43,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
           data={data[0]}
           holdings={holdings}
           setHoldings={setHoldings}
+          isLoading={isLoading}
         />
       )}
       {success && <SuccessModal />}

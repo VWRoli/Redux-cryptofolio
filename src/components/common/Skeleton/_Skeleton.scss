@@ -1,0 +1,19 @@
+.skeleton {
+  opacity: 0.7;
+  animation: skeleton-loading 2s ease-in-out infinite alternate;
+  border-radius: $primary-radius;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #a3b8c2;
+  }
+
+  50% {
+    background-color: #f0f3f5;
+  }
+
+  100% {
+    background-color: #a3b8c2;
+  }
+}
