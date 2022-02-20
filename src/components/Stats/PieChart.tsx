@@ -5,7 +5,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
-import { calcPieChartData } from '../../helpers';
+import { calcPieChartData, capitalizeFirstLetter } from '../../helpers';
 import { COLORS, RADIAN } from '../../constants/constant';
 import { useSelector } from 'react-redux';
 import { State } from '../../reducers';
@@ -50,7 +50,7 @@ const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
-        {data[index].id}
+        {capitalizeFirstLetter(data[index].id)}
         <br /> {`${(percent * 100).toFixed(0)}%`}
       </text>
     );

@@ -6,9 +6,10 @@ type Props = {
   route?: string;
   disabled?: boolean;
   clickHandler?: any; //todo
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   fullWidth?: boolean;
   form?: string;
+  active?: boolean;
 };
 const Button: React.FC<Props> = ({
   route,
@@ -19,8 +20,9 @@ const Button: React.FC<Props> = ({
   icon,
   fullWidth,
   form,
+  active,
 }): JSX.Element => {
-  const classes = `${primary ? 'btn primary' : 'btn secondary'}`;
+  const classes = `${primary || active ? 'btn primary' : 'btn secondary'}`;
   return (
     <button
       form={form}

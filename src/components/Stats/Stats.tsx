@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
 import { State } from '../../reducers';
 //Components
-import ChartButtons from './ChartButtons';
+import LineChartButtons from './LineChartButtons';
 import Error from '../Error';
 import Chart from './LineChart';
 import PieChart from './PieChart';
@@ -36,7 +36,7 @@ const Stats: React.FC = (): JSX.Element => {
       </div>
 
       {isLineChart ? <Chart /> : <PieChart clicked={isLineChart} />}
-      {isLineChart ? <ChartButtons /> : ''}
+      {isLineChart ? <LineChartButtons /> : <></>}
     </section>
   );
 };

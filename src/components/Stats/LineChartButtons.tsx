@@ -2,30 +2,30 @@ import { useState } from 'react';
 import { BUTTONS } from '../../helpers';
 import { setChartDays } from '../../actions/assetActions';
 import { useDispatch } from 'react-redux';
+//Components
+import Button from '../common/Button/Button';
 
-const ChartButtons: React.FC = (): JSX.Element => {
+const LineChartButtons: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(1);
 
   return (
-    <div className="graph-btn-container">
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       {BUTTONS.map((btn, i) => {
         return (
-          <button
+          <Button
             key={i}
-            type="button"
-            className={i === active ? 'chart-btn active' : 'chart-btn'}
-            onClick={() => {
+            active={i === active}
+            clickHandler={() => {
               setActive(i);
               dispatch(setChartDays(btn.days));
             }}
-          >
-            {btn.label}
-          </button>
+            label={btn.label}
+          />
         );
       })}
     </div>
   );
 };
 
-export default ChartButtons;
+export default LineChartButtons;

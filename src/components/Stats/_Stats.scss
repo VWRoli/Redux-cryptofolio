@@ -7,26 +7,4 @@
       margin: 0.25rem;
     }
   }
-
-  .graph-btn-container {
-    display: flex;
-    justify-content: space-around;
-
-    .chart-btn {
-      //@include primary-btn($gray-gradient, $green-inverse-gradient);
-      color: #222;
-      margin: 0;
-      padding: 1rem;
-      &:hover {
-        color: #eee;
-      }
-    }
-    .active {
-      background: $green-gradient;
-      color: #eee;
-      &:hover {
-        background: $green-inverse-gradient;
-      }
-    }
-  }
 }

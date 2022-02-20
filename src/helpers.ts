@@ -140,3 +140,8 @@ export const calcChangePercentage = (
     return -Math.abs(+[(oldPrice - newPrice) / oldPrice] * 100);
   }
 };
+
+//To capitalize first letter
+export function capitalizeFirstLetter(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
