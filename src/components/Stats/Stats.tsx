@@ -1,19 +1,17 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { FaChartLine, FaChartPie } from 'react-icons/fa';
-import { priceFormatter } from '../../../../helpers';
-import {
-  priceChangeFormatter,
-  calcChangePercentage,
-} from '../../../../helpers';
-import ChartButtons from './ChartButtons';
+import { priceFormatter } from '../../helpers';
+import { priceChangeFormatter, calcChangePercentage } from '../../helpers';
 //Components
-import Loading from '../../../Loading';
-import Error from '../../../Error';
+import ChartButtons from './ChartButtons';
+import Loading from '../Loading';
+import Error from '../Error';
 import Chart from './LineChart';
 import PieChart from './PieChart';
-import { State } from '../../../../reducers';
-import Title from '../../../common/Title/Title';
+import { State } from '../../reducers';
+import Title from '../common/Title/Title';
+import Tab from '../common/Tab/Tab';
 
 const Stats: React.FC = (): JSX.Element => {
   const {
@@ -50,12 +48,16 @@ const Stats: React.FC = (): JSX.Element => {
         </div>
       )}
       <div className="chart-btn-container">
-        <button className="chart-btn" onClick={() => setIsLineChart(true)}>
-          <FaChartLine className="stat-btn-icon" /> Line Chart
-        </button>
-        <button className="chart-btn" onClick={() => setIsLineChart(false)}>
-          <FaChartPie className="stat-btn-icon" /> Pie Chart
-        </button>
+        <Tab
+          label="Line Chart"
+          icon={<FaChartLine />}
+          clickHandler={() => setIsLineChart(true)}
+        />
+        <Tab
+          label="Pie Chart"
+          icon={<FaChartPie />}
+          clickHandler={() => setIsLineChart(false)}
+        />
       </div>
 
       {isLineChart ? <Chart /> : <PieChart clicked={isLineChart} />}

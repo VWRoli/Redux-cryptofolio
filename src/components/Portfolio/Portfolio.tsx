@@ -5,7 +5,7 @@ import Button from '../common/Button/Button';
 import Title from '../common/Title/Title';
 //Components
 import Assets from './Assets/Assets';
-import Stats from './Assets/Stats/Stats';
+import Stats from '../Stats/Stats';
 
 const Portfolio: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
