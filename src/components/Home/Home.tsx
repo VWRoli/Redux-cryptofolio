@@ -10,7 +10,6 @@ const Home: React.FC = (): JSX.Element => {
       <div className="container">
         <div className="home-left">
           <Title title="Crypto Portfolio Tracker" />
-          {/* <h1>Crypto Portfolio Tracker</h1> */}
           <h2>
             Keep track of your profits, losses and portfolio valuation with our
             easy to use platform.

@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
 //Components
-import Loading from '../Loading';
 import Error from '../Error';
 import AssetRow from './AssetRow';
 import { State } from '../../reducers';
+import SkeletonAssetRow from './SkeletonAssetRow';
 
 const AssetsTable: React.FC = (): JSX.Element => {
   const { assets, isError, isLoading } = useSelector(
     (state: State) => state.asset,
   );
-
+  console.log(isLoading);
   if (isError) {
     return (
       <tbody>
@@ -25,15 +25,9 @@ const AssetsTable: React.FC = (): JSX.Element => {
   return (
     <tbody>
       {isLoading ? (
-        <tr>
-          <td colSpan={6}>
-            <Loading />
-          </td>
-        </tr>
+        <SkeletonAssetRow />
       ) : (
-        assets.map((asset) => {
-          return <AssetRow key={asset.id} asset={asset} />;
-        })
+        assets.map((asset) => <AssetRow key={asset.id} asset={asset} />)
       )}
     </tbody>
   );

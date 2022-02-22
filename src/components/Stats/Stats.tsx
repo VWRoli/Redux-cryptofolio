@@ -5,7 +5,7 @@ import { State } from '../../reducers';
 //Components
 import LineChartButtons from './LineChartButtons';
 import Error from '../Error';
-import Chart from './LineChart';
+import LineChart from './LineChart';
 import PieChart from './PieChart';
 import Title from '../common/Title/Title';
 import Tab from '../common/Tab/Tab';
@@ -35,7 +35,7 @@ const Stats: React.FC = (): JSX.Element => {
         />
       </div>
 
-      {isLineChart ? <Chart /> : <PieChart clicked={isLineChart} />}
+      {isLineChart ? <LineChart /> : <PieChart clicked={isLineChart} />}
       {isLineChart ? <LineChartButtons /> : <></>}
     </section>
   );

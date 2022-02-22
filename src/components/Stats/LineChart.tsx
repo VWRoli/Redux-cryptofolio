@@ -12,13 +12,17 @@ import { useSelector } from 'react-redux';
 import Loading from '../Loading';
 import { State } from '../../reducers';
 
-const Chart: React.FC = (): JSX.Element => {
+const LineChart: React.FC = (): JSX.Element => {
   const { isLoading, defaultCurrency, chartData } = useSelector(
     (state: State) => state.asset,
   );
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div style={{ height: 300 }}>
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -56,4 +60,4 @@ const Chart: React.FC = (): JSX.Element => {
   );
 };
 
-export default Chart;
+export default LineChart;
