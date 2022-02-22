@@ -48,7 +48,7 @@ a {
 }
 
 .input-error {
-  background-color: $error-color;
+  background-color: $error-clr;
   color: #fff;
   opacity: 0.75;
   &::placeholder {

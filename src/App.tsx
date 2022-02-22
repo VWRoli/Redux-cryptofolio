@@ -4,7 +4,7 @@ import { State } from './reducers';
 
 //Components
 import AddAsset from './components/AddAsset/AddAsset';
-import ErrorPage from './components/ErrorPage';
+import NotFound from './components/NotFound/NotFound';
 import Home from './components/Home/Home';
 import Modal from './components/Modal/Modal';
 import Portfolio from './components/Portfolio/Portfolio';
@@ -27,7 +27,7 @@ const App: React.FC = (): JSX.Element => {
             <Portfolio />
           </Route>
           <Route path="*">
-            <ErrorPage />
+            <NotFound />
           </Route>
         </Switch>
       </div>

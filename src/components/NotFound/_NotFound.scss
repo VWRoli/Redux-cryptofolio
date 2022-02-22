@@ -1,0 +1,13 @@
+#error-page {
+  @include main-page-setup();
+  @include flex-center(column);
+
+  h1 {
+    color: $error-clr;
+    font-size: 3rem;
+    @include flex-center(row);
+    & > * {
+      margin: 0.5rem;
+    }
+  }
+}

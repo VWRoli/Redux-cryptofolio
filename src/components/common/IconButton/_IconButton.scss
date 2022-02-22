@@ -18,14 +18,14 @@
 .secondary-icon-btn {
   @include reset-btn();
   & svg {
-    color: $blue-color;
+    color: $blue-clr;
     font-size: 1.25rem;
     margin: 0.25rem;
     cursor: pointer;
     transition: all 0.15s;
 
     &:hover {
-      color: $hover;
+      color: $hover-clr;
     }
     &:active {
       animation: push-down 0.5s ease-in-out;
