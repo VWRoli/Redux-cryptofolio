@@ -82,16 +82,6 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
           icon={<FaRegMinusSquare />}
           clickHandler={() => dispatch(removeAsset(asset.id))}
         />
-        {/* <button type="button" className="edit-btn" onClick={() => {}}>
-          <FaEdit className="icons" title="Edit transaction" />
-        </button> */}
-        {/*  <button
-          type="button"
-          className="remove-btn"
-          onClick={() => dispatch(removeAsset(asset.id))}
-        >
-          <FaRegMinusSquare className="icons" title="Remove transaction" />
-        </button> */}
       </td>
     </tr>
   );

@@ -20,9 +20,13 @@
 @import '../components/AddAsset/Searchbar';
 @import '../components/AddAsset/AssetList';
 @import '../components/AddAsset/AddAsset';
+@import '../components/Portfolio/Portfolio';
+@import '../components/Portfolio/Assets/Assets';
+@import '../components/Portfolio/Assets/AssetsHeader';
+@import '../components/Portfolio/Assets/AssetsTableHeader';
+@import '../components/Portfolio/Assets/AssetsTable';
+@import '../components/Portfolio/Assets/AssetRow';
 /*  */
 @import './error';
 @import './loading';
-@import './Portfolio/portfolio';
-@import './Portfolio/Assets/assets';
 @import './errorPage';

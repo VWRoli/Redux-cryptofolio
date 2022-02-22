@@ -1,0 +1,40 @@
+tbody {
+  .table-name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+      justify-self: end;
+      margin-right: 1.5rem;
+    }
+    p {
+      text-align: left;
+      width: fit-content;
+      font-weight: 400;
+    }
+  }
+  tr {
+    text-align: center;
+    td {
+      font-weight: 400;
+      padding: 0.25rem;
+    }
+  }
+  tr:nth-child(even) {
+    background-color: $light-bg;
+  }
+  .holdings {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: $muted-clr;
+  }
+  .symbol {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: lighten(#000000, 50%);
+  }
+}

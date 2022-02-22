@@ -14,7 +14,7 @@ const QuantityForm: React.FC<Props> = ({
   id,
 }): JSX.Element => {
   return (
-    <form onSubmit={submitHandler} id={id}>
+    <form className="quantity-form" onSubmit={submitHandler} id={id}>
       <label htmlFor="holdings">Quantity: </label>
       <input
         type="number"

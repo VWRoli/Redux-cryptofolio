@@ -16,9 +16,7 @@
 }
 
 @media screen and(max-width: 500px) {
-  #search-section {
-    form {
-      flex-direction: column;
-    }
+  #search-form {
+    flex-direction: column;
   }
 }

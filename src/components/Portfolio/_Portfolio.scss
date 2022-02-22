@@ -11,18 +11,7 @@
   h3 {
     padding: 1rem 0;
   }
-  .header {
-    @include header-flex();
-    .primary-btn {
-      a {
-        display: flex;
-        align-items: center;
-        svg {
-          margin-right: 5px;
-        }
-      }
-    }
-  }
+
   .container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -92,13 +81,6 @@
     .main-asset-value {
       flex-direction: column;
       text-align: center;
-    }
-  }
-  #assets {
-    .assets-header {
-      form {
-        display: none;
-      }
     }
   }
 }

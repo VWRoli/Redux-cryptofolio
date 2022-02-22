@@ -1,0 +1,13 @@
+.assets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .currrency-form {
+    color: $dark-clr;
+    @include flex-center(row);
+    label {
+      margin-right: 5px;
+    }
+  }
+}
