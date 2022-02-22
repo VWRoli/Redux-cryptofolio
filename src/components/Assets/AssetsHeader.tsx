@@ -1,12 +1,12 @@
 import { FaSyncAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCoinData, setCurrency } from '../../../actions/assetActions';
-import { CURRENCY_URL } from '../../../constants/constant';
-import { State } from '../../../reducers';
-import { useFetch } from '../../../useFetch';
+import { fetchCoinData, setCurrency } from '../../actions/assetActions';
+import { CURRENCY_URL } from '../../constants/constant';
+import { State } from '../../reducers';
+import { useFetch } from '../../useFetch';
 //Components
-import IconButton from '../../common/IconButton/IconButton';
-import Title from '../../common/Title/Title';
+import IconButton from '../common/IconButton/IconButton';
+import Title from '../common/Title/Title';
 
 const AssetsHeader = () => {
   const dispatch = useDispatch();

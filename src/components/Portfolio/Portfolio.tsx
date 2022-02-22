@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 //Components
 import Button from '../common/Button/Button';
 import Title from '../common/Title/Title';
-import Assets from './Assets/Assets';
+import Assets from '../Assets/Assets';
 import Stats from '../Stats/Stats';
 import { State } from '../../reducers';
+import PageWrapper from '../common/PageWrapper/PageWrapper';
 
 const Portfolio: React.FC = (): JSX.Element => {
   const { chartDays, assets } = useSelector((state: State) => state.asset);
@@ -18,25 +19,27 @@ const Portfolio: React.FC = (): JSX.Element => {
   }, [chartDays, assets]);
 
   return (
-    <section id="portfolio">
-      <header className="header">
-        <div className="header-text">
-          <Title title="Your portfolio" />
-          <h3>Keep track of your Crypto Investments</h3>
+    <PageWrapper>
+      <section id="portfolio">
+        <header className="header">
+          <div className="header-text">
+            <Title title="Your portfolio" />
+            <h3>Keep track of your Crypto Investments</h3>
+          </div>
+          <Button
+            route="/addasset"
+            primary
+            label="Add Asset"
+            icon={<FaPlus />}
+            clickHandler={() => setSearchQuery('')}
+          />
+        </header>
+        <div className="container">
+          <Stats />
+          <Assets />
         </div>
-        <Button
-          route="/addasset"
-          primary
-          label="Add Asset"
-          icon={<FaPlus />}
-          clickHandler={() => setSearchQuery('')}
-        />
-      </header>
-      <div className="container">
-        <Stats />
-        <Assets />
-      </div>
-    </section>
+      </section>
+    </PageWrapper>
   );
 };
 

@@ -1,10 +1,4 @@
 #portfolio {
-  @include main-page-setup();
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   h2 {
     padding: 1rem 0;
   }

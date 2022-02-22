@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearAssets } from '../../../actions/assetActions';
-import { State } from '../../../reducers';
+import { clearAssets } from '../../actions/assetActions';
+import { State } from '../../reducers';
 import { GrClear } from 'react-icons/gr';
 //Components
 import AssetsTableHeader from './AssetsTableHeader';
 import AssetsTable from './AssetsTable';
-import Button from '../../common/Button/Button';
+import Button from '../common/Button/Button';
 import AssetsHeader from './AssetsHeader';
-import Message, { roleType } from '../../common/Message/Message';
+import Message, { roleType } from '../common/Message/Message';
 
 const Assets: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();

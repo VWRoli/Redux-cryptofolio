@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 //Components
-import Loading from '../../Loading';
-import Error from '../../Error';
+import Loading from '../Loading';
+import Error from '../Error';
 import AssetRow from './AssetRow';
-import { State } from '../../../reducers';
+import { State } from '../../reducers';
 
 const AssetsTable: React.FC = (): JSX.Element => {
   const { assets, isError, isLoading } = useSelector(
-    (state: State) => state.asset
+    (state: State) => state.asset,
   );
 
   if (isError) {

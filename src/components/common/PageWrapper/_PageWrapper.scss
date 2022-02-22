@@ -1,7 +1,7 @@
-#add-asset {
+.page-wrapper {
   @include main-page-setup();
-  width: fit-content;
-  margin: 1rem;
+  min-height: 60vh;
+  min-width: 90vw;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;

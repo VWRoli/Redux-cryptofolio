@@ -1,11 +1,11 @@
-import { priceChangeFormatter, priceFormatter } from '../../../helpers';
+import { priceChangeFormatter, priceFormatter } from '../../helpers';
 import { FaEdit, FaRegMinusSquare } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, openEditAsset } from '../../../actions/modalActions';
-import { removeAsset, setActiveCoin } from '../../../actions/assetActions';
-import { State } from '../../../reducers';
-import { AssetType, CoinType } from '../../../Types';
-import IconButton from '../../common/IconButton/IconButton';
+import { openModal, openEditAsset } from '../../actions/modalActions';
+import { removeAsset, setActiveCoin } from '../../actions/assetActions';
+import { State } from '../../reducers';
+import { AssetType, CoinType } from '../../Types';
+import IconButton from '../common/IconButton/IconButton';
 
 type Props = {
   asset: AssetType;
