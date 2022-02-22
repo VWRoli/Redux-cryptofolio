@@ -2,12 +2,12 @@ import { FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCoinData, setSearchQuery } from '../../actions/assetActions';
 import { useEffect } from 'react';
+import { State } from '../../reducers';
 //Components
 import Button from '../common/Button/Button';
 import Title from '../common/Title/Title';
 import Assets from '../Assets/Assets';
 import Stats from '../Stats/Stats';
-import { State } from '../../reducers';
 import PageWrapper from '../common/PageWrapper/PageWrapper';
 
 const Portfolio: React.FC = (): JSX.Element => {
