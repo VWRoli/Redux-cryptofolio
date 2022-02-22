@@ -1,6 +1,6 @@
 type Props = {
   icon: React.ReactNode;
-  clickHandler: () => void;
+  clickHandler: (e: React.FormEvent | React.MouseEvent) => void;
   primary?: boolean;
 };
 

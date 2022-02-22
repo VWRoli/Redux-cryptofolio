@@ -1,15 +1,21 @@
 import { FaPlus } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCoinData, setSearchQuery } from '../../actions/assetActions';
+import { useEffect } from 'react';
+//Components
 import Button from '../common/Button/Button';
 import Title from '../common/Title/Title';
-//Components
 import Assets from './Assets/Assets';
 import Stats from '../Stats/Stats';
+import { State } from '../../reducers';
 
 const Portfolio: React.FC = (): JSX.Element => {
+  const { chartDays, assets } = useSelector((state: State) => state.asset);
   const dispatch = useDispatch();
-  dispatch(fetchCoinData());
+
+  useEffect(() => {
+    dispatch(fetchCoinData());
+  }, [chartDays, assets]);
 
   return (
     <section id="portfolio">

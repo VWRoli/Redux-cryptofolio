@@ -51,6 +51,7 @@ export const setCurrency =
 export const setChartDays =
   (day: number) =>
   (dispatch: Dispatch<Action>): void => {
+    console.log(day);
     dispatch({ type: ActionType.SET_DAYS, payload: day });
   };
 

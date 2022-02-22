@@ -6,24 +6,4 @@
   &::-webkit-scrollbar {
     display: none;
   }
-
-  .header {
-    @include header-flex();
-    .primary-btn {
-      display: flex;
-      align-items: center;
-      svg {
-        margin-right: 5px;
-      }
-    }
-  }
-}
-
-@media screen and(max-width: 750px) {
-  #add-asset {
-    .header {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
 }

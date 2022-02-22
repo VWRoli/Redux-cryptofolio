@@ -7,6 +7,7 @@ import { CoinType } from '../../Types';
 import Error from '../Error';
 import Loading from '../Loading';
 import ListItem from '../common/ListItem/ListItem';
+import Message, { roleType } from '../common/Message/Message';
 
 const AssetsList: React.FC = (): JSX.Element => {
   const { assets, searchQuery } = useSelector((state: State) => state.asset);
@@ -37,9 +38,10 @@ const AssetsList: React.FC = (): JSX.Element => {
   return (
     <section id="asset-list">
       {noResults ? (
-        <h3 className="no-results">
-          We couldn&apos;t find your coin, please try again.
-        </h3>
+        <Message
+          msg="We couldn't find your coin, please try again."
+          role={roleType.ERROR}
+        />
       ) : (
         coins.map((coin: CoinType) => {
           const owned = ownedCoins.some(

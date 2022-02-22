@@ -16,6 +16,8 @@
 @import '../components/Modal/QuantityForm';
 @import '../components/Stats/Stats';
 @import '../components/Stats/StatsHeader';
+@import '../components/AddAsset/AddAssetHeader';
+@import '../components/AddAsset/Searchbar';
 /*  */
 @import './error';
 @import './loading';
@@ -23,5 +25,4 @@
 @import './Portfolio/Assets/assets';
 @import './AddAsset/addAsset';
 @import './AddAsset/assetList';
-@import './AddAsset/searchbar';
 @import './errorPage';

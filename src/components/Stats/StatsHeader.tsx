@@ -5,9 +5,10 @@ import {
   priceFormatter,
 } from '../../helpers';
 import { State } from '../../reducers';
+//Components
 import Skeleton from '../common/Skeleton/Skeleton';
 
-const StatsHeader = () => {
+const StatsHeader: React.FC = (): JSX.Element => {
   const {
     assets,
 

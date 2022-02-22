@@ -6,7 +6,7 @@ import Message, { roleType } from '../common/Message/Message';
 import Footnote from './Footnote';
 import ModalHeader from './ModalHeader';
 
-const SuccessModal = () => {
+const SuccessModal: React.FC = (): JSX.Element => {
   return (
     <>
       <ModalHeader headerTitle="Success!" />
