@@ -38,10 +38,12 @@ const AssetsList: React.FC = (): JSX.Element => {
   return (
     <section id="asset-list">
       {noResults ? (
-        <Message
-          msg="We couldn't find your coin, please try again."
-          role={roleType.ERROR}
-        />
+        <div className="msg-wrapper">
+          <Message
+            msg="We couldn't find your coin, please try again."
+            role={roleType.ERROR}
+          />
+        </div>
       ) : (
         coins.map((coin: CoinType) => {
           const owned = ownedCoins.some(
