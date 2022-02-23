@@ -4,14 +4,15 @@ import { closeModal } from '../../actions/modalActions';
 
 const Footnote = () => {
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(closeModal());
+  };
   return (
     <p style={{ margin: '1rem' }}>
       Or add an{' '}
       <Link to="/addasset">
-        <span
-          className="back-to-addassets"
-          onClick={() => dispatch(closeModal())}
-        >
+        <span className="back-to-addassets" onClick={handleClick}>
           Asset
         </span>
       </Link>

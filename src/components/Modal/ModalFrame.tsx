@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
@@ -16,7 +16,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const [disabled, setDisabled] = useState(false);
   const [inputError, setInputError] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
 
   const validate = () => {
     if (!holdings) {
@@ -39,7 +39,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
   function autoCloseModal() {
     setTimeout(() => {
       if (success) {
-        history.push('/portfolio');
+        //todo not working properly, pushes history after we closed the modal history.push('/portfolio');
         dispatch(closeModal());
       }
     }, 3000);

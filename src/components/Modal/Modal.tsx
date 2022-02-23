@@ -5,7 +5,7 @@ import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 import IconButton from '../common/IconButton/IconButton';
 //Components
-import ModalContent from './ModalFrame';
+import ModalFrame from './ModalFrame';
 
 const Modal: React.FC = (): JSX.Element => {
   const isModalOpen = useSelector((state: State) => state.modal.isModalOpen);
@@ -45,7 +45,7 @@ const Modal: React.FC = (): JSX.Element => {
             clickHandler={() => dispatch(closeModal())}
           />
         </div>
-        <ModalContent />
+        <ModalFrame />
       </div>
     </div>
   );
