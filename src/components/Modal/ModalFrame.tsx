@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 import { ModalType } from '../../Types';
 import { useFetch } from '../../useFetch';
@@ -13,6 +15,8 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const [holdings, setHoldings] = useState(1);
   const [disabled, setDisabled] = useState(false);
   const [inputError, setInputError] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const validate = () => {
     if (!holdings) {
@@ -31,6 +35,16 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const edit = modal.modal === ModalType.EDIT;
   const add = modal.modal === ModalType.ADD;
 
+  //Close modal automatically only if it shows Successmodal
+  function autoCloseModal() {
+    setTimeout(() => {
+      if (success) {
+        history.push('/portfolio');
+        dispatch(closeModal());
+      }
+    }, 3000);
+  }
+  autoCloseModal();
   //todo
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}`,
