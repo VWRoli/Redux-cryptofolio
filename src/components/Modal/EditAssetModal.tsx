@@ -17,6 +17,8 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
   holdings,
   setHoldings,
   isLoading,
+  disabled,
+  inputError,
 }) => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
@@ -27,10 +29,9 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(editAsset(correctCoin, holdings));
-    setHoldings(0);
     dispatch(closeModal());
+    setHoldings(1);
   };
-
   return (
     <>
       {isLoading ? (
@@ -45,6 +46,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
             holdings={holdings}
             setHoldings={setHoldings}
             submitHandler={handleSubmit}
+            inputError={inputError}
           />
           <Button
             label="Edit Asset"
@@ -53,6 +55,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
             primary
             icon={<FaEdit />}
             fullWidth
+            disabled={disabled}
           />
         </>
       )}

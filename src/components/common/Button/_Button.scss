@@ -33,3 +33,8 @@
     background: $gray-inverse-gradient;
   }
 }
+.disabled {
+  opacity: 0.15;
+  background: $dark-clr;
+  pointer-events: none;
+}

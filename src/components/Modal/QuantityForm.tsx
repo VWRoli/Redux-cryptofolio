@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+//Components
+import Message, { roleType } from '../common/Message/Message';
 
 type Props = {
   submitHandler: any; //todo
   holdings: number;
   setHoldings: React.Dispatch<React.SetStateAction<number>>;
   id: string;
+  inputError: string;
 };
 
 const QuantityForm: React.FC<Props> = ({
@@ -12,6 +15,7 @@ const QuantityForm: React.FC<Props> = ({
   holdings,
   setHoldings,
   id,
+  inputError,
 }): JSX.Element => {
   return (
     <form className="quantity-form" onSubmit={submitHandler} id={id}>
@@ -20,9 +24,12 @@ const QuantityForm: React.FC<Props> = ({
         type="number"
         name="holdings"
         id="holdings"
+        required
+        placeholder="Asset Quantity..."
         value={holdings}
         onChange={(e) => setHoldings(+e.target.value)}
       />
+      <Message msg={inputError} role={roleType.ERROR} small />
     </form>
   );
 };

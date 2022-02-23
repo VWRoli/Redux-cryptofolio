@@ -56,7 +56,7 @@ export const setChartDays =
   };
 
 export const editAsset =
-  (coin: AssetType, holdings: number) =>
+  (coin: AssetType, holdings: number | string) =>
   (dispatch: Dispatch<Action>, getState: () => State): void => {
     const { assets } = getState().asset;
     //Remove edited coin

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAsset } from '../../actions/assetActions';
@@ -16,6 +17,9 @@ export type AssetModalProps = {
   holdings: number;
   setHoldings: React.Dispatch<React.SetStateAction<number>>;
   isLoading: boolean;
+  disabled: boolean;
+  inputError: string;
+  validate: () => void;
 };
 
 const AddAssetModal: React.FC<AssetModalProps> = ({
@@ -23,16 +27,23 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   holdings,
   setHoldings,
   isLoading,
+  disabled,
+  inputError,
+  validate,
 }): JSX.Element => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    validate();
     dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));
     dispatch(openSuccess());
-    setHoldings(0);
+    setHoldings(1);
   };
+  useEffect(() => {
+    validate();
+  }, [holdings]);
 
   return (
     <>
@@ -48,6 +59,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
             holdings={holdings}
             setHoldings={setHoldings}
             submitHandler={handleSubmit}
+            inputError={inputError}
           />
           <Button
             label="Add Asset"
@@ -56,6 +68,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
             primary
             icon={<FaPlus />}
             fullWidth
+            disabled={disabled}
           />
         </>
       )}

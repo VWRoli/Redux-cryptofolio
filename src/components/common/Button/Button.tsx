@@ -22,7 +22,9 @@ const Button: React.FC<Props> = ({
   form,
   active,
 }): JSX.Element => {
-  const classes = `${primary || active ? 'btn primary' : 'btn secondary'}`;
+  const classes = `${primary || active ? 'btn primary' : 'btn secondary'} ${
+    disabled ? 'disabled' : ''
+  }`;
   return (
     <button
       form={form}

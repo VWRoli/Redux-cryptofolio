@@ -9,7 +9,7 @@ const AssetsTable: React.FC = (): JSX.Element => {
   const { assets, isError, isLoading } = useSelector(
     (state: State) => state.asset,
   );
-  console.log(isLoading);
+
   if (isError) {
     return (
       <tbody>

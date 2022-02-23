@@ -10,7 +10,21 @@ import SuccessModal from './SuccessModal';
 
 const ModalFrame: React.FC = (): JSX.Element => {
   const { modal, asset } = useSelector((state: State) => state);
-  const [holdings, setHoldings] = useState(0);
+  const [holdings, setHoldings] = useState(1);
+  const [disabled, setDisabled] = useState(false);
+  const [inputError, setInputError] = useState('');
+
+  const validate = () => {
+    if (!holdings) {
+      setInputError('Quantity should be bigger than zero.');
+      setDisabled(true);
+      return;
+    } else if (holdings > 0) {
+      setInputError('');
+      setDisabled(false);
+      return;
+    }
+  };
 
   //Modal types
   const success = modal.modal === ModalType.SUCCESS;
@@ -32,6 +46,9 @@ const ModalFrame: React.FC = (): JSX.Element => {
           holdings={holdings}
           setHoldings={setHoldings}
           isLoading={isLoading}
+          disabled={disabled}
+          inputError={inputError}
+          validate={validate}
         />
       )}
       {edit && (
@@ -40,6 +57,9 @@ const ModalFrame: React.FC = (): JSX.Element => {
           holdings={holdings}
           setHoldings={setHoldings}
           isLoading={isLoading}
+          disabled={disabled}
+          inputError={inputError}
+          validate={validate}
         />
       )}
       {success && <SuccessModal />}
