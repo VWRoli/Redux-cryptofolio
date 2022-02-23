@@ -9,7 +9,10 @@ export const addAsset =
   (dispatch: Dispatch<Action>, getState: () => State): void => {
     const prevAssets = getState().asset.assets;
     dispatch({ type: ActionType.ADD_ASSET, payload: asset });
-    localStorage.setItem('coinAssets', JSON.stringify([...prevAssets, asset]));
+    localStorage.setItem(
+      'coinAssets',
+      JSON.stringify({ assets: [...prevAssets, asset] }),
+    );
   };
 
 export const removeAsset =
@@ -20,14 +23,14 @@ export const removeAsset =
     assets.filter((asset: AssetType) => asset.id !== id);
 
     dispatch({ type: ActionType.REMOVE_ASSET, payload: assets });
-    localStorage.setItem('coinAssets', JSON.stringify(assets));
+    localStorage.setItem('coinAssets', JSON.stringify({ assets }));
   };
 
 export const clearAssets =
   () =>
   (dispatch: Dispatch<Action>): void => {
     dispatch({ type: ActionType.CLEAR_ASSETS });
-    localStorage.setItem('coinAssets', JSON.stringify([]));
+    localStorage.setItem('coinAssets', JSON.stringify({ assets: [] }));
   };
 
 export const setSearchQuery =
@@ -70,7 +73,7 @@ export const editAsset =
     });
     localStorage.setItem(
       'coinAssets',
-      JSON.stringify([...strippedCoin, editedCoin]),
+      JSON.stringify({ assets: [...strippedCoin, editedCoin] }),
     );
   };
 

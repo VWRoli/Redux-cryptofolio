@@ -2,10 +2,12 @@ import { AssetType, CoinType } from '../Types';
 import { ActionType } from '../constants/actionTypes';
 import { IAssetState, Action } from '../Types';
 
+const localAssets = JSON.parse(localStorage.getItem('coinAssets') || '{}');
+
 const defaultState: IAssetState = {
   isLoading: false,
   isError: false,
-  assets: [],
+  assets: localAssets.assets || [],
   coinInfo: [],
   searchQuery: '',
   defaultCurrency: 'usd',
