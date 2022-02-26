@@ -1,7 +1,7 @@
 import { useState } from 'react';
 //import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../../actions/modalActions';
+import { useSelector } from 'react-redux';
+//import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 import { ModalType } from '../../Types';
 import { useFetch } from '../../hooks/useFetch';
@@ -15,17 +15,17 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const [holdings, setHoldings] = useState(1);
   const [disabled, setDisabled] = useState(false);
   const [inputError, setInputError] = useState('');
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   //const history = useHistory();
 
   const validate = () => {
-    if (!holdings) {
-      setInputError('Quantity should be bigger than zero.');
-      setDisabled(true);
-      return;
-    } else if (holdings > 0) {
+    if (holdings > 0) {
       setInputError('');
       setDisabled(false);
+      return;
+    } else {
+      setInputError('Quantity should be bigger than zero.');
+      setDisabled(true);
       return;
     }
   };
@@ -36,15 +36,16 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const add = modal.modal === ModalType.ADD;
 
   //Close modal automatically only if it shows Successmodal
-  function autoCloseModal() {
-    setTimeout(() => {
-      if (success) {
-        //todo not working properly, pushes history after we closed the modal history.push('/portfolio');
-        dispatch(closeModal());
-      }
-    }, 3000);
-  }
-  autoCloseModal();
+  // function autoCloseModal() {
+  //   setTimeout(() => {
+  //     if (success) {
+  //       //todo not working properly, pushes history after we closed the modal history.push('/portfolio');
+  //also closes off modal even if not success
+  //       dispatch(closeModal());
+  //     }
+  //   }, 3000);
+  // }
+  //autoCloseModal();
 
   const { data, isLoading } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}`,

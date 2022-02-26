@@ -4,6 +4,7 @@ import { editAsset } from '../../actions/assetActions';
 import { State } from '../../reducers';
 import { AssetModalProps } from './AddAssetModal';
 import { closeModal } from '../../actions/modalActions';
+import { useEffect } from 'react';
 //Components
 import Button from '../common/Button/Button';
 import AssetInfo from './AssetInfo';
@@ -20,6 +21,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
   isLoading,
   disabled,
   inputError,
+  validate,
 }) => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
@@ -29,10 +31,15 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    validate();
     dispatch(editAsset(correctCoin, holdings));
     dispatch(closeModal());
     setHoldings(1);
   };
+
+  useEffect(() => {
+    validate();
+  }, [holdings]);
 
   if (!data)
     return (

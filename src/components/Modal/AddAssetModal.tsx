@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAsset } from '../../actions/assetActions';
@@ -43,9 +42,6 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
     dispatch(openSuccess());
     setHoldings(1);
   };
-  useEffect(() => {
-    validate();
-  }, [holdings]);
 
   if (!data)
     return (
