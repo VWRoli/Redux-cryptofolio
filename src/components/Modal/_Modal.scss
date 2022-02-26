@@ -24,6 +24,7 @@
 }
 
 .modal-content-wrapper {
+  min-height: 40vh;
   @include flex-center(column);
   & > * {
     margin: 1rem 0;

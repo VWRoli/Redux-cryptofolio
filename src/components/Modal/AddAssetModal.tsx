@@ -7,6 +7,7 @@ import { State } from '../../reducers';
 import { CoinType } from '../../Types';
 //Components
 import Button from '../common/Button/Button';
+import Error from '../Error/Error';
 import AssetInfo from './AssetInfo';
 import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';
@@ -45,6 +46,14 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   useEffect(() => {
     validate();
   }, [holdings]);
+
+  if (!data)
+    return (
+      <>
+        <ModalHeader headerTitle="Add New Asset" />
+        <Error />
+      </>
+    );
 
   return (
     <>

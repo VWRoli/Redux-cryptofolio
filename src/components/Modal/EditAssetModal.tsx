@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editAsset } from '../../actions/assetActions';
 import { State } from '../../reducers';
 import { AssetModalProps } from './AddAssetModal';
+import { closeModal } from '../../actions/modalActions';
 //Components
 import Button from '../common/Button/Button';
 import AssetInfo from './AssetInfo';
 import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';
 import ShowPrice from './ShowPrice';
-import { closeModal } from '../../actions/modalActions';
 import SkeletonModal from './SkeletonModal';
+import Error from '../Error/Error';
 
 const EditAssetModal: React.FC<AssetModalProps> = ({
   data,
@@ -32,6 +33,15 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
     dispatch(closeModal());
     setHoldings(1);
   };
+
+  if (!data)
+    return (
+      <>
+        <ModalHeader headerTitle="Edit Asset" />
+        <Error />
+      </>
+    );
+
   return (
     <>
       {isLoading ? (

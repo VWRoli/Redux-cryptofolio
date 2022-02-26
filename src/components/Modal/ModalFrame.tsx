@@ -46,11 +46,9 @@ const ModalFrame: React.FC = (): JSX.Element => {
   }
   autoCloseModal();
 
-  const { data, isLoading, isError } = useFetch(
+  const { data, isLoading } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}`,
   );
-
-  if (!data[0]) return <></>;
 
   return (
     <div className="modal-content-wrapper">

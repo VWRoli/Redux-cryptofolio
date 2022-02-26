@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 //Components
-import Error from '../Error';
+import Error from '../Error/Error';
 import AssetRow from './AssetRow';
 import { State } from '../../reducers';
 import SkeletonAssetRow from './SkeletonAssetRow';

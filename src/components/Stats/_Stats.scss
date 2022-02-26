@@ -8,3 +8,8 @@
     }
   }
 }
+.stats-error-wrapper {
+  min-height: 300px;
+  grid-column: span 4;
+  @include flex-center(row);
+}
