@@ -32,7 +32,6 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   inputError,
   validate,
 }): JSX.Element => {
-  console.log(data);
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
 

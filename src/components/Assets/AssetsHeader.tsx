@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCoinData, setCurrency } from '../../actions/assetActions';
 import { CURRENCY_URL } from '../../constants/constant';
 import { State } from '../../reducers';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 //Components
 import IconButton from '../common/IconButton/IconButton';
 import Title from '../common/Title/Title';

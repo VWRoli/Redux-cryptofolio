@@ -1,5 +1,5 @@
 import { BASE_URL } from '../../constants/constant';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 //Components
 import ListItem from '../common/ListItem/ListItem';
 import Loading from '../Loading';

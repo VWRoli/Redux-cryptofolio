@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { CoinType } from './Types';
+import { CoinType } from '../Types';
 
 interface FetchDataType {
-  data: any; //todo
+  data: any;
   isLoading: boolean;
   isError: boolean;
 }
@@ -19,9 +19,9 @@ export const useFetch = (url: string): FetchDataType => {
     setIsLoading(true);
     try {
       const response = await fetch(url);
-      const data = await response.json();
+      const resData: string[] | CoinType[] = await response.json();
 
-      setData(data);
+      setData(resData);
 
       //Disable loading screen
       setIsLoading(false);

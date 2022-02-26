@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modalActions';
 import { State } from '../../reducers';
 import { ModalType } from '../../Types';
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 //Components
 import AddAssetModal from './AddAssetModal';
 import EditAssetModal from './EditAssetModal';
@@ -45,7 +45,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
     }, 3000);
   }
   autoCloseModal();
-  //todo
+
   const { data, isLoading, isError } = useFetch(
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}`,
   );

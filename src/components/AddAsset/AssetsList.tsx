@@ -1,4 +1,4 @@
-import { useFetch } from '../../useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import { AssetType } from '../../Types';
 import { useSelector } from 'react-redux';
 import { State } from '../../reducers';
