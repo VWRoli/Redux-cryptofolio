@@ -26,7 +26,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
     (asset) => asset.id === modal.activeCoin,
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(editAsset(correctCoin, holdings));
     dispatch(closeModal());

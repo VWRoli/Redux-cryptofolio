@@ -15,6 +15,7 @@ const AssetsList: React.FC = (): JSX.Element => {
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
 
   const { data: coins, isError, isLoading } = useFetch(url);
+  console.log(coins);
 
   //Handle no search results
   const noResults = coins.length === 0;

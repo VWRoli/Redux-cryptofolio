@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { closeModal } from '../../actions/modalActions';
 
-const Footnote = () => {
+const Footnote: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleClick = () => {

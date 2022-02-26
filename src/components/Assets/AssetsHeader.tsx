@@ -8,7 +8,7 @@ import { useFetch } from '../../useFetch';
 import IconButton from '../common/IconButton/IconButton';
 import Title from '../common/Title/Title';
 
-const AssetsHeader = () => {
+const AssetsHeader: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const { data: currencies } = useFetch(CURRENCY_URL);

@@ -34,7 +34,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     validate();
     dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));

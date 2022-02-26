@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { CoinType } from './Types';
 
-export const useFetch = (
-  url: string,
-): {
-  data: any;
+interface FetchDataType {
+  data: any; //todo
   isLoading: boolean;
   isError: boolean;
-} => {
+}
+
+export const useFetch = (url: string): FetchDataType => {
   //Loading state
   const [isLoading, setIsLoading] = useState(true);
   //Error state

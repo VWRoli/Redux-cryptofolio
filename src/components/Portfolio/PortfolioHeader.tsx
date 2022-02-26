@@ -4,7 +4,7 @@ import { setSearchQuery } from '../../actions/assetActions';
 import Button from '../common/Button/Button';
 import Title from '../common/Title/Title';
 
-const PortfolioHeader = () => {
+const PortfolioHeader: React.FC = (): JSX.Element => {
   return (
     <header className="header">
       <div className="header-text">

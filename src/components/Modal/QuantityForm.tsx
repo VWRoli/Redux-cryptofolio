@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 //Components
 import Message, { roleType } from '../common/Message/Message';
 
 type Props = {
-  submitHandler: any; //todo
+  submitHandler: React.FormEventHandler | React.FormEventHandler;
   holdings: number;
   setHoldings: React.Dispatch<React.SetStateAction<number>>;
   id: string;

@@ -5,7 +5,7 @@ type Props = {
   primary?: boolean;
   route?: string;
   disabled?: boolean;
-  clickHandler?: any; //todo
+  clickHandler?: React.MouseEventHandler | ((e: React.FormEvent) => void);
   icon?: React.ReactNode;
   fullWidth?: boolean;
   form?: string;
