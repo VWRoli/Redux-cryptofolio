@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAsset } from '../../actions/assetActions';
 import { openSuccess } from '../../actions/modalActions';
 import { State } from '../../reducers';
+import { CoinType } from '../../Types';
 //Components
 import Button from '../common/Button/Button';
 import AssetInfo from './AssetInfo';
@@ -13,7 +14,7 @@ import ShowPrice from './ShowPrice';
 import SkeletonModal from './SkeletonModal';
 
 export type AssetModalProps = {
-  data: any; //todo usefetch data type should be what? data[0] is cointype
+  data: CoinType;
   holdings: number;
   setHoldings: React.Dispatch<React.SetStateAction<number>>;
   isLoading: boolean;
@@ -31,6 +32,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   inputError,
   validate,
 }): JSX.Element => {
+  console.log(data);
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
 

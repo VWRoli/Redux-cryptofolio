@@ -59,32 +59,27 @@ export const BUTTONS = [
 //Format chart data
 
 export const chartDataFormatter = (
-  data: any,
+  data: { [key: string]: number[][] }[],
   assets: AssetType[],
 ): chartDataType[] | undefined => {
   //Get prices from chart data array, because it has market and voluma data too
-
-  const priceData = data.map((item: any) => {
-    return item.prices;
-  });
+  const priceData: number[][][] = data.map((item) => item.prices);
 
   //Calculate prices of holdings
-  const holdingPrices = priceData.map((array: any, i: number) => {
-    const currentHoldings = assets[i].holdings;
-    return array.map((item: any) => currentHoldings * item[1]);
+  const holdingPrices: number[][] = priceData.map((array, i) => {
+    const currentHoldings: number = assets[i].holdings;
+    return array.map((item) => currentHoldings * item[1]);
   });
 
   if (!priceData[0]) return;
 
   //Get timestamps for chart
-  const timeStamps = priceData[0].map((stamp: any) => stamp[0]);
+  const timeStamps: number[] = priceData[0].map((stamp: number[]) => stamp[0]);
 
   //Get and add the total price values
-  const totalPrices = holdingPrices
-    .map((array: any) => array.map((el: number) => el))
-    .reduce((acc: any, curr: any) =>
-      acc.map((el: number, i: number) => el + curr[i]),
-    );
+  const totalPrices: number[] = holdingPrices
+    .map((array) => array.map((el) => el))
+    .reduce((acc, curr) => acc.map((el, i) => el + curr[i]));
 
   //Createing a data Object for the chart
   const chartDataObj = timeStamps.map((el: number, i: number) => {
@@ -142,6 +137,6 @@ export const calcChangePercentage = (
 };
 
 //To capitalize first letter
-export function capitalizeFirstLetter(str: string) {
+export function capitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }

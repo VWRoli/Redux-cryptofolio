@@ -99,16 +99,15 @@ export const fetchCoinData =
         (item: AssetType) =>
           `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`,
       );
+
       //Fetch chart data
-      const chartRes: any[] = await Promise.all(
-        chartUrls.map((url: string) => fetch(url).catch((error: any) => error)),
+      const chartRes: Response[] = await Promise.all(
+        chartUrls.map((url: string) => fetch(url).catch((error) => error)),
       );
 
-      const chartData: any[] = await Promise.all(
+      const chartData: { [key: string]: number[][] }[] = await Promise.all(
         chartRes.map((response) =>
-          response.json
-            ? response.json().catch((error: any) => error)
-            : response,
+          response.json ? response.json().catch((error) => error) : response,
         ),
       );
 
