@@ -57,6 +57,9 @@ a {
 }
 
 @media screen and(max-width: 750px) {
+  * {
+    font-size: 14px;
+  }
   .App {
     margin-top: 0;
   }

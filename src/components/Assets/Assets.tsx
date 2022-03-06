@@ -24,7 +24,7 @@ const Assets: React.FC = (): JSX.Element => {
         {assets.length === 0 ? (
           <tbody>
             <tr>
-              <td colSpan={6}>
+              <td colSpan={6} style={{ padding: '1.5rem' }}>
                 <Message
                   msg="You don't have any assets in your portfolio."
                   role={roleType.INFO}
@@ -38,7 +38,7 @@ const Assets: React.FC = (): JSX.Element => {
       </table>
 
       {assets.length !== 0 && (
-        <div style={{ margin: 'auto' }}>
+        <div style={{ margin: '1.5rem auto' }}>
           <Button
             label="Clear Assets"
             clickHandler={handleClear}

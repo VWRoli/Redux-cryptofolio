@@ -6,7 +6,7 @@ import { State } from '../../reducers';
 import { CoinType } from '../../Types';
 //Components
 import Button from '../common/Button/Button';
-import Error from '../Error/Error';
+import Error from '../common/Error/Error';
 import AssetInfo from './AssetInfo';
 import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';

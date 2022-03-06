@@ -12,7 +12,7 @@ import ModalHeader from './ModalHeader';
 import QuantityForm from './QuantityForm';
 import ShowPrice from './ShowPrice';
 import SkeletonModal from './SkeletonModal';
-import Error from '../Error/Error';
+import Error from '../common/Error/Error';
 
 const EditAssetModal: React.FC<AssetModalProps> = ({
   data,

@@ -3,8 +3,8 @@ import { useFetch } from '../../hooks/useFetch';
 import { CoinType } from '../../Types';
 //Components
 import ListItem from '../common/ListItem/ListItem';
-import Loading from '../Loading';
-import Error from '../Error/Error';
+import Loading from '../common/Loading/Loading';
+import Error from '../common/Error/Error';
 
 const HomeList: React.FC = (): JSX.Element => {
   const { data: coins, isLoading, isError } = useFetch(BASE_URL);

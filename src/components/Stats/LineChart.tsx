@@ -9,7 +9,7 @@ import {
 import { priceFormatter } from '../../helpers';
 import { useSelector } from 'react-redux';
 //Components
-import Loading from '../Loading';
+import Loading from '../common/Loading/Loading';
 import { State } from '../../reducers';
 
 const LineChart: React.FC = (): JSX.Element => {

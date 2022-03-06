@@ -4,7 +4,7 @@ import { FaChartLine, FaChartPie } from 'react-icons/fa';
 import { State } from '../../reducers';
 //Components
 import LineChartButtons from './LineChartButtons';
-import Error from '../Error/Error';
+import Error from '../common/Error/Error';
 import LineChart from './LineChart';
 import PieChart from './PieChart';
 import Title from '../common/Title/Title';

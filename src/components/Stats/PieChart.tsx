@@ -9,6 +9,7 @@ import { calcPieChartData, capitalizeFirstLetter } from '../../helpers';
 import { COLORS, RADIAN } from '../../constants/constant';
 import { useSelector } from 'react-redux';
 import { State } from '../../reducers';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 type Props = {
   clicked: boolean;
@@ -24,6 +25,8 @@ type LabelProps = { [key: string]: number };
 const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
   const { assets, coinInfo } = useSelector((state: State) => state.asset);
   const [data, setData] = useState<DataType[]>([]);
+  const width = useWindowWidth();
+  const isMobileScreen = width < 600;
 
   useEffect(() => {
     setData(calcPieChartData(assets, coinInfo));
@@ -38,9 +41,9 @@ const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
     percent,
     index,
   }: LabelProps) => {
-    const radius: number = innerRadius + (outerRadius - innerRadius) * 1.25;
-    const x: number = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y: number = cy + radius * Math.sin(-midAngle * RADIAN);
+    const radius = innerRadius + (outerRadius - innerRadius) * 1.25;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
       <text
@@ -61,8 +64,8 @@ const PieChart: React.FC<Props> = ({ clicked }): JSX.Element => {
       <RePieChart>
         <Pie
           data={data}
-          innerRadius={60}
-          outerRadius={100}
+          innerRadius={isMobileScreen ? 45 : 60}
+          outerRadius={isMobileScreen ? 70 : 100}
           paddingAngle={5}
           dataKey="value"
           labelLine={false}

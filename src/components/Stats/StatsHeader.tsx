@@ -9,14 +9,8 @@ import { State } from '../../reducers';
 import Skeleton from '../common/Skeleton/Skeleton';
 
 const StatsHeader: React.FC = (): JSX.Element => {
-  const {
-    assets,
-
-    isLoading,
-    totalValue,
-    totalValueChange,
-    defaultCurrency,
-  } = useSelector((state: State) => state.asset);
+  const { assets, isLoading, totalValue, totalValueChange, defaultCurrency } =
+    useSelector((state: State) => state.asset);
   return (
     <div className="stats-header">
       {isLoading ? (
@@ -26,9 +20,11 @@ const StatsHeader: React.FC = (): JSX.Element => {
         </>
       ) : (
         <>
-          {priceFormatter(totalValue, defaultCurrency)}
+          <span className="stats-header_total-value">
+            {priceFormatter(totalValue, defaultCurrency)}
+          </span>
           {assets.length === 0 ? (
-            <span>0%</span>
+            <span style={{ fontSize: '1.5rem' }}>0%</span>
           ) : (
             <span className={totalValueChange > 0 ? 'positive' : 'negative'}>
               <span style={{ fontSize: '1.5rem', color: '#bbb' }}>24h: </span>

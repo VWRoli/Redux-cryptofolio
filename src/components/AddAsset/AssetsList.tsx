@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { State } from '../../reducers';
 import { CoinType } from '../../Types';
 //Components
-import Error from '../Error/Error';
-import Loading from '../Loading';
+import Error from '../common/Error/Error';
+import Loading from '../common/Loading/Loading';
 import ListItem from '../common/ListItem/ListItem';
 import Message, { roleType } from '../common/Message/Message';
 

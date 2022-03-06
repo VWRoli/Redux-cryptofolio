@@ -5,7 +5,18 @@
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
+  .stats-header_total-value {
+    font-size: 2rem;
+  }
   span {
     font-weight: 400;
+  }
+}
+
+@media screen and(max-width: 600px) {
+  .stats-header {
+    .stats-header_total-value {
+      font-size: 1.5rem;
+    }
   }
 }

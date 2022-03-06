@@ -1,6 +1,6 @@
 import { FaExclamationTriangle } from 'react-icons/fa';
 //Components
-import Message, { roleType } from '../common/Message/Message';
+import Message, { roleType } from '../Message/Message';
 
 const Error: React.FC = (): JSX.Element => {
   return (

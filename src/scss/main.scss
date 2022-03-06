@@ -28,6 +28,5 @@
 @import '../components/Assets/AssetRow';
 @import '../components/Assets/SkeletonAssetRow';
 @import '../components/NotFound/NotFound';
-@import '../components/Error/Error';
-/*  */
-@import './loading';
+@import '../components/common/Error/Error';
+@import '../components/common/Loading/Loading';
