@@ -39,6 +39,11 @@ const LineChart: React.FC = (): JSX.Element => {
           <YAxis
             width={80}
             dataKey="price"
+            tickFormatter={(tick) => {
+              if (tick >= 1000 && tick < 1000000) return tick / 1000 + 'K ';
+              else if (tick >= 1000000) return tick / 1000000 + 'M ';
+              else return tick;
+            }}
             unit={defaultCurrency.toUpperCase()}
           />
 
