@@ -1,12 +1,19 @@
 #stats {
   grid-column: span 4;
   margin-right: 0.5rem;
+
   .chart-tab-container {
     display: flex;
     & > * {
       margin: 0.25rem;
     }
   }
+}
+.show-stats-button {
+  @include flex-center(row);
+  margin: 0.25rem;
+  background-color: $light-bg;
+  border-radius: $primary-radius;
 }
 .stats-error-wrapper {
   min-height: 300px;

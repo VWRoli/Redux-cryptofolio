@@ -13,19 +13,11 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1050px) {
   #portfolio {
     #stats {
       grid-column: span 12;
     }
-    #assets {
-      grid-column: span 12;
-    }
-  }
-}
-
-@media screen and (max-width: 850px) {
-  #portfolio {
     #assets {
       grid-column: span 12;
     }
