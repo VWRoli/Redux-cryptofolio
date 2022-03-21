@@ -44,6 +44,7 @@ const AssetsHeader: React.FC = (): JSX.Element => {
       <IconButton
         icon={<FaSyncAlt />}
         clickHandler={() => dispatch(fetchCoinData())}
+        ariaLabel="Refresh"
       />
     </header>
   );

@@ -41,6 +41,7 @@ const Stats: React.FC = (): JSX.Element => {
           <IconButton
             icon={isOpen ? <FaChevronUp /> : <FaChevronDown />}
             clickHandler={() => setIsOpen(!isOpen)}
+            ariaLabel="Show charts"
           />
         </div>
       )}

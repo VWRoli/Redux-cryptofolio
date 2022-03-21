@@ -1,13 +1,16 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { State } from './reducers';
+import { lazy } from 'react';
 
 //Components
 import AddAsset from './components/AddAsset/AddAsset';
 import NotFound from './components/NotFound/NotFound';
 import Home from './components/Home/Home';
-import Modal from './components/Modal/Modal';
+//import Modal from './components/Modal/Modal';
 import Portfolio from './components/Portfolio/Portfolio';
+
+const ModalComponent = lazy(() => import('./components/Modal/Modal'));
 
 const App: React.FC = (): JSX.Element => {
   const assets = useSelector((state: State) => state.asset.assets);
@@ -15,7 +18,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <Router>
       <div className="App">
-        <Modal />
+        <ModalComponent />
         <Switch>
           <Route exact path="/">
             {assets?.length === 0 ? <Home /> : <Portfolio />}

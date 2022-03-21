@@ -77,10 +77,15 @@ const AssetRow: React.FC<Props> = ({ asset }): JSX.Element => {
       </td>
       {/**ACTIONS */}
       <td className="actions-row">
-        <IconButton icon={<FaEdit />} clickHandler={handleEdit} />
+        <IconButton
+          icon={<FaEdit />}
+          clickHandler={handleEdit}
+          ariaLabel="Edit"
+        />
         <IconButton
           icon={<FaRegMinusSquare />}
           clickHandler={() => dispatch(removeAsset(asset.id))}
+          ariaLabel="Remove"
         />
       </td>
     </tr>

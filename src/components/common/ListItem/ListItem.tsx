@@ -40,7 +40,12 @@ const ListItem: React.FC<Props> = ({ coin, owned }): JSX.Element => {
       {owned ? (
         ''
       ) : (
-        <IconButton primary clickHandler={handleClick} icon={<FaPlus />} />
+        <IconButton
+          primary
+          clickHandler={handleClick}
+          icon={<FaPlus />}
+          ariaLabel="Add coin"
+        />
       )}
     </article>
   );

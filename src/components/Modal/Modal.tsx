@@ -43,6 +43,7 @@ const Modal: React.FC = (): JSX.Element => {
           <IconButton
             icon={<FaTimes />}
             clickHandler={() => dispatch(closeModal())}
+            ariaLabel="Close"
           />
         </div>
         <ModalFrame />

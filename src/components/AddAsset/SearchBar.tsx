@@ -28,7 +28,12 @@ const SearchBar: React.FC = (): JSX.Element => {
           setSearchTerm(e.target.value);
         }}
       />
-      <IconButton primary icon={<FaSearch />} clickHandler={onSubmit} />
+      <IconButton
+        primary
+        icon={<FaSearch />}
+        clickHandler={onSubmit}
+        ariaLabel="Search"
+      />
     </form>
   );
 };
