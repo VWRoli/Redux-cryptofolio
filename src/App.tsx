@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { State } from './reducers';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 //Components
 import AddAsset from './components/AddAsset/AddAsset';
@@ -18,7 +18,9 @@ const App: React.FC = (): JSX.Element => {
   return (
     <Router>
       <div className="App">
-        <ModalComponent />
+        <Suspense fallback={<></>}>
+          <ModalComponent />
+        </Suspense>
         <Switch>
           <Route exact path="/">
             {assets?.length === 0 ? <Home /> : <Portfolio />}
