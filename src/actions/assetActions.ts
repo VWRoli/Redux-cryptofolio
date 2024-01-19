@@ -3,6 +3,7 @@ import { ActionType } from '../constants/actionTypes';
 import { chartDataFormatter, urlFormatter } from '../helpers';
 import { State } from '../reducers';
 import { Action, AssetType } from '../Types';
+import { API_KEY, API_URL } from '../constants/constant';
 
 export const addAsset =
   (asset: AssetType) =>
@@ -73,7 +74,7 @@ export const fetchCoinData =
 
       dispatch({ type: ActionType.LOADING });
       const formattedUrl = urlFormatter(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&ids=`,
+        `${API_URL}/coins/markets?vs_currency=${defaultCurrency}&ids=`,
         assets,
       );
 
@@ -85,7 +86,7 @@ export const fetchCoinData =
       //Get API urls for chart
       const chartUrls = assets.map(
         (item: AssetType) =>
-          `https://api.coingecko.com/api/v3/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}`,
+          `${API_URL}/coins/${item.id}/market_chart?vs_currency=${defaultCurrency}&days=${chartDays}&x_cg_demo_api_key=${API_KEY}`,
       );
 
       //Fetch chart data
@@ -111,6 +112,7 @@ export const fetchCoinData =
       //Get total value change
       dispatch({ type: ActionType.GET_TOTAL_CHANGE });
     } catch (error) {
+      console.log(error);
       dispatch({ type: ActionType.SET_ERROR });
     }
   };

@@ -8,11 +8,12 @@ import Error from '../common/Error/Error';
 import Loading from '../common/Loading/Loading';
 import ListItem from '../common/ListItem/ListItem';
 import Message, { roleType } from '../common/Message/Message';
+import { API_KEY, API_URL } from '../../constants/constant';
 
 const AssetsList: React.FC = (): JSX.Element => {
   const { assets, searchQuery } = useSelector((state: State) => state.asset);
 
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false`;
+  const url = `${API_URL}/coins/markets?vs_currency=usd&ids=${searchQuery}&order=market_cap_desc&per_page=30&page=1&sparkline=false&x_cg_demo_api_key=${API_KEY}`;
 
   const { data: coins, isError, isLoading } = useFetch(url);
 

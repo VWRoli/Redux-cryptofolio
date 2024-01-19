@@ -1,4 +1,5 @@
 import { AssetType, chartDataType, CoinType } from './Types';
+import { API_KEY } from './constants/constant';
 
 //Locale
 const locale = navigator.language;
@@ -31,12 +32,9 @@ export const priceFormatter = (price: number, currency: string): string => {
 //URL formatter
 export const urlFormatter = (url: string, array: AssetType[]): string => {
   const urlPart = array
-    .map((item) => {
-      return `${item.id}%2C%20`;
-    })
+    .map((item, i) => (i ? `${item.id}%2C%20` : `${item.id}`))
     .join('');
-
-  return `${url}${urlPart}`;
+  return `${url}${urlPart}&x_cg_demo_api_key=${API_KEY}`;
 };
 
 //Calculate year to date

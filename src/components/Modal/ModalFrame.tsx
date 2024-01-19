@@ -8,6 +8,7 @@ import { useFetch } from '../../hooks/useFetch';
 import AddAssetModal from './AddAssetModal';
 import EditAssetModal from './EditAssetModal';
 import SuccessModal from './SuccessModal';
+import { API_KEY, API_URL } from '../../constants/constant';
 
 const ModalFrame: React.FC = (): JSX.Element => {
   const { modal, asset } = useSelector((state: State) => state);
@@ -44,7 +45,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
   autoCloseModal();
 
   const { data, isLoading } = useFetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}`,
+    `${API_URL}/coins/markets?vs_currency=${asset.defaultCurrency}&ids=${modal.activeCoin}&x_cg_demo_api_key=${API_KEY}`,
   );
 
   return (
