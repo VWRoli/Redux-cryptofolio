@@ -28,7 +28,7 @@ const Stats: React.FC = (): JSX.Element => {
   if (isError)
     return (
       <div className="stats-error-wrapper">
-        <Error />
+        <Error msg={isError} />
       </div>
     );
 

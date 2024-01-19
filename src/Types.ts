@@ -2,7 +2,7 @@ import { ActionType } from './constants/actionTypes';
 
 export interface IAssetState {
   isLoading: boolean;
-  isError: boolean;
+  isError: string;
   assets: AssetType[];
   coinInfo: CoinType[];
   searchQuery: string;
@@ -83,6 +83,7 @@ interface GetTotalChangeAction {
 }
 interface SetErrorAction {
   type: ActionType.SET_ERROR;
+  payload: string;
 }
 
 export type Action =

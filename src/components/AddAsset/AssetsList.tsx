@@ -29,7 +29,13 @@ const AssetsList: React.FC = (): JSX.Element => {
 
   //Error handling
   if (isError) {
-    return <Error />;
+    return (
+      <Error
+        msg={
+          'Error fetching data, please refresh the page or try again later...'
+        }
+      />
+    );
   }
 
   //Loading screen

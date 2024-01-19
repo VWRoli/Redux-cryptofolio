@@ -4,7 +4,7 @@ import { IAssetState, Action } from '../Types';
 
 const defaultState: IAssetState = {
   isLoading: false,
-  isError: false,
+  isError: '',
   assets: [],
   coinInfo: [],
   searchQuery: '',
@@ -37,7 +37,7 @@ const asset = (
     case ActionType.DISPLAY_INFO:
       return { ...state, coinInfo: action.payload, isLoading: false };
     case ActionType.SET_ERROR:
-      return { ...state, isError: true, isLoading: false };
+      return { ...state, isError: action.payload, isLoading: false };
     case ActionType.EDIT_ASSET:
       return { ...state, assets: action.payload };
     case ActionType.SET_CURRENCY:
@@ -51,7 +51,7 @@ const asset = (
           const [correctCoin] = state.coinInfo.filter(
             (coin: CoinType) => coin.id === asset.id,
           );
-          return asset.holdings * +correctCoin.current_price;
+          return asset.holdings * +correctCoin?.current_price;
         })
         .reduce((acc: number, cur: number) => acc + cur, 0);
 
@@ -66,7 +66,7 @@ const asset = (
             (coin: CoinType) => coin.id === asset.id,
           );
 
-          return asset.holdings * +correctCoin.price_change_24h;
+          return asset.holdings * +correctCoin?.price_change_24h;
         })
         .reduce((acc: number, cur: number) => acc + cur, 0);
 

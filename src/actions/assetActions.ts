@@ -77,8 +77,8 @@ export const fetchCoinData =
         `${API_URL}/coins/markets?vs_currency=${defaultCurrency}&ids=`,
         assets,
       );
-
       const response = await fetch(`${formattedUrl}`);
+
       const coinInfo = await response.json();
 
       dispatch({ type: ActionType.DISPLAY_INFO, payload: coinInfo });
@@ -111,8 +111,7 @@ export const fetchCoinData =
 
       //Get total value change
       dispatch({ type: ActionType.GET_TOTAL_CHANGE });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: ActionType.SET_ERROR });
+    } catch (error: any) {
+      dispatch({ type: ActionType.SET_ERROR, payload: error.message });
     }
   };

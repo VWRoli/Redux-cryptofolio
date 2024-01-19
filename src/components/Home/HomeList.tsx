@@ -16,7 +16,9 @@ const HomeList: React.FC = (): JSX.Element => {
 
   //Error screen
   if (isError) {
-    return <Error />;
+    return (
+      <Error msg="Error fetching data, please refresh the page or try again later..." />
+    );
   }
   return (
     <>

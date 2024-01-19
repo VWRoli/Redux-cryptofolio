@@ -45,7 +45,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
     return (
       <>
         <ModalHeader headerTitle="Edit Asset" />
-        <Error />
+        <Error msg="Error fetching data, please refresh the page or try again later..." />
       </>
     );
 

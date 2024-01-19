@@ -15,7 +15,7 @@ const AssetsTable: React.FC = (): JSX.Element => {
       <tbody>
         <tr>
           <td colSpan={6}>
-            <Error />
+            <Error msg={isError} />
           </td>
         </tr>
       </tbody>

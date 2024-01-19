@@ -2,14 +2,15 @@ import { FaExclamationTriangle } from 'react-icons/fa';
 //Components
 import Message, { roleType } from '../Message/Message';
 
-const Error: React.FC = (): JSX.Element => {
+type Props = {
+  msg: string;
+};
+
+const Error: React.FC<Props> = ({ msg }): JSX.Element => {
   return (
     <div className="error-container">
       <FaExclamationTriangle className="error-sign" />
-      <Message
-        msg="Error fetching data, please refresh the page or try again later..."
-        role={roleType.ERROR}
-      />
+      <Message msg={msg} role={roleType.ERROR} />
     </div>
   );
 };

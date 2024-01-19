@@ -32,7 +32,9 @@ export const priceFormatter = (price: number, currency: string): string => {
 //URL formatter
 export const urlFormatter = (url: string, array: AssetType[]): string => {
   const urlPart = array
-    .map((item, i) => (i ? `${item.id}%2C%20` : `${item.id}`))
+    .map((item, i, arr) =>
+      arr.length === 1 ? `${item.id}` : `${item.id}%2C%20`,
+    )
     .join('');
   return `${url}${urlPart}&x_cg_demo_api_key=${API_KEY}`;
 };
