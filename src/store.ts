@@ -8,6 +8,10 @@ const persistedState = localStorage.getItem('cryptofolio')
   ? JSON.parse(localStorage.getItem('cryptofolio') || '{}')
   : {};
 
+if (persistedState?.asset?.isError) {
+  persistedState.asset.isError = false;
+}
+
 export const store = createStore(
   rootReducer,
   persistedState,
