@@ -21,7 +21,7 @@ export type AssetModalProps = {
   disabled: boolean;
   inputError: string;
   resetError: () => void;
-  validate: () => boolean;
+  validate: (holdings: string) => boolean;
 };
 
 const AddAssetModal: React.FC<AssetModalProps> = ({
@@ -40,8 +40,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     //validate input string
-    if (validate()) return;
-
+    if (validate(holdings)) return;
     dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));
     dispatch(openSuccess());
     setHoldings('');

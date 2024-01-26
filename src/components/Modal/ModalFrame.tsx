@@ -17,10 +17,14 @@ const ModalFrame: React.FC = (): JSX.Element => {
   const [inputError, setInputError] = useState('');
   const dispatch = useDispatch();
 
-  const validate = () => {
-    //always convert ',' to '.'
-    holdings.replace(',', '.');
+  const validate = (holdings: string) => {
     const pasredHoldings = parseFloat(holdings);
+
+    if (holdings.includes(',')) {
+      setInputError('Error! Please use decimal points instead of commas.');
+      setDisabled(true);
+      return true;
+    }
     //handle NaN
     if (Number.isNaN(pasredHoldings)) {
       setInputError('Error! Please enter a valid number.');
@@ -28,7 +32,6 @@ const ModalFrame: React.FC = (): JSX.Element => {
       return true;
     } else if (pasredHoldings <= 0) {
       //handle negative numbers and zero
-      console.log('Please enter a positive number');
       setInputError('Please enter a positive number');
       setDisabled(true);
       return true;
@@ -80,8 +83,6 @@ const ModalFrame: React.FC = (): JSX.Element => {
       {edit && (
         <EditAssetModal
           data={data[0]}
-          holdings={holdings}
-          setHoldings={setHoldings}
           isLoading={isLoading}
           disabled={disabled}
           inputError={inputError}

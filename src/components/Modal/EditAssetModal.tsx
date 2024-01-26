@@ -2,9 +2,9 @@ import { FaEdit } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { editAsset } from '../../actions/assetActions';
 import { State } from '../../reducers';
-import { AssetModalProps } from './AddAssetModal';
 import { closeModal } from '../../actions/modalActions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { CoinType } from '../../Types';
 //Components
 import Button from '../common/Button/Button';
 import AssetInfo from './AssetInfo';
@@ -14,10 +14,17 @@ import ShowPrice from './ShowPrice';
 import SkeletonModal from './SkeletonModal';
 import Error from '../common/Error/Error';
 
-const EditAssetModal: React.FC<AssetModalProps> = ({
+export type EditAssetModalProps = {
+  data: CoinType;
+  isLoading: boolean;
+  disabled: boolean;
+  inputError: string;
+  resetError: () => void;
+  validate: (holdings: string) => boolean;
+};
+
+const EditAssetModal: React.FC<EditAssetModalProps> = ({
   data,
-  holdings,
-  setHoldings,
   isLoading,
   disabled,
   inputError,
@@ -29,17 +36,18 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
   const [correctCoin] = asset.assets.filter(
     (asset) => asset.id === modal.activeCoin,
   );
+  const [holdings, setHoldings] = useState(correctCoin.holdings + '');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    validate();
+    validate(holdings);
     dispatch(editAsset(correctCoin, holdings));
     dispatch(closeModal());
     setHoldings('');
   };
 
   useEffect(() => {
-    validate();
+    validate(holdings);
   }, [holdings]);
 
   if (!data)
