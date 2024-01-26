@@ -28,6 +28,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   globals: {
     React: true,
