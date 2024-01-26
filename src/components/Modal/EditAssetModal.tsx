@@ -22,6 +22,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
   disabled,
   inputError,
   validate,
+  resetError,
 }) => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
@@ -34,7 +35,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
     validate();
     dispatch(editAsset(correctCoin, holdings));
     dispatch(closeModal());
-    setHoldings(1);
+    setHoldings('');
   };
 
   useEffect(() => {
@@ -64,6 +65,7 @@ const EditAssetModal: React.FC<AssetModalProps> = ({
             setHoldings={setHoldings}
             submitHandler={handleSubmit}
             inputError={inputError}
+            resetError={resetError}
           />
           <Button
             label="Edit Asset"

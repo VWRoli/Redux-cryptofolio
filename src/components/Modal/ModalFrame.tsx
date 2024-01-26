@@ -12,21 +12,36 @@ import { API_KEY, API_URL } from '../../constants/constant';
 
 const ModalFrame: React.FC = (): JSX.Element => {
   const { modal, asset } = useSelector((state: State) => state);
-  const [holdings, setHoldings] = useState(1);
+  const [holdings, setHoldings] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [inputError, setInputError] = useState('');
   const dispatch = useDispatch();
 
   const validate = () => {
-    if (holdings > 0) {
+    //always convert ',' to '.'
+    holdings.replace(',', '.');
+    const pasredHoldings = parseFloat(holdings);
+    //handle NaN
+    if (Number.isNaN(pasredHoldings)) {
+      setInputError('Error! Please enter a valid number.');
+      setDisabled(true);
+      return true;
+    } else if (pasredHoldings <= 0) {
+      //handle negative numbers and zero
+      console.log('Please enter a positive number');
+      setInputError('Please enter a positive number');
+      setDisabled(true);
+      return true;
+    } else {
       setInputError('');
       setDisabled(false);
-      return;
-    } else {
-      setInputError('Quantity should be bigger than zero.');
-      setDisabled(true);
-      return;
+      return false;
     }
+  };
+
+  const resetError = () => {
+    setInputError('');
+    setDisabled(false);
   };
 
   //Modal types
@@ -58,6 +73,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
           isLoading={isLoading}
           disabled={disabled}
           inputError={inputError}
+          resetError={resetError}
           validate={validate}
         />
       )}
@@ -69,6 +85,7 @@ const ModalFrame: React.FC = (): JSX.Element => {
           isLoading={isLoading}
           disabled={disabled}
           inputError={inputError}
+          resetError={resetError}
           validate={validate}
         />
       )}

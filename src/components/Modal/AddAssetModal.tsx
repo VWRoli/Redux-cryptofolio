@@ -15,12 +15,13 @@ import SkeletonModal from './SkeletonModal';
 
 export type AssetModalProps = {
   data: CoinType;
-  holdings: number;
-  setHoldings: React.Dispatch<React.SetStateAction<number>>;
+  holdings: string;
+  setHoldings: React.Dispatch<React.SetStateAction<string>>;
   isLoading: boolean;
   disabled: boolean;
   inputError: string;
-  validate: () => void;
+  resetError: () => void;
+  validate: () => boolean;
 };
 
 const AddAssetModal: React.FC<AssetModalProps> = ({
@@ -31,16 +32,19 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
   disabled,
   inputError,
   validate,
+  resetError,
 }): JSX.Element => {
   const dispatch = useDispatch();
   const { modal, asset } = useSelector((state: State) => state);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    validate();
+    //validate input string
+    if (validate()) return;
+
     dispatch(addAsset({ id: modal.activeCoin, holdings: +holdings }));
     dispatch(openSuccess());
-    setHoldings(1);
+    setHoldings('');
   };
 
   if (!data)
@@ -66,6 +70,7 @@ const AddAssetModal: React.FC<AssetModalProps> = ({
             setHoldings={setHoldings}
             submitHandler={handleSubmit}
             inputError={inputError}
+            resetError={resetError}
           />
           <Button
             label="Add Asset"
